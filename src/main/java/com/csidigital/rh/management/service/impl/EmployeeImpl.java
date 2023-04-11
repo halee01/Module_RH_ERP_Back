@@ -96,4 +96,19 @@ public class EmployeeImpl implements EmployeeService {
     public List<Employee> getAllCandidates() {
         return employeeRepository.getAllCandidates();
     }
+
+    @Override
+    public List<Employee> getAllResourcesBackOffice() {
+        return employeeRepository.getAllResourcesBackOffice();
+    }
+
+    @Override
+    public List<Employee> getAllResourcesInterne() {
+        return employeeRepository.getAllResourcesInterne();
+    }
+
+    @Override
+    public List<Employee> getAllResourcesExterne() {
+        return employeeRepository.getAllResourcesExterne();
+    }
 }

@@ -20,6 +20,18 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     @Query(value ="SELECT * FROM employee WHERE dtype= 'Employee'", nativeQuery = true)
     List<Employee> getAllCandidates ();
 
+    //Filtrer les Ressources BackOffice
+    @Query(value ="SELECT * FROM employee WHERE dtype= 'BackOffice'", nativeQuery = true)
+    List<Employee> getAllResourcesBackOffice ();
+
+    //Filtrer les Ressources Internes
+    @Query(value ="SELECT * FROM employee WHERE dtype= 'Resource'", nativeQuery = true)
+    List<Employee> getAllResourcesInterne ();
+
+    //Filtrer les Ressources externes
+    @Query(value ="SELECT * FROM employee WHERE dtype= 'ExternalResource'", nativeQuery = true)
+    List<Employee> getAllResourcesExterne();
+
 
     //filtrer les employés selon leurs status
     List<Employee> findByEmployeeStatus(EmployeeStatus employeeStatus);

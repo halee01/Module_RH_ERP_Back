@@ -20,4 +20,9 @@ public interface EmployeeService {
     List<Employee> findByEmployeeStatus();
 
     List<Employee> getAllCandidates ();
+    List<Employee> getAllResourcesBackOffice ();
+
+    List<Employee> getAllResourcesInterne ();
+
+    List<Employee> getAllResourcesExterne();
 }

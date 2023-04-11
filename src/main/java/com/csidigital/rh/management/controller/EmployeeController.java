@@ -56,4 +56,16 @@ public class EmployeeController {
     public List<Employee> getAllCandidates(){
         return employeeService.getAllCandidates();
 }
+    @GetMapping("/getAllResourcesBackOffice")
+    public List<Employee> getAllResourcesBackOffice(){
+        return employeeService.getAllResourcesBackOffice();
+    }
+    @GetMapping("/getAllResourcesInterne")
+    public List<Employee> getAllResourcesInterne(){
+        return employeeService.getAllResourcesInterne();
+    }
+    @GetMapping("/getAllResourcesExterne")
+    public List<Employee> getAllResourcesExterne(){
+        return employeeService.getAllResourcesExterne();
+    }
 }
