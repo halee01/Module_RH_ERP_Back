@@ -1,5 +1,6 @@
 package com.csidigital.rh.shared.dto.request;
 
+import com.csidigital.rh.dao.entity.TechnicalFile;
 import com.csidigital.rh.shared.enumeration.*;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -38,4 +39,5 @@ public class EmployeeRequest {
 
     private EmployeeStatus employeeStatus;
     private Departement departement;
+    private TechnicalFile technicalFile ;
 }
