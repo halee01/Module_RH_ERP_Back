@@ -1,6 +1,7 @@
 package com.csidigital.rh.dao.entity;
 
 import com.csidigital.rh.shared.enumeration.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -54,4 +55,9 @@ public class Employee {
 
     @Enumerated(EnumType.STRING)
     private Departement departement;
+
+    @JsonIgnore
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "technicalFileId")
+    private TechnicalFile technicalFile;
 }
