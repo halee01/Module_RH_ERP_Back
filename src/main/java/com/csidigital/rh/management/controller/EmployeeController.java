@@ -51,4 +51,9 @@ public class EmployeeController {
     public List<Employee> getEmployee(){
         return employeeService.findByEmployeeStatus();
 }
+
+@GetMapping("/getAllCandidates")
+    public List<Employee> getAllCandidates(){
+        return employeeService.getAllCandidates();
+}
 }

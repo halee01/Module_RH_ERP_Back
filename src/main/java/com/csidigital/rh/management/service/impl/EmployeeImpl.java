@@ -91,4 +91,9 @@ public class EmployeeImpl implements EmployeeService {
     public List<Employee> findByEmployeeStatus() {
         return employeeRepository.findByEmployeeStatus(EmployeeStatus.CONVERTED_TO_RESOURCE);
     }
+
+    @Override
+    public List<Employee> getAllCandidates() {
+        return employeeRepository.getAllCandidates();
+    }
 }

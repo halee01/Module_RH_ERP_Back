@@ -18,4 +18,6 @@ public interface EmployeeService {
     String employeeSerialNumberGenerator ();
 
     List<Employee> findByEmployeeStatus();
+
+    List<Employee> getAllCandidates ();
 }
