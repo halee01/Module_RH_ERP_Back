@@ -15,6 +15,7 @@ public class Evaluation{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "globalAppreciation")
     private int globalAppreciation;
 
     @JsonIgnore

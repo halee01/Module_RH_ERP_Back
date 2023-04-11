@@ -1,5 +1,6 @@
 package com.csidigital.rh.management.service;
 
+import com.csidigital.rh.dao.entity.Employee;
 import com.csidigital.rh.shared.dto.request.EmployeeRequest;
 import com.csidigital.rh.shared.dto.response.EmployeeResponse;
 
@@ -14,5 +15,7 @@ public interface EmployeeService {
 
     void deleteEmployee(Long id);
 
+    String employeeSerialNumberGenerator ();
 
+    List<Employee> findByEmployeeStatus();
 }

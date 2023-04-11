@@ -19,6 +19,7 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     private String lastName;
+    @Column(name = "firstName")
     private String firstName;
     @Enumerated(EnumType.STRING)
     private Civility civility;
@@ -31,24 +32,26 @@ public class Employee {
     private String emailTwo;
     private Integer phoneNumberOne;
     private Integer phoneNumberTwo;
-    private String adress;
+    private String address;
     private Integer postCode;
-    private Integer city;
+    private String city;
     @Enumerated(EnumType.STRING)
     private Country country;
     @Enumerated(EnumType.STRING)
     private MaritalSituation maritalSituation;
-    private Integer recommendationType ;
+    private Integer recommendationMark ;
     private Integer experience ;
     private String experienceDetails ;
-    @Enumerated(EnumType.STRING)
-    private Provenance provenance;
-    private String employeeFirstName;
-    private String employeeLastName;
-    private String employeeSerialNumber;
+
+
     @Enumerated(EnumType.STRING)
     private EmployeeStatus employeeStatus;
 
-    @OneToMany(mappedBy = "employee")
-    private List<OfferCandidate> offerCandidateList;
+
+    @Enumerated(EnumType.STRING)
+    private WorkLocation workLocation;
+
+
+    @Enumerated(EnumType.STRING)
+    private Departement departement;
 }

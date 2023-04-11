@@ -14,10 +14,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 
 public class Resource extends Employee{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private Long Id;
+
     private String serialNumber;
     private String socialSecurityNumber;
     private String bankAccountNumber;

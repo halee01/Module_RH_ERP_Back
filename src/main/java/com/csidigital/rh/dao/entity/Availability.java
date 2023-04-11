@@ -1,9 +1,6 @@
 package com.csidigital.rh.dao.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,8 +16,11 @@ public class Availability {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
+    @Column(name = "startDate")
     private LocalDate startDate;
+    @Column(name = "endDate")
     private LocalDate endDate;
+    @Column(name = "period")
     private Integer  period;
 
 }

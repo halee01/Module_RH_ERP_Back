@@ -5,17 +5,23 @@ import com.csidigital.rh.management.service.impl.EmployeeImpl;
 import com.csidigital.rh.shared.dto.request.EmployeeRequest;
 import com.csidigital.rh.shared.dto.response.EmployeeResponse;
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RequestMapping("/rh/employee")
 public class EmployeeController {
     @Autowired
-    private EmployeeImpl employeeService;//8altaaaaaaaaaaaaaaaaaaaaaaaa yelzem minuscule
-
+    private EmployeeImpl employeeService;
+    @Autowired
+    public EmployeeController(EmployeeImpl employeeService) {
+        this.employeeService = employeeService;
+    }
     @GetMapping("/getEmployees")
     public List<EmployeeResponse> getAllEmployees() {
         return employeeService.getAllEmployees();

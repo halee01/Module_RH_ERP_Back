@@ -21,20 +21,24 @@ public class EmployeeResponse {
     private String emailTwo;
     private Integer phoneNumberOne;
     private Integer phoneNumberTwo;
-    private String adress;
+    private String address;
     private Integer postCode;
-    private Integer city;
+    private String city;
     private Country country;
     private MaritalSituation maritalSituation;
-    private Integer recommendationType ;
+    private Integer recommendationMark ;
     private Integer experience ;
     private String experienceDetails ;
-
-    private EmployeeStatus employeeStatus;
-
+    @Enumerated(EnumType.STRING)
     private Provenance provenance;
     private String employeeFirstName;
     private String employeeLastName;
     private String EmployeeSerialNumber;
+    private EmployeeStatus employeeStatus;
+    @Enumerated(EnumType.STRING)
+    private WorkLocation workLocation;
+
+
     private Set<Long> offer;
+    private Departement departement;
 }

@@ -20,10 +20,10 @@ import java.util.List;
 @Transactional
 @AllArgsConstructor
 public class EmployeeImpl implements EmployeeService {
-   @Autowired 
-   private EmployeeRepository employeeRepository ; 
-   @Autowired 
-   private ModelMapper modelMapper ; 
+    @Autowired
+    private EmployeeRepository employeeRepository ;
+    @Autowired
+    private ModelMapper modelMapper ;
     @Override
     public EmployeeResponse createEmployee(EmployeeRequest request) {
         Employee employee = modelMapper.map(request, Employee.class);
@@ -66,8 +66,29 @@ public class EmployeeImpl implements EmployeeService {
 
     }
 
+    @Override
+    public String employeeSerialNumberGenerator() {
+        String lastCode = employeeRepository.resourceLastCode();
+        if (lastCode == null) {
+            return "P_00000001";
+        }
+        Integer codeNumber = Integer.parseInt(lastCode.substring(2));
 
-    public List<Employee> findByEmployeeStatus(){
+        if (codeNumber < 100000000) {
+            codeNumber= codeNumber+Integer.parseInt(String.format("%08d", 1));
+        }
+        String numbers= codeNumber.toString();
+        if (numbers.length()<8){
+            for(int i=0;i<7;i++){
+                numbers='0'+ numbers;
+            }
+
+        }
+        return "P_" + numbers;
+    }
+
+    @Override
+    public List<Employee> findByEmployeeStatus() {
         return employeeRepository.findByEmployeeStatus(EmployeeStatus.CONVERTED_TO_RESOURCE);
     }
 }

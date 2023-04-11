@@ -1,6 +1,8 @@
 package com.csidigital.rh.shared.dto.request;
 
 import com.csidigital.rh.shared.enumeration.*;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -16,15 +18,18 @@ public class EmployeeRequest {
     private String emailTwo;
     private Integer phoneNumberOne;
     private Integer phoneNumberTwo;
-    private String adress;
+    private String address;
     private Integer postCode;
-    private Integer city;
+    private String city;
     private Country country;
     private MaritalSituation maritalSituation;
-    private Integer recommendationType ;
+    private Integer recommendationMark ;
     private Integer experience ;
     private String experienceDetails ;
+    @Enumerated(EnumType.STRING)
+    private WorkLocation workLocation;
 
+    @Enumerated(EnumType.STRING)
     private Provenance provenance;
     private String employeeFirstName;
     private String employeeLastName;
@@ -32,4 +37,5 @@ public class EmployeeRequest {
     private Long AssOfferCandidateId;
 
     private EmployeeStatus employeeStatus;
+    private Departement departement;
 }

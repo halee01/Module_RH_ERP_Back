@@ -1,9 +1,11 @@
 package com.csidigital.rh.management.service.impl;
 
+import com.csidigital.rh.dao.entity.Candidate;
 import com.csidigital.rh.dao.entity.Employee;
 import com.csidigital.rh.dao.entity.Offer;
 import com.csidigital.rh.dao.entity.OfferCandidate;
 import com.csidigital.rh.dao.repository.AssOfferCandidateRepository;
+import com.csidigital.rh.dao.repository.CandidateRepository;
 import com.csidigital.rh.dao.repository.EmployeeRepository;
 import com.csidigital.rh.dao.repository.OfferRepository;
 import com.csidigital.rh.management.service.AssOfferCandidateService;
@@ -33,14 +35,14 @@ public class AssOfferCandidateImpl implements AssOfferCandidateService {
     private OfferRepository offerRepository;
 
     @Autowired
-    private EmployeeRepository employeeRepository;
+    private CandidateRepository candidateRepository;
 
     @Override
     public AssOfferCandidateResponse createAssOfferCandidate(AssOfferCandidateRequest request) {
         Offer offer = offerRepository.findById(request.getOfferNum()).orElseThrow();
-        Employee employee = employeeRepository.findById(request.getCandidateNum()).orElseThrow();
+        Candidate candidate = candidateRepository.findById(request.getCandidateNum()).orElseThrow();
         OfferCandidate offerCandidate = modelMapper.map(request, OfferCandidate.class);
-        offerCandidate.setEmployee(employee);
+        offerCandidate.setCandidate(candidate);
         offerCandidate.setOffer(offer);
         OfferCandidate offerCandidateSaved = assOfferCandidateRepository.save(offerCandidate);
         return modelMapper.map(offerCandidateSaved, AssOfferCandidateResponse.class);

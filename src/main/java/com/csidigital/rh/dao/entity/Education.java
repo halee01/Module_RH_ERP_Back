@@ -17,11 +17,18 @@ public class Education {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
+    @Column(name = "diploma")
     private String diploma;
+    @Column(name = "institution")
     private String institution;
+    @Column(name = "obtainedDate")
     private LocalDate obtainedDate;
+    @Column(name = "startYear")
     private LocalDate startYear;
+
+    @Column(name = "score")
     private String score;
+    @Column(name = "actual")
     private Boolean actual;
 
 

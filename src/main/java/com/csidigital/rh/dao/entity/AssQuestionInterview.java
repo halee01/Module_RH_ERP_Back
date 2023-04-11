@@ -14,6 +14,7 @@ public class AssQuestionInterview {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "mark")
     private Integer mark;
 
 

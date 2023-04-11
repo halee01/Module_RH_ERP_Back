@@ -12,6 +12,10 @@ public class ContractResponse {
     private Long Id;
     private LocalDate startDate;
     private LocalDate endDate;
+    private String contractPlace;
+
+
+    private LocalDate contractDate;
     private Byte[] entrepriseSignature;
     private Byte[] ressourceSignature;
 }

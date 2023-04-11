@@ -16,6 +16,7 @@ public class Skills {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long Id;
+    @Column(name = "title")
     private String title;
 
 

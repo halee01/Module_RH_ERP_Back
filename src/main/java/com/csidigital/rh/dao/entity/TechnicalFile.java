@@ -17,13 +17,18 @@ import java.util.List;
 public class TechnicalFile{
     @jakarta.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long Id;
+    @Column(name = "reference")
     private  String reference;
+    @Column(name = "description")
     private String description;
+    @Column(name = "title")
     private String title;
+    @Column(name = "objective")
     private String objective;
+    @Column(name = "driverLicense")
     private String driverLicense;
+    @Column(name = "nationality")
     @Enumerated(EnumType.STRING)
     private Nationality nationality;
 

@@ -21,17 +21,27 @@ public class TimeOff {
 
     private Long Id;
     @Enumerated(EnumType.STRING)
+    @Column(name = "timeOffType")
     private TimeOffType timeOffType;
+    @Column(name = "description")
     private String description;
+    @Column(name = "startDate")
     private LocalDate startDate;
+    @Column(name = "endDate")
     private LocalDate endDate;
+    @Column(name = "timeOffPeriod")
     private String timeOffPeriod;
+    @Column(name = "comment")
     private String comment;
+    @Column(name = "requestInputDate")
     private LocalDate requestInputDate;
+    @Column(name = "requestStatus")
     @Enumerated(EnumType.STRING)
     private RequestStatus requestStatus;
+    @Column(name = "validationDate")
     private LocalDate validationDate;
     @Enumerated(EnumType.STRING)
+    @Column(name = "externalTimeOffType")
     private ExternalTimeOffType externalTimeOffType;
 
 

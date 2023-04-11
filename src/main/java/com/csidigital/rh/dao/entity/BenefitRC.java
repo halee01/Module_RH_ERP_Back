@@ -14,8 +14,11 @@ public class BenefitRC {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "shortDescription")
     private String shortDescription;
+    @Column(name = "description")
     private String description;
     @Enumerated(EnumType.STRING)
+    @Column(name = "contractBenifitType")
     private ContractBenifitType contractBenifitType;
 }

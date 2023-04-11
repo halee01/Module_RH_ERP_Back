@@ -12,8 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/rh/ExternalResource")
-
-
+@CrossOrigin(origins = "*")
 public class ExternalResourceController {
     @Autowired
     private ExternalResourceImpl externalResourceImpl ;

@@ -30,8 +30,8 @@ public class OfferCandidate {
     private Offer offer;
 
     @JsonIgnore
-    @ManyToOne @JoinColumn(name = "id_employee")
-    private Employee employee;
+    @ManyToOne @JoinColumn(name = "id_candidate")
+    private Candidate candidate;
 
     @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
