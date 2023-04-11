@@ -10,11 +10,17 @@ import java.util.List;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+
+
     @Query(value ="SELECT serial_number FROM employee WHERE serial_number IS NOT NULL  ORDER BY Id DESC LIMIT 1;",nativeQuery = true)
     String resourceLastCode();
 
+
+    //Filtrer les candidats
     @Query(value ="SELECT * FROM employee WHERE dtype= 'Employee'", nativeQuery = true)
     List<Employee> getAllCandidates ();
 
+
+    //filtrer les employés selon leurs status
     List<Employee> findByEmployeeStatus(EmployeeStatus employeeStatus);
 }
