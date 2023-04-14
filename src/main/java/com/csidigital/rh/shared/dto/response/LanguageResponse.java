@@ -5,4 +5,5 @@ public class LanguageResponse {
 
     private com.csidigital.rh.shared.enumeration.Language language;
     private String additionalInformation;
+    private Long technicalFileId;
 }

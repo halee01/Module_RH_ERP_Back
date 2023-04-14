@@ -17,12 +17,12 @@ public class SkillsCategory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long Id;
-    @Column(name = "title")
-    private String title;
+    @Column(name = "skillsCategoryTitle")
+    private String skillsCategoryTitle;
 
 
-    /*@OneToMany(mappedBy = "skillsCategory", cascade = CascadeType.ALL)
-    private List<Skills> skillsList;*/
+    @OneToMany(mappedBy = "skillsCategory", cascade = CascadeType.ALL)
+    private List<Skills> skillsList;
 }
 
 

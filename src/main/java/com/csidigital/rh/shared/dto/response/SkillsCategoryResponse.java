@@ -10,5 +10,5 @@ public class SkillsCategoryResponse {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long Id;
-    private String title;
+    private String skillsCategoryTitle;
 }

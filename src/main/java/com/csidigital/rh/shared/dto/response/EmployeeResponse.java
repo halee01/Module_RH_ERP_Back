@@ -1,5 +1,6 @@
 package com.csidigital.rh.shared.dto.response;
 
+import com.csidigital.rh.dao.entity.TechnicalFile;
 import com.csidigital.rh.shared.enumeration.*;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -41,4 +42,5 @@ public class EmployeeResponse {
 
     private Set<Long> offer;
     private Departement departement;
+    private TechnicalFile technicalFile;
 }

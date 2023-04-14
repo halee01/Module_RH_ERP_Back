@@ -20,14 +20,11 @@ public class TechnicalFileResponse {
     private String objective;
     private String driverLicense;
     private Nationality nationality;
-
-
-    
-    private List<Education> educationList;
-    private List<Experience> experienceList;
-    private List<Skills> skillsList;
-    private List<Language> languageList;
-    private List<Certification> certificationList;
+    private List<Education> educations;
+    private List<Experience> experiences;
+    private List<Skills> skills;
+    private List<Language> languages;
+    private List<Certification> certifications;
 
 
 

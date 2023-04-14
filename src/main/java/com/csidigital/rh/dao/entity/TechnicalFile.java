@@ -35,25 +35,25 @@ public class TechnicalFile{
 
 
 
-    @JsonIgnore
     @OneToMany(mappedBy = "technicalFile", cascade = CascadeType.ALL)
-    private List<Skills> skillsList;
+    private List<Skills> skills;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "technicalFile", cascade = CascadeType.ALL)
-    private List<Experience> experienceList;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "technicalFile", cascade = CascadeType.ALL)
-    private List<Language> languageList;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "technicalFile", cascade = CascadeType.ALL)
-    private List<Certification> certificationList;
+    private List<Experience> experiences;
 
-    @JsonIgnore
+
     @OneToMany(mappedBy = "technicalFile", cascade = CascadeType.ALL)
-    private List<Education> educationList;
+    private List<Language> languages;
+
+
+    @OneToMany(mappedBy = "technicalFile", cascade = CascadeType.ALL)
+    private List<Certification> certifications;
+
+
+    @OneToMany(mappedBy = "technicalFile", cascade = CascadeType.ALL)
+    private List<Education> educations;
 
     @OneToOne (
             fetch = FetchType.LAZY,

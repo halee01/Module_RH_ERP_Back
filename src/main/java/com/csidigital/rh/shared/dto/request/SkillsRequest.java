@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class SkillsRequest {
 
-    private String title;
+    private String skillsTitle;
     private Long technicalFileId ;
-   /* private Long skillsCategoryId ;*/
+    private Long skillsCategoryId ;
 }

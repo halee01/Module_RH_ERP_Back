@@ -27,6 +27,8 @@ public class TechnicalFileImpl implements TechnicalFileService {
     @Autowired
     private TechnicalFileRepository technicalFileRepository;
     @Autowired
+    private SkillsRepository skillsRepository;
+    @Autowired
     private ModelMapper modelMapper;
 
     @Override

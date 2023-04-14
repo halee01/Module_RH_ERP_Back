@@ -11,5 +11,6 @@ public class SkillsResponse {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long Id;
-    private String title;
+    private String skillsTitle;
+    private Long technicalFileId;
 }
