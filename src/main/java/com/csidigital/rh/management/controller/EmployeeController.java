@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:4200")
+
 @RequestMapping("/rh/employee")
 public class EmployeeController {
     @Autowired
@@ -47,12 +48,12 @@ public class EmployeeController {
     public void deleteEmployee(@PathVariable Long id){
         employeeService.deleteEmployee(id);
     }
-@GetMapping("/testV1")
+    @GetMapping("/testV1")
     public List<Employee> getEmployee(){
         return employeeService.findByEmployeeStatus();
 }
 
-@GetMapping("/getAllCandidates")
+    @GetMapping("/getAllCandidates")
     public List<Employee> getAllCandidates(){
         return employeeService.getAllCandidates();
 }

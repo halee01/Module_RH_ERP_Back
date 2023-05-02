@@ -17,6 +17,6 @@ public class AssOfferCandidateResponse {
     private ExperienceLevel experienceLevel;
 
     private Evaluation evaluation;
-    private Long candidateId;
+    private Long employeeId;
     private Long offerId;
 }

@@ -59,6 +59,7 @@ public class OfferImpl implements OfferService {
         Offer existingOffer = offerRepository.findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException("Offer with id: " + id + " not found"));
         modelMapper.map(request, existingOffer);
+        existingOffer.setId(id);
         Offer savedOffer = offerRepository.save(existingOffer);
         return modelMapper.map(savedOffer, OfferResponse.class);
     }

@@ -17,12 +17,12 @@ public class OfferController {
     @Autowired
     private OfferImpl offerImpl ;
 
-    @GetMapping("getAll")
+    @GetMapping("/getAll")
     public List<OfferResponse> getAllOffer() {
         return offerImpl.getAllOffer();
     }
 
-    @GetMapping("/getBy/{id}")
+    @GetMapping("/get/{id}")
     public OfferResponse getOfferById(@PathVariable Long id){
         return offerImpl.getOfferById(id);
     }

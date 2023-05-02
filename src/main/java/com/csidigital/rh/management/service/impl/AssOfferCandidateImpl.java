@@ -35,14 +35,14 @@ public class AssOfferCandidateImpl implements AssOfferCandidateService {
     private OfferRepository offerRepository;
 
     @Autowired
-    private CandidateRepository candidateRepository;
+    private EmployeeRepository employeeRepository;
 
     @Override
     public AssOfferCandidateResponse createAssOfferCandidate(AssOfferCandidateRequest request) {
         Offer offer = offerRepository.findById(request.getOfferNum()).orElseThrow();
-        Candidate candidate = candidateRepository.findById(request.getCandidateNum()).orElseThrow();
+        Employee employee = employeeRepository.findById(request.getEmployeeNum()).orElseThrow();
         OfferCandidate offerCandidate = modelMapper.map(request, OfferCandidate.class);
-        offerCandidate.setCandidate(candidate);
+        offerCandidate.setEmployee(employee);
         offerCandidate.setOffer(offer);
         OfferCandidate offerCandidateSaved = assOfferCandidateRepository.save(offerCandidate);
         return modelMapper.map(offerCandidateSaved, AssOfferCandidateResponse.class);

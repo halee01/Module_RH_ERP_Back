@@ -14,6 +14,7 @@ public class OfferResponse {
     private Long Id;
     private String title;
     private String reference;
-    private Set<Long> candidate;
+    private String description ;
+    private Set<Long> employee;
 
 }

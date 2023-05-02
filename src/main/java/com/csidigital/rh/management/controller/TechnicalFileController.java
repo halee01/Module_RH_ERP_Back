@@ -1,5 +1,6 @@
 package com.csidigital.rh.management.controller;
 
+import com.csidigital.rh.dao.entity.Skills;
 import com.csidigital.rh.dao.entity.TechnicalFile;
 import com.csidigital.rh.management.service.impl.SkillsImpl;
 import com.csidigital.rh.management.service.impl.TechnicalFileImpl;
@@ -20,28 +21,32 @@ public class TechnicalFileController {
     @Autowired
     private TechnicalFileImpl technicalFile;
 
-    @GetMapping("/getAll")
+    @GetMapping()
     public List<TechnicalFileResponse> getAllTechnicalFile(){
         return technicalFile.getAllTechnicalFiles();
     }
 
-    @GetMapping("/getTechnicalFile/{id}")
+    @GetMapping("/{id}")
     public TechnicalFileResponse getTechnicalFileById(@PathVariable Long id){
         return technicalFile.getTechnicalFileById(id);
     }
+    @GetMapping("/skills/{id}")
+    public List<Skills> getTechnicalFileSkillsById(@PathVariable Long id){
+        return technicalFile.getTechnicalFileSkillsById(id);
+    }
 
-    @PostMapping("/addTechnicalFile")
+    @PostMapping()
     public TechnicalFileResponse createTechnicalFile(@Valid @RequestBody TechnicalFileRequest technicalFileRequest){
         return technicalFile.createTechnicalFile(technicalFileRequest);
     }
 
-    @PutMapping("/updateTechnicalFile/{id}")
+    @PutMapping("/{id}")
     public TechnicalFileResponse updateSkills(@Valid @RequestBody TechnicalFileRequest technicalFileRequest,
                                        @PathVariable Long id){
         return technicalFile.updateTechnicalFile(technicalFileRequest, id);
     }
 
-    @DeleteMapping("/deleteTechnicalFile/{id}")
+    @DeleteMapping("/{id}")
     public void deleteTechnicalFile(@PathVariable Long id){
         technicalFile.deleteTechnicalFile(id);
     }

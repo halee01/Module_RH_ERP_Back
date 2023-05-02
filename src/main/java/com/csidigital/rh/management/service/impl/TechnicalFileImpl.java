@@ -1,8 +1,7 @@
 package com.csidigital.rh.management.service.impl;
 
-import com.csidigital.rh.dao.entity.AdministrativeData;
-import com.csidigital.rh.dao.entity.Skills;
-import com.csidigital.rh.dao.entity.TechnicalFile;
+import com.csidigital.rh.dao.entity.*;
+import com.csidigital.rh.dao.repository.EmployeeRepository;
 import com.csidigital.rh.dao.repository.SkillsRepository;
 import com.csidigital.rh.dao.repository.TechnicalFileRepository;
 import com.csidigital.rh.management.service.TechnicalFileService;
@@ -30,11 +29,33 @@ public class TechnicalFileImpl implements TechnicalFileService {
     private SkillsRepository skillsRepository;
     @Autowired
     private ModelMapper modelMapper;
-
+    @Autowired
+    private EmployeeRepository employeeRepository;
     @Override
     public TechnicalFileResponse createTechnicalFile(TechnicalFileRequest request) {
-
+        Employee employee =  employeeRepository.findById(request.getEmployeeId()).orElseThrow();
         TechnicalFile technicalFile= modelMapper.map(request, TechnicalFile.class);
+        List<Skills> skills = technicalFile.getSkills();
+        List<Language> languages=technicalFile.getLanguages();
+        List<Experience> experiences=technicalFile.getExperiences();
+        List<Education> educations=technicalFile.getEducations();
+        List<Certification> certifications=technicalFile.getCertifications();
+        for(Skills skill : skills) {
+            skill.setTechnicalFile(technicalFile);
+        }
+        for (Language language :languages ){
+            language.setTechnicalFile(technicalFile);
+        }
+        for (Experience experience :experiences ){
+            experience.setTechnicalFile(technicalFile);
+        }
+        for (Education education :educations ){
+            education.setTechnicalFile(technicalFile);
+        }
+        for (Certification certification :certifications ){
+            certification.setTechnicalFile(technicalFile);
+        }
+        technicalFile.setEmployee(employee);
         TechnicalFile technicalFileSaved = technicalFileRepository.save(technicalFile);
         return modelMapper.map(technicalFileSaved, TechnicalFileResponse .class);
     }
@@ -58,6 +79,13 @@ public class TechnicalFileImpl implements TechnicalFileService {
                 .orElseThrow(() -> new ResourceNotFoundException("TechnicalFile with id " + id + " not found"));
         TechnicalFileResponse  technicalFileResponse = modelMapper.map(technicalFile, TechnicalFileResponse .class);
         return technicalFileResponse;
+    }
+    @Override
+    public List<Skills>  getTechnicalFileSkillsById(Long id) {
+        TechnicalFile technicalFile = technicalFileRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("TechnicalFile with id " + id + " not found"));
+        List<Skills> skills = technicalFile.getSkills();
+        return skills ;
     }
 
     @Override

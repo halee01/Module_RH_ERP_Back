@@ -10,5 +10,6 @@ import java.util.Set;
 public class OfferRequest {
     private String title;
     private String reference;
-    private Long AssOfferCandidateId;
+    private String description ;
+
 }

@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Data
 public class CandidateRequest  {
-    private Long AssOfferCandidateId;
+    ;
 
 
 

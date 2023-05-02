@@ -57,7 +57,10 @@ public class Employee {
     private Departement departement;
 
     @JsonIgnore
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "technicalFileId")
+    @OneToOne(cascade = CascadeType.ALL,
+            mappedBy = "employee")
     private TechnicalFile technicalFile;
+
+    @OneToMany(mappedBy = "employee")
+    private List<OfferCandidate> offerCandidateList;
 }

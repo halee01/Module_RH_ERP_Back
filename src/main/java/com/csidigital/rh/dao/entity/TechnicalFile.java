@@ -23,7 +23,7 @@ public class TechnicalFile{
     @Column(name = "description")
     private String description;
     @Column(name = "title")
-    private String title;
+    private String technicalFileTitle;
     @Column(name = "objective")
     private String objective;
     @Column(name = "driverLicense")
@@ -34,31 +34,31 @@ public class TechnicalFile{
 
 
 
-
+    @JsonIgnore
     @OneToMany(mappedBy = "technicalFile", cascade = CascadeType.ALL)
     private List<Skills> skills;
 
 
-
+    @JsonIgnore
     @OneToMany(mappedBy = "technicalFile", cascade = CascadeType.ALL)
     private List<Experience> experiences;
 
-
+    @JsonIgnore
     @OneToMany(mappedBy = "technicalFile", cascade = CascadeType.ALL)
     private List<Language> languages;
 
-
+    @JsonIgnore
     @OneToMany(mappedBy = "technicalFile", cascade = CascadeType.ALL)
     private List<Certification> certifications;
 
-
+    @JsonIgnore
     @OneToMany(mappedBy = "technicalFile", cascade = CascadeType.ALL)
     private List<Education> educations;
 
     @OneToOne (
             fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL,
-            mappedBy = "technicalFile")
+            cascade = CascadeType.ALL)
+    @JoinColumn(name = "employeeId")
     private Employee employee;
 
 

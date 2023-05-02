@@ -16,7 +16,7 @@ public class TechnicalFileResponse {
     private Long Id;
     private  String reference;
     private String description;
-    private String title;
+    private String technicalFileTitle;
     private String objective;
     private String driverLicense;
     private Nationality nationality;
@@ -25,6 +25,7 @@ public class TechnicalFileResponse {
     private List<Skills> skills;
     private List<Language> languages;
     private List<Certification> certifications;
+    private Long employeeId;
 
 
 
