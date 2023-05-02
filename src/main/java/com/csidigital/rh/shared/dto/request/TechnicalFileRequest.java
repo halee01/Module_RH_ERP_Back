@@ -22,5 +22,5 @@ public class TechnicalFileRequest {
     private List <Language> languages;
     private List<Certification> certifications;
     private List<Education> educations;
-
+    private Long employeeId;
 }

@@ -6,5 +6,6 @@ import lombok.Data;
 @Data
 public class EvaluationRequest {
     private Integer globalAppreciation;
-    private Long offerCandidateId;
+    private Long offerCandidate;
+    private Long administrativeData;
 }

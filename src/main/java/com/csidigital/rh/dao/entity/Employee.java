@@ -19,6 +19,7 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
+
     private String lastName;
     @Column(name = "firstName")
     private String firstName;
@@ -57,7 +58,7 @@ public class Employee {
     private Departement departement;
 
     @JsonIgnore
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "technicalFileId")
+    @OneToOne(cascade = CascadeType.ALL,
+            mappedBy = "employee")
     private TechnicalFile technicalFile;
 }

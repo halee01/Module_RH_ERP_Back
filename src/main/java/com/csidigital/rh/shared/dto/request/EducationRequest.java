@@ -12,5 +12,4 @@ public class EducationRequest {
     private LocalDate startYear;
     private String score;
     private Boolean actual;
-    private Long technicalFileId ;
 }

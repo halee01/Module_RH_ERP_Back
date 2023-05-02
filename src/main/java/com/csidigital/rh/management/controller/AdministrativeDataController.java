@@ -13,7 +13,7 @@ import java.util.List;
 @Transactional
 @RestController
 @RequestMapping("/rh/administrativeData")
-public class AdministrativeDataController {
+public class  AdministrativeDataController {
     @Autowired
     private AdministrativeDataImpl administrativeData;
 

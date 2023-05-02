@@ -57,8 +57,8 @@ public class TechnicalFile{
 
     @OneToOne (
             fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL,
-            mappedBy = "technicalFile")
+            cascade = CascadeType.ALL)
+    @JoinColumn(name = "employeeId")
     private Employee employee;
 
 

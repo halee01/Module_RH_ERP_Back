@@ -1,5 +1,6 @@
 package com.csidigital.rh.shared.dto.response;
 
+import com.csidigital.rh.dao.entity.Evaluation;
 import com.csidigital.rh.shared.enumeration.AvailabilityEnum;
 import com.csidigital.rh.shared.enumeration.ContractType;
 import com.csidigital.rh.shared.enumeration.Experience;
@@ -22,5 +23,6 @@ public class AdministrativeDataResponse {
     private LocalDate availabilityDate;
     @Enumerated(EnumType.STRING)
     private Experience experience;
+    private Evaluation evaluation;
 
     }

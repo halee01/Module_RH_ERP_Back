@@ -62,9 +62,7 @@ public class EmployeeImpl implements EmployeeService {
     }
 
     @Override
-    public void deleteEmployee(Long id) {
-
-    }
+    public void deleteEmployee(Long id) {employeeRepository.deleteById(id);}
 
     @Override
     public String employeeSerialNumberGenerator() {

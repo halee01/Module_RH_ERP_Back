@@ -25,6 +25,7 @@ public class TechnicalFileResponse {
     private List<Skills> skills;
     private List<Language> languages;
     private List<Certification> certifications;
+    private Long employeeId;
 
 
 

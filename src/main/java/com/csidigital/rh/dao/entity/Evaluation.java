@@ -21,6 +21,10 @@ public class Evaluation{
     @JsonIgnore
     @OneToOne(mappedBy = "evaluation")
     private OfferCandidate OfferCandidate;
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "evaluation")
+    private AdministrativeData administrativeData;
 }
 
 

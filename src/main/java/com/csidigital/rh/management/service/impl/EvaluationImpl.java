@@ -1,7 +1,9 @@
 package com.csidigital.rh.management.service.impl;
 
+import com.csidigital.rh.dao.entity.AdministrativeData;
 import com.csidigital.rh.dao.entity.Evaluation;
 import com.csidigital.rh.dao.entity.OfferCandidate;
+import com.csidigital.rh.dao.repository.AdministrativeDataRepository;
 import com.csidigital.rh.dao.repository.AssOfferCandidateRepository;
 import com.csidigital.rh.dao.repository.EvaluationRepository;
 import com.csidigital.rh.management.service.EvaluationService;
@@ -26,12 +28,20 @@ public class EvaluationImpl implements EvaluationService {
    private ModelMapper modelMapper ;
    @Autowired
    private AssOfferCandidateRepository offerCandidateRepository;
+
+    @Autowired
+    private AdministrativeDataRepository administrativeDataRepository;
     @Override
     public EvaluationResponse createEvaluation(EvaluationRequest request) {
-        OfferCandidate offerCandidate = offerCandidateRepository.findById(request.getOfferCandidateId()).orElseThrow();
+        OfferCandidate offerCandidate = offerCandidateRepository.findById(request.getOfferCandidate()).orElseThrow();
+        AdministrativeData administrativeData = administrativeDataRepository.findById(request.getAdministrativeData()).orElseThrow();
         Evaluation evaluation = modelMapper.map(request, Evaluation.class);
-        Evaluation evaluationSaved = evaluationRepository.save(evaluation);
         evaluation.setOfferCandidate(offerCandidate);
+
+        evaluation.setAdministrativeData(administrativeData);
+        Evaluation evaluationSaved = evaluationRepository.save(evaluation);
+        offerCandidate.setEvaluation(evaluation);
+        administrativeData.setEvaluation(evaluation);
         return modelMapper.map(evaluationSaved, EvaluationResponse.class);
     }
 
