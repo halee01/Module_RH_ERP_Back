@@ -18,16 +18,16 @@ public class Experience {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long Id;
-    private LocalDate startMonth; //getMonth()
-    private LocalDate endMonth;
-    private LocalDate startYear;
-    private LocalDate endYear;
+    private LocalDate experienceStartMonth; //getMonth()
+    private LocalDate  experienceEndMonth;
+    private LocalDate  experienceStartYear;
+    private LocalDate  experienceEndYear;
     private Boolean actualEmployment;
-    private String company;
-    private String role;
-    private String technology;
-    private String title;
-    private String post ;
+    private String  experienceCompany;
+    private String  experienceRole;
+    private String  technology;
+    private String  experienceTitle;
+    private String  experiencePost ;
 
     @JsonIgnore
     @ManyToOne
