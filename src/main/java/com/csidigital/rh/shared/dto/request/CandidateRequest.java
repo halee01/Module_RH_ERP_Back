@@ -9,7 +9,11 @@ import java.util.Set;
 
 @Data
 public class CandidateRequest  {
-    ;
+    private Provenance provenance;
+    private String employeeFirstName;
+    private String employeeLastName;
+    private String employeeSerialNumber;
+    private Long AssOfferCandidateId;
 
 
 

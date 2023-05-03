@@ -1,9 +1,6 @@
 package com.csidigital.rh.management.service.impl;
 
-import com.csidigital.rh.dao.entity.Certification;
 import com.csidigital.rh.dao.entity.Employee;
-import com.csidigital.rh.dao.entity.OfferCandidate;
-import com.csidigital.rh.dao.entity.Skills;
 import com.csidigital.rh.dao.repository.EmployeeRepository;
 import com.csidigital.rh.management.service.EmployeeService;
 import com.csidigital.rh.shared.dto.request.EmployeeRequest;
@@ -29,12 +26,7 @@ public class EmployeeImpl implements EmployeeService {
     private ModelMapper modelMapper ;
     @Override
     public EmployeeResponse createEmployee(EmployeeRequest request) {
-
         Employee employee = modelMapper.map(request, Employee.class);
-        List<OfferCandidate> offerCandidates=employee.getOfferCandidateList();
-        for(OfferCandidate offerCandidate : offerCandidates) {
-            offerCandidate.setEmployee(employee);
-        }
         Employee employeeSaved = employeeRepository.save(employee);
         return modelMapper.map(employeeSaved, EmployeeResponse.class);
     }
@@ -65,15 +57,12 @@ public class EmployeeImpl implements EmployeeService {
         Employee existingEmployee = employeeRepository.findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException("Employee with id: " + id + " not found"));
         modelMapper.map(request, existingEmployee);
-        existingEmployee.setId(id);
         Employee savedEmployee = employeeRepository.save(existingEmployee);
         return modelMapper.map(savedEmployee, EmployeeResponse.class);
     }
 
     @Override
-    public void deleteEmployee(Long id) {
-        employeeRepository.deleteById(id);
-    }
+    public void deleteEmployee(Long id) {employeeRepository.deleteById(id);}
 
     @Override
     public String employeeSerialNumberGenerator() {
