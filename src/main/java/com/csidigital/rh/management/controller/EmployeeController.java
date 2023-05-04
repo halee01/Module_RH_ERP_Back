@@ -48,6 +48,16 @@ public class EmployeeController {
     public List<CertificationResponse> getEmployeeCertification(@PathVariable Long id){
         return employeeService.getEmployeeCertification(id);
     }
+    @GetMapping("get/{id}/language")
+    public List<LanguageResponse> getEmployeeLanguage(@PathVariable Long id){
+        return employeeService.getEmployeeLanguage(id);
+    }
+
+    @GetMapping("get/{id}/skills")
+    public List<SkillsResponse> getEmployeeSkills(@PathVariable Long id){
+        return employeeService.getEmployeeSkills(id);
+    }
+
 
     @PostMapping("/add")
     public EmployeeResponse createEmployee(@Valid @RequestBody EmployeeRequest employeeRequest){

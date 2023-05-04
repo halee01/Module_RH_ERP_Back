@@ -106,6 +106,36 @@ public class EmployeeImpl implements EmployeeService {
     }
 
     @Override
+    public List<LanguageResponse> getEmployeeLanguage(Long id) {
+        Employee employee = employeeRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Employee with id " +id+ " not found"));
+        TechnicalFile technicalFile = employee.getTechnicalFile();
+        List<Language> languages = technicalFile.getLanguages();
+        List<LanguageResponse> languageResponseList = new ArrayList<>();
+
+        for (Language language : languages) {
+            LanguageResponse response = modelMapper.map(language, LanguageResponse.class);
+            languageResponseList.add(response);
+        }
+        return languageResponseList ;
+    }
+
+    @Override
+    public List<SkillsResponse> getEmployeeSkills(Long id) {
+        Employee employee = employeeRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Employee with id " +id+ " not found"));
+        TechnicalFile technicalFile = employee.getTechnicalFile();
+        List<Skills> skills = technicalFile.getSkills();
+        List<SkillsResponse> skillsResponseList = new ArrayList<>();
+
+        for (Skills skill : skills) {
+            SkillsResponse response = modelMapper.map(skill, SkillsResponse.class);
+            skillsResponseList.add(response);
+        }
+        return skillsResponseList ;
+    }
+
+    @Override
     public EmployeeResponse updateEmployee(EmployeeRequest request, Long id) {
         Employee existingEmployee = employeeRepository.findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException("Employee with id: " + id + " not found"));
