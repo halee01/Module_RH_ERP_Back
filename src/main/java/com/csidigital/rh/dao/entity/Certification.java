@@ -20,7 +20,7 @@ public class Certification {
     @Column(name = "certificationTitle")
     private String certificationTitle;
     @Column(name = "CertificationObtainedDate")
-    private LocalDate CertificationObtainedDate;
+    private LocalDate certificationObtainedDate;
 
     @JsonIgnore
     @ManyToOne
