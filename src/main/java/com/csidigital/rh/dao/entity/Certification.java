@@ -17,10 +17,10 @@ public class Certification {
     @jakarta.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
-    @Column(name = "title")
-    private String title;
-    @Column(name = "obtainedDate")
-    private LocalDate obtainedDate;
+    @Column(name = "certificationTitle")
+    private String certificationTitle;
+    @Column(name = "CertificationObtainedDate")
+    private LocalDate CertificationObtainedDate;
 
     @JsonIgnore
     @ManyToOne
