@@ -1,9 +1,6 @@
 package com.csidigital.rh.management.service.impl;
 
-import com.csidigital.rh.dao.entity.AdministrativeData;
-import com.csidigital.rh.dao.entity.Employee;
-import com.csidigital.rh.dao.entity.Skills;
-import com.csidigital.rh.dao.entity.TechnicalFile;
+import com.csidigital.rh.dao.entity.*;
 import com.csidigital.rh.dao.repository.EmployeeRepository;
 import com.csidigital.rh.dao.repository.SkillsRepository;
 import com.csidigital.rh.dao.repository.TechnicalFileRepository;
@@ -11,6 +8,7 @@ import com.csidigital.rh.management.service.TechnicalFileService;
 import com.csidigital.rh.shared.dto.request.SkillsRequest;
 import com.csidigital.rh.shared.dto.request.TechnicalFileRequest;
 import com.csidigital.rh.shared.dto.response.AdministrativeDataResponse;
+import com.csidigital.rh.shared.dto.response.EducationResponse;
 import com.csidigital.rh.shared.dto.response.SkillsResponse;
 import com.csidigital.rh.shared.dto.response.TechnicalFileResponse;
 import com.csidigital.rh.shared.exception.ResourceNotFoundException;
@@ -37,7 +35,7 @@ public class TechnicalFileImpl implements TechnicalFileService {
 
     @Override
     public TechnicalFileResponse createTechnicalFile(TechnicalFileRequest request) {
-    Employee employee =  employeeRepository.findById(request.getEmployeeId()).orElseThrow();
+        Employee employee =  employeeRepository.findById(request.getEmployeeId()).orElseThrow();
         TechnicalFile technicalFile= modelMapper.map(request, TechnicalFile.class);
         technicalFile.setEmployee(employee);
         TechnicalFile technicalFileSaved = technicalFileRepository.save(technicalFile);
@@ -61,8 +59,31 @@ public class TechnicalFileImpl implements TechnicalFileService {
     public TechnicalFileResponse  getTechnicalFileById(Long id) {
         TechnicalFile technicalFile = technicalFileRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("TechnicalFile with id " + id + " not found"));
-        TechnicalFileResponse  technicalFileResponse = modelMapper.map(technicalFile, TechnicalFileResponse .class);
+        TechnicalFileResponse  technicalFileResponse = modelMapper.map(technicalFile, TechnicalFileResponse.class);
         return technicalFileResponse;
+    }
+
+    @Override
+    public TechnicalFileResponse getTechnicalFileByEmployeeId(Long id) {
+        Employee employee = employeeRepository.findById(id)
+                .orElseThrow(()->new ResourceNotFoundException(("Employee with id "+id+" not found")));
+        TechnicalFile technicalFile = employee.getTechnicalFile();
+        return modelMapper.map(technicalFile, TechnicalFileResponse.class);
+    }
+
+    @Override
+    public List<EducationResponse> getTechnicalFileEducation(Long id) {
+        TechnicalFile technicalFile = technicalFileRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException(("Education with id "+id+" not found")));
+        List<Education> educations = technicalFile.getEducations();
+        List<EducationResponse> educationResponseList = new ArrayList<>();
+
+        for (Education education : educations) {
+            EducationResponse response = modelMapper.map(education, EducationResponse.class);
+            educationResponseList.add(response);
+        }
+
+        return educationResponseList;
     }
 
     @Override

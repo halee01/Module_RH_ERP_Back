@@ -23,7 +23,7 @@ public class Offer {
     private Long Id;
     private String title;
     private String reference;
-
+    private String description ;
     @OneToMany(mappedBy = "offer")
     private List<OfferCandidate> offerCandidateList;
 

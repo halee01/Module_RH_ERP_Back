@@ -61,4 +61,7 @@ public class Employee {
     @OneToOne(cascade = CascadeType.ALL,
             mappedBy = "employee")
     private TechnicalFile technicalFile;
+
+    @OneToMany(mappedBy = "employee")
+    private List<OfferCandidate> offerCandidateList;
 }

@@ -23,8 +23,7 @@ public class Candidate{
     private String employeeSerialNumber;
 
 
-    @OneToMany(mappedBy = "candidate")
-    private List<OfferCandidate> offerCandidateList;
+
 
 
 }
