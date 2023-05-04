@@ -1,10 +1,10 @@
 package com.csidigital.rh.management.service.impl;
 
-import com.csidigital.rh.dao.entity.Employee;
+import com.csidigital.rh.dao.entity.*;
 import com.csidigital.rh.dao.repository.EmployeeRepository;
 import com.csidigital.rh.management.service.EmployeeService;
 import com.csidigital.rh.shared.dto.request.EmployeeRequest;
-import com.csidigital.rh.shared.dto.response.EmployeeResponse;
+import com.csidigital.rh.shared.dto.response.*;
 import com.csidigital.rh.shared.enumeration.EmployeeStatus;
 import com.csidigital.rh.shared.exception.ResourceNotFoundException;
 import jakarta.transaction.Transactional;
@@ -50,6 +50,59 @@ public class EmployeeImpl implements EmployeeService {
                 .orElseThrow(()-> new ResourceNotFoundException("Employee with id " +id+ " not found"));
         EmployeeResponse employeeResponse = modelMapper.map(employee, EmployeeResponse.class);
         return employeeResponse;
+    }
+    @Override
+    public TechnicalFileResponse getEmployeeTechnicalFile(Long id) {
+        Employee employee = employeeRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Employee with id " +id+ " not found"));
+        TechnicalFile technicalFile = employee.getTechnicalFile();
+        TechnicalFileResponse technicalFileResponse = modelMapper.map(technicalFile, TechnicalFileResponse.class);
+        return technicalFileResponse ;
+    }
+
+    @Override
+    public List<EducationResponse> getEmployeeEducation(Long id) {
+        Employee employee = employeeRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Employee with id " +id+ " not found"));
+        TechnicalFile technicalFile = employee.getTechnicalFile();
+        List<Education> educations = technicalFile.getEducations();
+        List<EducationResponse> educationResponseList = new ArrayList<>();
+        for (Education education : educations) {
+            EducationResponse response = modelMapper.map(education, EducationResponse.class);
+            educationResponseList.add(response);
+        }
+        return educationResponseList ;
+    }
+
+    @Override
+    public List<ExperienceResponse> getEmployeeExperience(Long id) {
+        Employee employee = employeeRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Employee with id " +id+ " not found"));
+        TechnicalFile technicalFile = employee.getTechnicalFile();
+
+        List<Experience> experiences = technicalFile.getExperiences();
+        List<ExperienceResponse> experienceResponseList = new ArrayList<>();
+
+        for (Experience experience : experiences) {
+            ExperienceResponse response = modelMapper.map(experience, ExperienceResponse.class);
+            experienceResponseList.add(response);
+        }
+        return experienceResponseList ;
+    }
+
+    @Override
+    public List<CertificationResponse> getEmployeeCertification(Long id) {
+        Employee employee = employeeRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Employee with id " +id+ " not found"));
+        TechnicalFile technicalFile = employee.getTechnicalFile();
+        List<Certification> certifications = technicalFile.getCertifications();
+        List<CertificationResponse> certificationResponseList = new ArrayList<>();
+
+        for (Certification certification : certifications) {
+            CertificationResponse response = modelMapper.map(certification, CertificationResponse.class);
+            certificationResponseList.add(response);
+        }
+        return certificationResponseList ;
     }
 
     @Override

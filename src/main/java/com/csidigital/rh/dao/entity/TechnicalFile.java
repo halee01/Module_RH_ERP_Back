@@ -51,7 +51,7 @@ public class TechnicalFile{
     @OneToMany(mappedBy = "technicalFile", cascade = CascadeType.ALL)
     private List<Certification> certifications;
 
-    @JsonIgnore
+
     @OneToMany(mappedBy = "technicalFile", cascade = CascadeType.ALL)
     private List<Education> educations;
 

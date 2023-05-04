@@ -1,9 +1,11 @@
 package com.csidigital.rh.management.controller;
 
+import com.csidigital.rh.dao.entity.Certification;
+import com.csidigital.rh.dao.entity.Education;
 import com.csidigital.rh.dao.entity.Employee;
 import com.csidigital.rh.management.service.impl.EmployeeImpl;
 import com.csidigital.rh.shared.dto.request.EmployeeRequest;
-import com.csidigital.rh.shared.dto.response.EmployeeResponse;
+import com.csidigital.rh.shared.dto.response.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +31,22 @@ public class EmployeeController {
     @GetMapping("/get/{id}")
     public EmployeeResponse getEmployeeById(@PathVariable Long id){
         return employeeService.getEmployeeById(id);
+    }
+    @GetMapping("/get/{id}/technicalFile")
+    public TechnicalFileResponse getEmployeeTechnicalFile(@PathVariable Long id){
+        return employeeService.getEmployeeTechnicalFile(id);
+    }
+    @GetMapping("get/{id}/education")
+    public List<EducationResponse> getEmployeeEducation(@PathVariable Long id){
+        return employeeService.getEmployeeEducation(id);
+    }
+    @GetMapping("get/{id}/experience")
+    public List<ExperienceResponse> getEmployeeExperience(@PathVariable Long id){
+        return employeeService.getEmployeeExperience(id);
+    }
+    @GetMapping("get/{id}/certificaton")
+    public List<CertificationResponse> getEmployeeCertification(@PathVariable Long id){
+        return employeeService.getEmployeeCertification(id);
     }
 
     @PostMapping("/add")
