@@ -13,4 +13,5 @@ public class SkillsResponse {
     private Long Id;
     private String skillsTitle;
     private Long technicalFileId;
+
 }

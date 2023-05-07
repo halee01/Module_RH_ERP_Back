@@ -12,10 +12,8 @@ import java.util.List;
 public class TechnicalFileRequest {
     private  String reference;
     private String description;
-    private String technicalFileTitle;
     private String objective;
     private String driverLicense;
-    private Nationality nationality;
     private List<Skills> skills;
     private List<Experience> experiences;
     private List <Language> languages;

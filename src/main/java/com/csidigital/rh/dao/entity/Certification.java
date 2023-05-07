@@ -19,6 +19,7 @@ public class Certification {
     private Long Id;
     @Column(name = "certificationTitle")
     private String certificationTitle;
+
     @Column(name = "CertificationObtainedDate")
     private LocalDate certificationObtainedDate;
 

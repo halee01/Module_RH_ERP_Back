@@ -10,7 +10,7 @@ public class CertificationResponse {
     @jakarta.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
-    private String title;
-    private LocalDate obtainedDate;
+    private String certificationTitle;
+    private LocalDate certificationObtainedDate;
 
 }

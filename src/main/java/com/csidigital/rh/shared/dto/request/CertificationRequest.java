@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Data
 
 public class CertificationRequest {
-    private String title;
-    private LocalDate obtainedDate;
+    private String certificationTitle;
+    private LocalDate certificationObtainedDate;
     private Long technicalFileId ;
 }
