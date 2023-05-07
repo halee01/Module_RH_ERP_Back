@@ -25,7 +25,7 @@ public class Skills {
     private TechnicalFile technicalFile;
 
 
-    /*@ManyToOne
+  /*  @ManyToOne
     @JoinColumn(name = "skillsCategoryId")
     private SkillsCategory skillsCategory;*/
 }

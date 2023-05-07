@@ -21,7 +21,7 @@ public class SkillsCategory {
     private String skillsCategoryTitle;
 
 
-    /*@OneToMany(mappedBy = "skillsCategory", cascade = CascadeType.ALL)
+  /*  @OneToMany(mappedBy = "skillsCategory", cascade = CascadeType.ALL)
     private List<Skills> skillsList;*/
 }
 

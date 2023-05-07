@@ -134,6 +134,19 @@ public class EmployeeImpl implements EmployeeService {
         }
         return skillsResponseList ;
     }
+    @Override
+    public List<AssOfferCandidateResponse> getOfferCandidates(Long id) {
+        Employee employee = employeeRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Employee with id " +id+ " not found"));
+        List<OfferCandidate> offerCandidates = employee.getOfferCandidateList();
+        List<AssOfferCandidateResponse> assOfferCandidateResponseList = new ArrayList<>();
+        for (OfferCandidate offerCandidate : offerCandidates){
+            AssOfferCandidateResponse response = modelMapper.map(offerCandidate, AssOfferCandidateResponse.class);
+            assOfferCandidateResponseList.add(response);
+        }
+        return assOfferCandidateResponseList ;
+    }
+
 
     @Override
     public EmployeeResponse updateEmployee(EmployeeRequest request, Long id) {
@@ -192,4 +205,7 @@ public class EmployeeImpl implements EmployeeService {
     public List<Employee> getAllResourcesExterne() {
         return employeeRepository.getAllResourcesExterne();
     }
+
+
+
 }

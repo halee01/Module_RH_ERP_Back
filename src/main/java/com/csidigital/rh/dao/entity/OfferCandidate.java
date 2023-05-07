@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Data
@@ -34,7 +35,7 @@ public class OfferCandidate {
     private Employee employee;
 
     @JsonIgnore
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "evaluation_id", referencedColumnName = "id")
     private Evaluation evaluation;
 

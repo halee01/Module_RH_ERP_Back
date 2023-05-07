@@ -57,7 +57,10 @@ public class EmployeeController {
     public List<SkillsResponse> getEmployeeSkills(@PathVariable Long id){
         return employeeService.getEmployeeSkills(id);
     }
-
+    @GetMapping("get/{id}/candidature")
+    public List<AssOfferCandidateResponse> getOfferCandidates(@PathVariable Long id){
+        return employeeService.getOfferCandidates(id);
+    }
 
     @PostMapping("/add")
     public EmployeeResponse createEmployee(@Valid @RequestBody EmployeeRequest employeeRequest){

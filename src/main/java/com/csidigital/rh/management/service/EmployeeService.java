@@ -1,6 +1,7 @@
 package com.csidigital.rh.management.service;
 
 import com.csidigital.rh.dao.entity.Employee;
+import com.csidigital.rh.dao.entity.OfferCandidate;
 import com.csidigital.rh.shared.dto.request.EmployeeRequest;
 import com.csidigital.rh.shared.dto.response.*;
 
@@ -32,4 +33,5 @@ public interface EmployeeService {
     List<Employee> getAllResourcesInterne ();
 
     List<Employee> getAllResourcesExterne();
+    List<AssOfferCandidateResponse> getOfferCandidates(Long id);
 }

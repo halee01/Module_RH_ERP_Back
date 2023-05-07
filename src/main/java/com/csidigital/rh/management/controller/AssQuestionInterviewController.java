@@ -1,9 +1,7 @@
 package com.csidigital.rh.management.controller;
 
 import com.csidigital.rh.management.service.impl.AssQuestionInterviewImpl;
-import com.csidigital.rh.management.service.impl.AssQuestionInterviewImpl;
 import com.csidigital.rh.shared.dto.request.AssQuestionInterviewRequest;
-import com.csidigital.rh.shared.dto.response.AssQuestionInterviewResponse;
 import com.csidigital.rh.shared.dto.response.AssQuestionInterviewResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +12,7 @@ import java.util.List;
 @Transactional
 @RestController
 @RequestMapping("/rh/AssQuestionInterview")
-public class AssOfferInterviewController {
+public class AssQuestionInterviewController {
     @Autowired
     private AssQuestionInterviewImpl assQuestionInterview;
 
