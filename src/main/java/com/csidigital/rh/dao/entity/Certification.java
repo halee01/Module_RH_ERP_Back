@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -17,10 +18,12 @@ public class Certification {
     @jakarta.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
+
+
+    @Column(name = "CertificationObtainedDate")
+    private LocalDate certificationObtainedDate;
     @Column(name = "certificationTitle")
     private String certificationTitle;
-    @Column(name = "CertificationObtainedDate")
-    private LocalDate CertificationObtainedDate;
 
     @JsonIgnore
     @ManyToOne

@@ -6,10 +6,8 @@ import java.time.LocalDate;
 @Data
 public class ExperienceResponse {
     private Long Id;
-    private LocalDate experienceStartMonth; //getMonth()
-    private LocalDate  experienceEndMonth;
-    private LocalDate  experienceStartYear;
-    private LocalDate  experienceEndYear;
+    private LocalDate experienceStartDate; //getMonth()
+    private LocalDate  experienceEndDate;
     private Boolean actualEmployment;
     private String  experienceCompany;
     private String  experienceRole;

@@ -1,7 +1,9 @@
 package com.csidigital.rh.management.service.impl;
 
 import com.csidigital.rh.dao.entity.AdministrativeData;
+import com.csidigital.rh.dao.entity.Employee;
 import com.csidigital.rh.dao.repository.AdministrativeDataRepository;
+import com.csidigital.rh.dao.repository.EmployeeRepository;
 import com.csidigital.rh.management.service.AdministrativeDataService;
 import com.csidigital.rh.shared.dto.request.AdministrativeDataRequest;
 import com.csidigital.rh.shared.dto.response.AdministrativeDataResponse;
@@ -24,11 +26,15 @@ public class AdministrativeDataImpl implements AdministrativeDataService {
         @Autowired
         private AdministrativeDataRepository administrativeDataRepository ;
         @Autowired
+        private EmployeeRepository employeeRepository ;
+        @Autowired
         private ModelMapper modelMapper;
 
         @Override
         public AdministrativeDataResponse createAdministrativeData(AdministrativeDataRequest request) {
+            Employee employee =  employeeRepository.findById(request.getEmployeeId()).orElseThrow();
             AdministrativeData administrativeData = modelMapper.map(request, AdministrativeData.class);
+            administrativeData.setEmployee(employee);
             AdministrativeData administrativeDataSaved = administrativeDataRepository.save(administrativeData);
             return modelMapper.map(administrativeDataSaved, AdministrativeDataResponse.class);
         }

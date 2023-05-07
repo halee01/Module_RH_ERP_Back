@@ -11,7 +11,7 @@ public enum Language {
     Allemand,
     Gujarati,
     Hindi,
-    iIndonésien,
+    Indonésien,
     Italien,
     Japonais,
     Javanais,

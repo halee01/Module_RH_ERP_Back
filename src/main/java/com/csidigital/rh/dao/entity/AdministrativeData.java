@@ -38,8 +38,10 @@ public class AdministrativeData {
 
 
     @JsonIgnore
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "evaluation_id", referencedColumnName = "id")
-    private Evaluation evaluation;
+    @OneToOne (
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    @JoinColumn(name = "employeeId")
+    private Employee employee;
 
 }

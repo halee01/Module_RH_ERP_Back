@@ -19,4 +19,6 @@ public class AssOfferCandidateResponse {
     private Evaluation evaluation;
     private Long employeeId;
     private Long offerId;
+    private Long evaluationNum;
+
 }

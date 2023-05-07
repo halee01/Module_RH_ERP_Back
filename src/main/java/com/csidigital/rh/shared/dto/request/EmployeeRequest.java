@@ -1,5 +1,7 @@
 package com.csidigital.rh.shared.dto.request;
 
+import com.csidigital.rh.dao.entity.AdministrativeData;
+import com.csidigital.rh.dao.entity.OfferCandidate;
 import com.csidigital.rh.dao.entity.TechnicalFile;
 import com.csidigital.rh.shared.enumeration.*;
 import jakarta.persistence.EnumType;
@@ -7,6 +9,8 @@ import jakarta.persistence.Enumerated;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.List;
+
 @Data
 public class EmployeeRequest {
     private String lastName;
@@ -35,10 +39,11 @@ public class EmployeeRequest {
     private String employeeFirstName;
     private String employeeLastName;
     private String EmployeeSerialNumber;
-    private Long AssOfferCandidateId;
+    private List<OfferCandidate> AssOfferCandidateList;
 
     private EmployeeStatus employeeStatus;
     private Departement departement;
     private TechnicalFile technicalFile ;
+    private AdministrativeData administrativeData;
 
 }

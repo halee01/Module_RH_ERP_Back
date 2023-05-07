@@ -10,7 +10,7 @@ import lombok.NonNull;
 public class SkillsRequest {
 
     private String skillsTitle;
-    @NonNull
+
     private Long technicalFileId ;
-    private Long skillsCategoryId ;
+  //  private Long skillsCategoryId ;
 }

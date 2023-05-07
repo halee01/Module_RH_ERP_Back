@@ -33,15 +33,10 @@ public class EvaluationImpl implements EvaluationService {
     private AdministrativeDataRepository administrativeDataRepository;
     @Override
     public EvaluationResponse createEvaluation(EvaluationRequest request) {
-        OfferCandidate offerCandidate = offerCandidateRepository.findById(request.getOfferCandidate()).orElseThrow();
-        AdministrativeData administrativeData = administrativeDataRepository.findById(request.getAdministrativeData()).orElseThrow();
         Evaluation evaluation = modelMapper.map(request, Evaluation.class);
-        evaluation.setOfferCandidate(offerCandidate);
 
-        evaluation.setAdministrativeData(administrativeData);
         Evaluation evaluationSaved = evaluationRepository.save(evaluation);
-        offerCandidate.setEvaluation(evaluation);
-        administrativeData.setEvaluation(evaluation);
+
         return modelMapper.map(evaluationSaved, EvaluationResponse.class);
     }
 

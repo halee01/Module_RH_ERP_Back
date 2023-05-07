@@ -64,4 +64,7 @@ public class Employee {
 
     @OneToMany(mappedBy = "employee")
     private List<OfferCandidate> offerCandidateList;
+    @JsonIgnore
+    @OneToOne(mappedBy = "employee")
+    private AdministrativeData administrativeData;
 }
