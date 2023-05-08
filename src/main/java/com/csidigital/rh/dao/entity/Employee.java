@@ -37,8 +37,8 @@ public class Employee {
     private String address;
     private Integer postCode;
     private String city;
-    @Enumerated(EnumType.STRING)
-    private Country country;
+
+    private String country;
     @Enumerated(EnumType.STRING)
     private MaritalSituation maritalSituation;
     private Integer recommendationMark ;
@@ -58,7 +58,7 @@ public class Employee {
     private Departement departement;
 
     @JsonIgnore
-    @OneToOne(cascade = CascadeType.ALL,
+    @OneToOne(cascade = CascadeType.ALL,orphanRemoval=true,
             mappedBy = "employee")
     private TechnicalFile technicalFile;
 
@@ -67,4 +67,10 @@ public class Employee {
     @JsonIgnore
     @OneToOne(mappedBy = "employee")
     private AdministrativeData administrativeData;
+    @JsonIgnore
+    @OneToOne(cascade = CascadeType.ALL,orphanRemoval=true,
+            mappedBy = "employee")
+    private Evaluation evaluation;
+
+
 }

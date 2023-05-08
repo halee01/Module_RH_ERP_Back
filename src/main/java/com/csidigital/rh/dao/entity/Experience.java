@@ -28,8 +28,8 @@ public class Experience {
     private String  experiencePost ;
 
     @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "technicalFileId")
+    @ManyToOne( cascade = CascadeType.ALL)
+    @JoinColumn(name = "technicalFileId" )
     private TechnicalFile technicalFile;
 
 

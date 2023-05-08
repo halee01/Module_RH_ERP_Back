@@ -1,6 +1,7 @@
 package com.csidigital.rh.shared.dto.request;
 
 import com.csidigital.rh.dao.entity.AdministrativeData;
+import com.csidigital.rh.dao.entity.Evaluation;
 import com.csidigital.rh.dao.entity.OfferCandidate;
 import com.csidigital.rh.dao.entity.TechnicalFile;
 import com.csidigital.rh.shared.enumeration.*;
@@ -26,7 +27,7 @@ public class EmployeeRequest {
     private String address;
     private Integer postCode;
     private String city;
-    private Country country;
+    private String country;
     private MaritalSituation maritalSituation;
     private Integer recommendationMark ;
     private Integer experience ;
@@ -45,5 +46,6 @@ public class EmployeeRequest {
     private Departement departement;
     private TechnicalFile technicalFile ;
     private AdministrativeData administrativeData;
+    private Evaluation evaluation;
 
 }

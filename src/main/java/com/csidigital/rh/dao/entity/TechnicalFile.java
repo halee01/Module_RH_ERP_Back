@@ -35,28 +35,28 @@ public class TechnicalFile{
 
 
     @JsonIgnore
-    @OneToMany(mappedBy = "technicalFile", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "technicalFile" , orphanRemoval=true,  cascade = CascadeType.ALL)
     private List<Skills> skills;
 
 
     @JsonIgnore
-    @OneToMany(mappedBy = "technicalFile", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "technicalFile", orphanRemoval=true ,cascade = CascadeType.ALL)
     private List<Experience> experiences;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "technicalFile", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "technicalFile" , orphanRemoval=true, cascade = CascadeType.ALL)
     private List<Language> languages;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "technicalFile", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "technicalFile" , orphanRemoval=true, cascade = CascadeType.ALL)
     private List<Certification> certifications;
 
 
-    @OneToMany(mappedBy = "technicalFile", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "technicalFile" , orphanRemoval=true, cascade = CascadeType.ALL)
     private List<Education> educations;
 
     @OneToOne (
-            fetch = FetchType.LAZY,
+
             cascade = CascadeType.ALL)
     @JoinColumn(name = "employeeId")
     private Employee employee;
