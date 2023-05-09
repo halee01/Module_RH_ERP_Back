@@ -19,7 +19,7 @@ public class Skills {
     private String skillsTitle;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne( cascade = CascadeType.ALL )
     @JsonIgnore
     @JoinColumn(name = "technicalFileId")
     private TechnicalFile technicalFile;

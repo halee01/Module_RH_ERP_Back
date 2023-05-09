@@ -37,8 +37,8 @@ public class Employee {
     private String address;
     private Integer postCode;
     private String city;
-    @Enumerated(EnumType.STRING)
-    private Country country;
+
+    private String country;
     @Enumerated(EnumType.STRING)
     private MaritalSituation maritalSituation;
     private Integer recommendationMark ;
@@ -62,9 +62,15 @@ public class Employee {
             mappedBy = "employee")
     private TechnicalFile technicalFile;
 
-    @OneToMany(mappedBy = "employee")
+    @OneToMany(mappedBy = "employee" ,cascade = CascadeType.ALL)
     private List<OfferCandidate> offerCandidateList;
     @JsonIgnore
     @OneToOne(mappedBy = "employee")
     private AdministrativeData administrativeData;
+    @JsonIgnore
+    @OneToOne(cascade = CascadeType.ALL,orphanRemoval=true,
+            mappedBy = "employee")
+    private Evaluation evaluation;
+
+
 }

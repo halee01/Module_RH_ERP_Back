@@ -24,6 +24,11 @@ public class Evaluation{
     @OneToMany(mappedBy = "evaluation")
     private List<OfferCandidate> OfferCandidate;
 
+    @OneToOne (
+
+            cascade = CascadeType.ALL)
+    @JoinColumn(name = "employeeId")
+    private Employee employee;
 
 }
 
