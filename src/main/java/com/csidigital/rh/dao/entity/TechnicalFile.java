@@ -56,8 +56,7 @@ public class TechnicalFile{
     private List<Education> educations;
 
     @OneToOne (
-
-            cascade = CascadeType.ALL)
+            cascade = CascadeType.ALL,orphanRemoval = true)
     @JoinColumn(name = "employeeId")
     private Employee employee;
 

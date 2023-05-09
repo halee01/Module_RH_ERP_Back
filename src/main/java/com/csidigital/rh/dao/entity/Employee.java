@@ -58,11 +58,11 @@ public class Employee {
     private Departement departement;
 
     @JsonIgnore
-    @OneToOne(cascade = CascadeType.ALL,orphanRemoval=true,
+    @OneToOne(cascade = CascadeType.ALL,
             mappedBy = "employee")
     private TechnicalFile technicalFile;
 
-    @OneToMany(mappedBy = "employee")
+    @OneToMany(mappedBy = "employee" ,cascade = CascadeType.ALL)
     private List<OfferCandidate> offerCandidateList;
     @JsonIgnore
     @OneToOne(mappedBy = "employee")
