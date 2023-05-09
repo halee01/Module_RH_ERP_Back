@@ -27,7 +27,7 @@ public class EmployeeResponse {
     private String address;
     private Integer postCode;
     private String city;
-    private Country country;
+    private String country;
 
     private MaritalSituation maritalSituation;
     private Integer recommendationMark ;

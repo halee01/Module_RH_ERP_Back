@@ -37,8 +37,8 @@ public class Employee {
     private String address;
     private Integer postCode;
     private String city;
-    @Enumerated(EnumType.STRING)
-    private Country country;
+   // @Enumerated(EnumType.STRING)
+    private String country;
     @Enumerated(EnumType.STRING)
     private MaritalSituation maritalSituation;
     private Integer recommendationMark ;

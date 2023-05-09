@@ -36,11 +36,9 @@ public class SkillsImpl implements SkillsService {
 
     @Override
     public SkillsResponse createSkills(SkillsRequest request) {
-       TechnicalFile technicalFile= technicalFileRepository.findById(request.getTechnicalFileId()).orElseThrow();
-
+       TechnicalFile technicalFile= technicalFileRepository.findById(request.getTechnicalFileNum()).orElseThrow();
         Skills skills= modelMapper.map(request, Skills.class);
        skills.setTechnicalFile(technicalFile);
-
         Skills skillsSaved = skillsRepository.save(skills);
         return modelMapper.map(skillsSaved, SkillsResponse.class);
     }
@@ -68,7 +66,7 @@ public class SkillsImpl implements SkillsService {
 
     @Override
     public SkillsResponse updateSkills(SkillsRequest request, Long id) {
-       TechnicalFile technicalFile = technicalFileRepository.findById(request.getTechnicalFileId()).orElseThrow();
+       TechnicalFile technicalFile = technicalFileRepository.findById(request.getTechnicalFileNum()).orElseThrow();
         Skills existingSkills = skillsRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Skills with id: " + id + " not found"));
         modelMapper.map(request, existingSkills);
