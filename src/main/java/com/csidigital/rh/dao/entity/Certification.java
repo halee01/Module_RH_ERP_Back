@@ -26,7 +26,7 @@ public class Certification {
     private String certificationTitle;
 
     @JsonIgnore
-    @ManyToOne
+    @ManyToOne( cascade = CascadeType.ALL)
     @JoinColumn(name = "technicalFileId")
     private TechnicalFile technicalFile;
 

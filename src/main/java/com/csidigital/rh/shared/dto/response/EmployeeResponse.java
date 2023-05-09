@@ -1,5 +1,6 @@
 package com.csidigital.rh.shared.dto.response;
 
+import com.csidigital.rh.dao.entity.Evaluation;
 import com.csidigital.rh.dao.entity.OfferCandidate;
 import com.csidigital.rh.dao.entity.TechnicalFile;
 import com.csidigital.rh.shared.enumeration.*;
@@ -43,5 +44,6 @@ public class EmployeeResponse {
     private TechnicalFile technicalFile;
 
     private List<OfferCandidate> offerCandidateList;
+    private Evaluation evaluation;
 
 }

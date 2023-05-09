@@ -1,6 +1,7 @@
 package com.csidigital.rh.shared.dto.request;
 
 import com.csidigital.rh.dao.entity.AdministrativeData;
+import com.csidigital.rh.dao.entity.Evaluation;
 import com.csidigital.rh.dao.entity.OfferCandidate;
 import com.csidigital.rh.dao.entity.TechnicalFile;
 import com.csidigital.rh.shared.enumeration.*;
@@ -45,5 +46,6 @@ public class EmployeeRequest {
     private Departement departement;
     private TechnicalFile technicalFile ;
     private AdministrativeData administrativeData;
+    private Evaluation evaluation;
 
 }

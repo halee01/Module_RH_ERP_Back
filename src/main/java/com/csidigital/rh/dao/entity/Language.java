@@ -18,13 +18,10 @@ public class Language implements Serializable {
     private Long Id;
     @Enumerated(EnumType.STRING)
     private com.csidigital.rh.shared.enumeration.Language language;
-
     private String additionalInformation;
-
     @Enumerated(EnumType.STRING)
     private LanguageLevel languageLevel;
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne( cascade = CascadeType.ALL)
     @JsonIgnore
     @JoinColumn(name = "technicalFileId")
     private TechnicalFile technicalFile;
