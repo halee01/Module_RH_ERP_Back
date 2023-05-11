@@ -33,7 +33,7 @@ public class Education {
 
 
     @JsonIgnore
-    @ManyToOne( cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "technicalFileId")
     private TechnicalFile technicalFile;
 }
