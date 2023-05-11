@@ -26,6 +26,8 @@ public class TechnicalFile{
     private String objective;
     @Column(name = "driverLicense")
     private String driverLicense;
+    @Column(name = "experienceAmount")
+    private Long experienceAmount;
 
 
 

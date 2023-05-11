@@ -20,10 +20,6 @@ public class Evaluation{
     @Column(name = "globalAppreciation")
     private int globalAppreciation;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "evaluation")
-    private List<OfferCandidate> OfferCandidate;
-
     @OneToOne (cascade = CascadeType.ALL)
     @JoinColumn(name = "employeeId")
     private Employee employee;

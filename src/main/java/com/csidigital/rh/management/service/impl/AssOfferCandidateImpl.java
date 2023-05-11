@@ -30,20 +30,18 @@ public class AssOfferCandidateImpl implements AssOfferCandidateService {
 
     @Autowired
     private EmployeeRepository employeeRepository;
-    @Autowired
-    private EvaluationRepository evaluationRepository;
 
     @Override
     public AssOfferCandidateResponse createAssOfferCandidate(AssOfferCandidateRequest request) {
-        Evaluation evaluation = null ;
+       /* Evaluation evaluation = null ;
         if (request.getEvaluationNum()!= null){
-            evaluation = evaluationRepository.findById(request.getEvaluationNum()).orElseThrow();}
+            evaluation = evaluationRepository.findById(request.getEvaluationNum()).orElseThrow();}*/
         Offer offer = offerRepository.findById(request.getOfferNum()).orElseThrow();
         Employee employee = employeeRepository.findById(request.getEmployeeNum()).orElseThrow();
         OfferCandidate offerCandidate = modelMapper.map(request, OfferCandidate.class);
         offerCandidate.setEmployee(employee);
         offerCandidate.setOffer(offer);
-        offerCandidate.setEvaluation(evaluation);
+       // offerCandidate.setEvaluation(evaluation);
         OfferCandidate offerCandidateSaved = assOfferCandidateRepository.save(offerCandidate);
         return modelMapper.map(offerCandidateSaved, AssOfferCandidateResponse.class);
     }
