@@ -14,6 +14,7 @@ public class ExperienceResponse {
     private String  technology;
     private String  experienceTitle;
     private String  experiencePost ;
+    private Long technicalFileId  ;
 
 
 }
