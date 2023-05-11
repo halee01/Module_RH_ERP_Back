@@ -34,4 +34,11 @@ public interface EmployeeService {
 
     List<Employee> getAllResourcesExterne();
     List<AssOfferCandidateResponse> getOfferCandidates(Long id);
+    void updateStatusToInProcessById (Long id);
+    void updateStatusToInProgressById (Long id);
+    void updateStatusToTopProfilesById (Long id);
+    void updateStatusToPreQualifiedById (Long id);
+    void updateStatusToConvertedToResourceById (Long id);
+    void  updateStatusToDoNotContactById(Long id);
+    void updateStatusToArchiveById (Long id);
 }

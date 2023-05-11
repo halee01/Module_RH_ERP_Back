@@ -22,10 +22,6 @@ public class OfferCandidate {
     private LocalDate applicationDate;
     @Enumerated(EnumType.STRING)
     private ExperienceLevel experienceLevel;
-
-
-
-
     @JsonIgnore
     @ManyToOne @JoinColumn(name = "id_offer")
     private Offer offer;
@@ -35,9 +31,6 @@ public class OfferCandidate {
     @JoinColumn(name = "id_employee")
     private Employee employee;
 
-    @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "evaluation_id", referencedColumnName = "id")
-    private Evaluation evaluation;
+
 
 }

@@ -36,7 +36,6 @@ public class InterviewController {
                                                    @PathVariable Long id){
         return interviewImpl.updateInterview(interviewRequest, id);
     }
-
     @DeleteMapping("/delete/{id}")
     public void deleteInterview(@PathVariable Long id){
         interviewImpl.deleteInterview(id);

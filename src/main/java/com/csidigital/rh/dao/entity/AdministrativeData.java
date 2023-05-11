@@ -22,18 +22,23 @@ public class AdministrativeData {
     @Enumerated(EnumType.STRING)
     @Column(name = "contractType")
     private ContractType contractType;
+
     @Column(name = "currentSalary")
     private double currentSalary;
+
     @Column(name = "expectedSalary")
     private double expectedSalary;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "availability")
     private AvailabilityEnum availability;
+
     @Column(name = "availabilityDate")
     private LocalDate availabilityDate;
-    @Enumerated(EnumType.STRING)
+
+   /* @Enumerated(EnumType.STRING)
     @Column(name = "experience")
-    private Experience experience;
+    private Experience experience;*/
 
 
 

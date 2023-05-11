@@ -11,12 +11,8 @@ public class AssOfferCandidateRequest {
 
     private LocalDate applicationDate;
     private ExperienceLevel experienceLevel;
-
-
-
     private Long offerNum;
     private Long employeeNum;
-    private Long evaluationNum;
 
 
 }

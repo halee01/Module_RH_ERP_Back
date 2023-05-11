@@ -19,10 +19,13 @@ public class Education {
     private Long Id;
     @Column(name = "diploma")
     private String diploma;
+
     @Column(name = "institution")
     private String institution;
+
     @Column(name = "obtainedDate")
-    private LocalDate obtainedDate;
+    private LocalDate  obtainedDate;
+
     @Column(name = "startYear")
     private LocalDate startYear;
 
@@ -33,7 +36,7 @@ public class Education {
 
 
     @JsonIgnore
-    @ManyToOne()
-    @JoinColumn(name = "technicalFileId")
+    @ManyToOne( cascade = CascadeType.ALL)
+    @JoinColumn(name = "technicalFileNum")
     private TechnicalFile technicalFile;
 }

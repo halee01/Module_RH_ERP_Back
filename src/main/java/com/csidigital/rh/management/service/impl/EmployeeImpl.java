@@ -147,6 +147,39 @@ public class EmployeeImpl implements EmployeeService {
         return assOfferCandidateResponseList ;
     }
 
+    @Override
+    public void updateStatusToInProcessById(Long id) {
+employeeRepository.updateStatusToInProcessById(id);}
+    @Override
+    public void updateStatusToInProgressById(Long id) {
+employeeRepository.updateStatusToInProcessById(id);  }
+
+
+    @Override
+    public void updateStatusToTopProfilesById(Long id) {
+employeeRepository.updateStatusToTopProfilesById(id);
+    }
+
+    @Override
+    public void updateStatusToPreQualifiedById(Long id) {
+employeeRepository.updateStatusToPreQualifiedById(id);
+    }
+
+    @Override
+    public void updateStatusToConvertedToResourceById(Long id) {
+employeeRepository.updateStatusToConvertedToResourceById(id);
+    }
+
+    @Override
+    public void updateStatusToDoNotContactById(Long id) {
+employeeRepository.updateStatusToDoNotContactById(id);
+    }
+
+    @Override
+    public void updateStatusToArchiveById(Long id) {
+employeeRepository.updateStatusToArchiveById(id);
+    }
+
 
     @Override
     public EmployeeResponse updateEmployee(EmployeeRequest request, Long id) {
