@@ -12,5 +12,6 @@ public class CertificationResponse {
     private Long Id;
     private LocalDate certificationObtainedDate;
     private String certificationTitle;
+    private Long technicalFileId;
 
 }

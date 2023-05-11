@@ -12,5 +12,5 @@ public class LanguageRequest {
     private Long Id;
     private com.csidigital.rh.shared.enumeration.Language language;
     private String additionalInformation;
-    private Long technicalFileId ;
+    private Long technicalFileNum ;
 }
