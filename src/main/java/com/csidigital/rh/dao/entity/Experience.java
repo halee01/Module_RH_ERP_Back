@@ -19,7 +19,7 @@ public class Experience {
 
     private Long Id;
     private LocalDate experienceStartDate; //getMonth()
-    private LocalDate  experienceEndDate;
+    private LocalDate experienceEndDate;
     private Boolean actualEmployment;
     private String  experienceCompany;
     private String  experienceRole;
@@ -28,7 +28,7 @@ public class Experience {
     private String  experiencePost ;
 
     @JsonIgnore
-    @ManyToOne( cascade = CascadeType.ALL)
+    @ManyToOne( )
     @JoinColumn(name = "technicalFileId" )
     private TechnicalFile technicalFile;
 

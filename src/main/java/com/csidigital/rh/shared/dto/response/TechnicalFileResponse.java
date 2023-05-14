@@ -16,16 +16,15 @@ public class TechnicalFileResponse {
     private Long Id;
     private  String reference;
     private String description;
-    private String technicalFileTitle;
     private String objective;
     private String driverLicense;
-    private Nationality nationality;
     private List<Education> educations;
     private List<Experience> experiences;
     private List<Skills> skills;
     private List<Language> languages;
     private List<Certification> certifications;
     private Long employeeId;
+    private Long experienceAmount;
 
 
 

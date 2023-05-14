@@ -22,15 +22,13 @@ public class TechnicalFile{
     private  String reference;
     @Column(name = "description")
     private String description;
-    @Column(name = "title")
-    private String technicalFileTitle;
     @Column(name = "objective")
     private String objective;
     @Column(name = "driverLicense")
     private String driverLicense;
-    @Column(name = "nationality")
-    @Enumerated(EnumType.STRING)
-    private Nationality nationality;
+    @Column(name = "experienceAmount")
+    private Long experienceAmount;
+
 
 
 

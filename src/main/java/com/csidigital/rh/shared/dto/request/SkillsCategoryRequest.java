@@ -14,5 +14,5 @@ import java.util.List;
 public class SkillsCategoryRequest {
 
     private String skillsCategoryTitle;
-    private List<Skills> skillsList;
+   /* private List<Skills> skillsList;*/
 }

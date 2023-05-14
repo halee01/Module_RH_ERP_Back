@@ -4,6 +4,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 @Data
@@ -15,6 +16,9 @@ public class OfferResponse {
     private String title;
     private String reference;
     private String description ;
+    private LocalDate startDate;
+    private LocalDate endDate ;
+    private String jobSite;
     private Set<Long> employee;
 
 }
