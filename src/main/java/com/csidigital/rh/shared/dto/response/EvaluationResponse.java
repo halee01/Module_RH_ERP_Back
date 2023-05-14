@@ -13,5 +13,5 @@ public class EvaluationResponse {
     private Integer globalAppreciation;
     private List<OfferCandidate> offerCandidates;
     private AdministrativeData administrativeData;
-    private Long employeeId ;
+    private Long employeeNum ;
 }
