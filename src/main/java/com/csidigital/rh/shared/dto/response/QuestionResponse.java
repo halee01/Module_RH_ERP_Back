@@ -1,5 +1,6 @@
 package com.csidigital.rh.shared.dto.response;
 
+import com.csidigital.rh.shared.enumeration.ExperienceLevel;
 import com.csidigital.rh.shared.enumeration.InterviewType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,4 +17,6 @@ public class QuestionResponse {
     private String question;
     private InterviewType interviewType;
     private Set<Long> interview;
+    private ExperienceLevel level ;
+
 }
