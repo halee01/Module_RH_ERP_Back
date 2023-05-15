@@ -9,4 +9,5 @@ public class QuestionCategoryResponse {
     private Long Id ;
     private String name ;
     private List<Question> questions;
+    private Long LevelId;
 }

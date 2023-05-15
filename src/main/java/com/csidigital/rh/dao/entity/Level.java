@@ -6,19 +6,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
-public class QuestionCategory {
+public class Level {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id ;
+    private Long id;
     private String name ;
-    @OneToMany(mappedBy = "question")
-    private List<Question> questions;
-    @ManyToOne
-    @JoinColumn(name = "levelId")
-    private Level level;
+    @OneToMany(mappedBy = "level")
+    private List<QuestionCategory> questionCategories;
+
+
+
 }

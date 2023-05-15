@@ -1,8 +1,10 @@
 package com.csidigital.rh.management.service.impl;
 
+import com.csidigital.rh.dao.entity.Level;
 import com.csidigital.rh.dao.entity.QuestionCategory;
 import com.csidigital.rh.dao.entity.Resource;
 import com.csidigital.rh.dao.entity.TechnicalFile;
+import com.csidigital.rh.dao.repository.LevelRespository;
 import com.csidigital.rh.dao.repository.QuestionCategoryRepository;
 import com.csidigital.rh.management.service.QuestionCategoryService;
 import com.csidigital.rh.shared.dto.request.QuestionCategoryRequest;
@@ -31,8 +33,12 @@ public class QuestionCategoryImpl implements QuestionCategoryService {
     private ModelMapper modelMapper;
     @Autowired
     private QuestionCategoryRepository questionCategoryRepository;
+    @Autowired
+    private LevelRespository levelRespository;
     public QuestionCategoryResponse createQuestionCategory(QuestionCategoryRequest request) {
+        Level level= levelRespository.findById(request.getLevelId()).orElseThrow();
         QuestionCategory questionCategory = modelMapper.map(request, QuestionCategory.class);
+        questionCategory.setLevel(level);
         QuestionCategory questionCategorySaved = questionCategoryRepository.save(questionCategory);
         return modelMapper.map(questionCategorySaved, QuestionCategoryResponse.class);
     }

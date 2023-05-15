@@ -10,4 +10,6 @@ public class QuestionCategoryRequest {
     private String name ;
 
     private List<Question> questions;
+    private Long LevelId;
+
 }
