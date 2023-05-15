@@ -11,6 +11,6 @@ import java.util.List;
 public class EvaluationRequest {
     private Integer globalAppreciation;
     private List<OfferCandidate>offerCandidates;
-    private Long employeeId ;
+    private Long employeeNum ;
 
 }

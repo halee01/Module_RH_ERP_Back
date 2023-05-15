@@ -39,7 +39,7 @@ public class EvaluationImpl implements EvaluationService {
 
     @Override
     public EvaluationResponse createEvaluation(EvaluationRequest request) {
-        Employee employee =  employeeRepository.findById(request.getEmployeeId()).orElseThrow();
+        Employee employee =  employeeRepository.findById(request.getEmployeeNum()).orElseThrow();
         Evaluation evaluation = modelMapper.map(request, Evaluation.class);
         evaluation.setEmployee(employee);
         Evaluation evaluationSaved = evaluationRepository.save(evaluation);

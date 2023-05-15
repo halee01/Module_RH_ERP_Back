@@ -58,6 +58,7 @@ public class Employee {
     private Departement departement;
 
     @JsonIgnore
+
     @OneToOne(cascade = CascadeType.ALL,
             mappedBy = "employee")
     private TechnicalFile technicalFile;
@@ -65,10 +66,12 @@ public class Employee {
     @OneToMany(mappedBy = "employee" ,cascade = CascadeType.ALL)
     private List<OfferCandidate> offerCandidateList;
     @JsonIgnore
+
     @OneToOne(mappedBy = "employee")
     private AdministrativeData administrativeData;
     @JsonIgnore
-    @OneToOne(cascade = CascadeType.ALL,orphanRemoval=true,
+
+    @OneToOne(cascade = CascadeType.ALL,
             mappedBy = "employee")
     private Evaluation evaluation;
 
