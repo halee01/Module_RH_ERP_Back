@@ -23,8 +23,7 @@ public class Question {
     @Enumerated(EnumType.STRING)
     private InterviewType interviewType;
 
-   @Enumerated(EnumType.STRING)
-    private ExperienceLevel level ;
+
 
     @OneToMany(mappedBy = "question")
     private List<AssQuestionInterview> assQuestionInterviewList ;

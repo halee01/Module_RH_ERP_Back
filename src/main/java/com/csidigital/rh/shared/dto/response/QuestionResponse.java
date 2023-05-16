@@ -17,6 +17,7 @@ public class QuestionResponse {
     private String question;
     private InterviewType interviewType;
     private Set<Long> interview;
-    private ExperienceLevel level ;
+
+    private Long categoryNum ;
 
 }
