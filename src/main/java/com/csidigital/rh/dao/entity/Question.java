@@ -1,7 +1,7 @@
 package com.csidigital.rh.dao.entity;
 
-import com.csidigital.rh.shared.enumeration.ExperienceLevel;
 import com.csidigital.rh.shared.enumeration.InterviewType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,11 +24,13 @@ public class Question {
     private InterviewType interviewType;
 
 
-
+    @JsonIgnore
     @OneToMany(mappedBy = "question")
     private List<AssQuestionInterview> assQuestionInterviewList ;
 
+
     @ManyToOne()
+    @JsonIgnore
     @JoinColumn(name = "categoryId")
     private QuestionCategory questionCategory;
 }
