@@ -36,9 +36,9 @@ public class QuestionCategoryImpl implements QuestionCategoryService {
     @Autowired
     private LevelRespository levelRespository;
     public QuestionCategoryResponse createQuestionCategory(QuestionCategoryRequest request) {
-        Level level= levelRespository.findById(request.getLevelId()).orElseThrow();
+
         QuestionCategory questionCategory = modelMapper.map(request, QuestionCategory.class);
-        questionCategory.setLevel(level);
+
         QuestionCategory questionCategorySaved = questionCategoryRepository.save(questionCategory);
         return modelMapper.map(questionCategorySaved, QuestionCategoryResponse.class);
     }

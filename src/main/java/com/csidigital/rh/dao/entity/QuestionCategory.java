@@ -1,5 +1,6 @@
 package com.csidigital.rh.dao.entity;
 
+import com.csidigital.rh.shared.enumeration.ExperienceLevel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,7 +19,5 @@ public class QuestionCategory {
     private String name ;
     @OneToMany(mappedBy = "question")
     private List<Question> questions;
-    @ManyToOne
-    @JoinColumn(name = "levelId")
-    private Level level;
+    private ExperienceLevel level ;
 }
