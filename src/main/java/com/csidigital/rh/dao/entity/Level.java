@@ -1,23 +1,24 @@
 package com.csidigital.rh.dao.entity;
 
-import com.csidigital.rh.shared.enumeration.ExperienceLevel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
-public class QuestionCategory {
+public class Level {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id ;
+    private Long id;
     private String name ;
-    @OneToMany(mappedBy = "question")
-    private List<Question> questions;
-    private ExperienceLevel level ;
+    @OneToMany(mappedBy = "level")
+    private List<QuestionCategory> questionCategories;
+
+
+
 }
