@@ -21,8 +21,6 @@ public class Question {
     private Long Id;
     private String question;
     @Enumerated(EnumType.STRING)
-    private InterviewType interviewType;
-
 
 
     @OneToMany(mappedBy = "question")

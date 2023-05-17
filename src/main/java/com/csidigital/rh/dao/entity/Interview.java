@@ -31,7 +31,9 @@ public class Interview {
     private String interviewerEmail;
     private String interviewerPhoneNumber;
     private String interviewPlace;
+    @Enumerated(EnumType.STRING)
     private InterviewLocation interviewLocation ;
+    @Enumerated(EnumType.STRING)
     private InterviewType interviewType;
     @Enumerated(EnumType.STRING)
     private InterviewMode interviewMode;

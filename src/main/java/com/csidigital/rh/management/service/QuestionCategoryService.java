@@ -11,6 +11,7 @@ public interface QuestionCategoryService {
     QuestionCategoryResponse createQuestionCategory(QuestionCategoryRequest request);
     List<QuestionCategoryResponse> getAllQuestionCategories();
     QuestionCategoryResponse getQuestionCategoryById(Long id);
+    List<QuestionResponse> getCategoryQuestions(Long id);
 
     QuestionCategoryResponse updateQuestionCategory(QuestionCategoryRequest request, Long id);
 
