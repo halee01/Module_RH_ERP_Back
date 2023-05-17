@@ -1,6 +1,6 @@
 package com.csidigital.rh.dao.entity;
-
 import com.csidigital.rh.shared.enumeration.ExperienceLevel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,7 +17,13 @@ public class QuestionCategory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id ;
     private String name ;
-    @OneToMany(mappedBy = "question")
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "questionCategory" , cascade = CascadeType.ALL)
     private List<Question> questions;
+
+
+    @Enumerated(EnumType.STRING)
     private ExperienceLevel level ;
+
 }

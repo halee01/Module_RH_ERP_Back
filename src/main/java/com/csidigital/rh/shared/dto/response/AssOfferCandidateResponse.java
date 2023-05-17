@@ -1,6 +1,5 @@
 package com.csidigital.rh.shared.dto.response;
 
-import com.csidigital.rh.dao.entity.Evaluation;
 import com.csidigital.rh.shared.enumeration.ExperienceLevel;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
