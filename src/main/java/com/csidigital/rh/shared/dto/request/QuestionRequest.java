@@ -1,9 +1,6 @@
 package com.csidigital.rh.shared.dto.request;
 
-import com.csidigital.rh.shared.enumeration.ExperienceLevel;
 import com.csidigital.rh.shared.enumeration.InterviewType;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import lombok.Data;
 
 @Data

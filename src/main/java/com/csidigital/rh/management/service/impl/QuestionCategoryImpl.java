@@ -51,6 +51,7 @@ public class QuestionCategoryImpl implements QuestionCategoryService {
         return questionCategoryResponseList;
     }
 
+
     @Override
     public QuestionCategoryResponse getQuestionCategoryById(Long id) {
         QuestionCategory questionCategory = questionCategoryRepository.findById(id)
