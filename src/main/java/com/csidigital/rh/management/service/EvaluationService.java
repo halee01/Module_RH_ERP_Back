@@ -11,7 +11,7 @@ public interface EvaluationService {
     EvaluationResponse createEvaluation(EvaluationRequest request);
     List<EvaluationResponse> getAllEvaluations();
     EvaluationResponse getEvaluationById(Long id);
-   // List<InterviewResponse> getEvaluationInterviews(Long id);
+    List<InterviewResponse> getEvaluationInterviews(Long id);
 
     EvaluationResponse updateEvaluation(EvaluationRequest request, Long id);
 
