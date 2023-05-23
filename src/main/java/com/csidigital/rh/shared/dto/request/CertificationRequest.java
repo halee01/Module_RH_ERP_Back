@@ -10,6 +10,7 @@ import java.time.LocalDate;
 @Data
 
 public class CertificationRequest {
+
     private LocalDate certificationObtainedDate;
     private String certificationTitle;
 

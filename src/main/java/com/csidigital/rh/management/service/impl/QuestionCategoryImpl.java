@@ -1,11 +1,10 @@
 package com.csidigital.rh.management.service.impl;
 
 import com.csidigital.rh.dao.entity.*;
-import com.csidigital.rh.dao.repository.LevelRespository;
 import com.csidigital.rh.dao.repository.QuestionCategoryRepository;
+import com.csidigital.rh.dao.repository.QuestionTypeRepository;
 import com.csidigital.rh.management.service.QuestionCategoryService;
 import com.csidigital.rh.shared.dto.request.QuestionCategoryRequest;
-import com.csidigital.rh.shared.dto.request.ResourceRequest;
 import com.csidigital.rh.shared.dto.response.*;
 import com.csidigital.rh.shared.exception.ResourceNotFoundException;
 import jakarta.transaction.Transactional;
@@ -29,11 +28,13 @@ public class QuestionCategoryImpl implements QuestionCategoryService {
     @Autowired
     private QuestionCategoryRepository questionCategoryRepository;
     @Autowired
-    private LevelRespository levelRespository;
+    private QuestionTypeRepository questionTypeRepository;
+
+
     public QuestionCategoryResponse createQuestionCategory(QuestionCategoryRequest request) {
-
+        QuestionType questionType= questionTypeRepository.findById(request.getQuestionTypeNum()).orElseThrow();
         QuestionCategory questionCategory = modelMapper.map(request, QuestionCategory.class);
-
+        questionCategory.setQuestionType(questionType);
         QuestionCategory questionCategorySaved = questionCategoryRepository.save(questionCategory);
         return modelMapper.map(questionCategorySaved, QuestionCategoryResponse.class);
     }
@@ -75,6 +76,13 @@ public class QuestionCategoryImpl implements QuestionCategoryService {
     }
 
 
+   /* @Override
+    public QuestionCategoryResponse getQuestionCategoryByQuestionTypeId(Long id) {
+        QuestionType questionType = questionTypeRepository.findById(id)
+                .orElseThrow(()->new ResourceNotFoundException(("QT with id "+id+" not found")));
+        QuestionCategory questionCategory = questionType.getQuestionCategory();
+       return modelMapper.map(questionCategory, QuestionCategoryResponse.class);
+    }*/
     @Override
     public QuestionCategoryResponse updateQuestionCategory(QuestionCategoryRequest request, Long id) {
         QuestionCategory existingQuestionCategory = questionCategoryRepository.findById(id)

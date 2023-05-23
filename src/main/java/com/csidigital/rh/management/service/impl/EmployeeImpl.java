@@ -148,11 +148,9 @@ public class EmployeeImpl implements EmployeeService {
     }
 
     @Override
-    public void updateStatusToInProcessById(Long id) {
-employeeRepository.updateStatusToInProcessById(id);}
+    public void updateStatusToInProcessById(Long id) {employeeRepository.updateStatusToInProcessById(id);}
     @Override
-    public void updateStatusToInProgressById(Long id) {
-employeeRepository.updateStatusToInProcessById(id);  }
+    public void updateStatusToInProgressById(Long id) {employeeRepository.updateStatusToInProcessById(id);  }
 
 
     @Override
@@ -166,8 +164,7 @@ employeeRepository.updateStatusToPreQualifiedById(id);
     }
 
     @Override
-    public void updateStatusToConvertedToResourceById(Long id) {
-employeeRepository.updateStatusToConvertedToResourceById(id);
+    public void updateStatusToConvertedToResourceById(Long id) {employeeRepository.updateStatusToConvertedToResourceById(id);
     }
 
     @Override

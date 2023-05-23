@@ -1,21 +1,21 @@
 package com.csidigital.rh.shared.dto.response;
 
-import com.csidigital.rh.shared.enumeration.InterviewType;
+import com.csidigital.rh.dao.entity.QuestionCategory;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+
 import lombok.Data;
 
-import java.util.Set;
+import java.util.List;
+
 
 @Data
-public class QuestionResponse {
+public class QuestionTypeResponse {
+
     @jakarta.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
-
-    private String question;
-    private Set<Long> interview;
-
-    private Long categoryNum ;
-
+    private List<QuestionCategory> questionCategories;
+    private String questionTypeName;
+   // private Long questionCategoryNum;
 }

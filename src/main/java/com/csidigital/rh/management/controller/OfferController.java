@@ -43,4 +43,13 @@ public class OfferController {
         offerImpl.deleteOffer(id);
     }
 
+    @PutMapping("/updateStatusToOpenById/{id}")
+    void updateStatusToOpenById(@PathVariable Long id) {
+        offerImpl.updateStatusToOpenById(id);
+    }
+
+    @PutMapping("/updateStatusToEndedById/{id}")
+    void updateStatusToEndedById(@PathVariable Long id) {
+        offerImpl.updateStatusToEndedById(id);
+    }
 }
