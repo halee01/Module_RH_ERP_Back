@@ -1,6 +1,4 @@
 package com.csidigital.rh.management.controller;
-
-
 import com.csidigital.rh.management.service.impl.OfferImpl;
 import com.csidigital.rh.shared.dto.request.OfferRequest;
 import com.csidigital.rh.shared.dto.response.OfferResponse;

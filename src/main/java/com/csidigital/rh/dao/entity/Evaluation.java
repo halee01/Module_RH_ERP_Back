@@ -20,9 +20,12 @@ public class Evaluation{
     @Column(name = "globalAppreciation")
     private int globalAppreciation;
 
+    @JsonIgnore
     @OneToOne (cascade = CascadeType.ALL)
     @JoinColumn(name = "employeeId")
     private Employee employee;
+
+
 
 }
 
