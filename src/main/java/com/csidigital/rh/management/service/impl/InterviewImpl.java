@@ -3,8 +3,10 @@ package com.csidigital.rh.management.service.impl;
 
 import com.csidigital.rh.dao.entity.Evaluation;
 import com.csidigital.rh.dao.entity.Interview;
+import com.csidigital.rh.dao.entity.QuestionType;
 import com.csidigital.rh.dao.repository.EvaluationRepository;
 import com.csidigital.rh.dao.repository.InterviewRepository;
+import com.csidigital.rh.dao.repository.QuestionTypeRepository;
 import com.csidigital.rh.management.service.InterviewService;
 import com.csidigital.rh.shared.dto.request.InterviewRequest;
 import com.csidigital.rh.shared.dto.response.InterviewResponse;
@@ -26,6 +28,8 @@ public class InterviewImpl implements InterviewService {
     @Autowired
     private InterviewRepository interviewRepository ;
     @Autowired
+    private QuestionTypeRepository questionTypeRepository;
+    @Autowired
     private EvaluationRepository evaluationRepository;
     @Autowired
     private ModelMapper modelMapper;
@@ -33,8 +37,10 @@ public class InterviewImpl implements InterviewService {
     @Override
     public InterviewResponse createInterview(InterviewRequest request) {
         Evaluation evaluation=evaluationRepository.findById(request.getEvaluationNum()).orElseThrow();
+        List<QuestionType> questionType = questionTypeRepository.findAllById(request.getQuestionTypeIds());
         Interview interview = modelMapper.map(request, Interview.class);
         interview.setEvaluation(evaluation);
+        interview.setQuestionTypeList(questionType);
         Interview InterviewSaved = interviewRepository.save(interview);
         return modelMapper.map(InterviewSaved, InterviewResponse.class);
     }
@@ -73,6 +79,21 @@ public class InterviewImpl implements InterviewService {
     @Override
     public void deleteInterview(Long id) {
         interviewRepository.deleteById(id);
+    }
+
+    @Override
+    public void updateStatusToPlannedById(Long id) {
+
+    }
+
+    @Override
+    public void updateStatusToEndedById(Long id) {
+
+    }
+
+    @Override
+    public void updateStatusToCancelledById(Long id) {
+
     }
 
 }

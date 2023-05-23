@@ -39,15 +39,23 @@ public class Interview {
     @Enumerated(EnumType.STRING)
     private InterviewMode interviewMode;
 
-
+    @JsonIgnore
     @OneToMany(mappedBy = "interview")
     private List<AssQuestionInterview> assQuestionInterviewList;
-    @OneToMany(mappedBy = "interview")
-    private  List<UpdatedQuestion> updatedQuestions ;
     @JsonIgnore
     @ManyToOne()
-    @JoinColumn(name="evaluationId")
+    @JoinColumn(name = "evaluationId")
     private Evaluation evaluation;
+
+    @JsonIgnore
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "interview_question_type",
+            joinColumns = @JoinColumn(name = "interview_id"),
+            inverseJoinColumns = @JoinColumn(name = "question_type_id"))
+    private List<QuestionType> questionTypeList;
+
 }
+
+
 
 
