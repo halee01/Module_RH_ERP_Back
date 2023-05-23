@@ -21,7 +21,7 @@ public class Language implements Serializable {
     private String additionalInformation;
     @Enumerated(EnumType.STRING)
     private LanguageLevel languageLevel;
-    @ManyToOne( )
+    @ManyToOne()
     @JsonIgnore
     @JoinColumn(name = "technicalFileId")
     private TechnicalFile technicalFile;

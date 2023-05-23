@@ -2,6 +2,7 @@ package com.csidigital.rh.shared.dto.response;
 
 import com.csidigital.rh.dao.entity.AdministrativeData;
 import com.csidigital.rh.dao.entity.Employee;
+import com.csidigital.rh.dao.entity.Interview;
 import com.csidigital.rh.dao.entity.OfferCandidate;
 import lombok.Data;
 
@@ -14,4 +15,5 @@ public class EvaluationResponse {
     private List<OfferCandidate> offerCandidates;
     private AdministrativeData administrativeData;
     private Long employeeNum ;
+    private List<Interview> interviews ;
 }

@@ -2,6 +2,7 @@ package com.csidigital.rh.dao.entity;
 
 
 import com.csidigital.rh.shared.enumeration.InterviewType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,5 +27,8 @@ public class UpdatedQuestion {
     private InterviewType interviewType;
 
 
-
+    @ManyToOne()
+    @JsonIgnore
+    @JoinColumn(name = "interviewId")
+    private Interview interview ;
 }

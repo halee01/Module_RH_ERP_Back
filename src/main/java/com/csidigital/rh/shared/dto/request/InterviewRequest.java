@@ -1,6 +1,7 @@
 package com.csidigital.rh.shared.dto.request;
 
 import com.csidigital.rh.dao.entity.AssQuestionInterview;
+import com.csidigital.rh.dao.entity.UpdatedQuestion;
 import com.csidigital.rh.shared.enumeration.InterviewLocation;
 import com.csidigital.rh.shared.enumeration.InterviewMode;
 import com.csidigital.rh.shared.enumeration.InterviewType;
@@ -24,11 +25,15 @@ public class InterviewRequest {
     private String interviewerEmail;
     private String interviewerPhoneNumber;
     private String interviewPlace;
+    @Enumerated(EnumType.STRING)
     private InterviewLocation interviewLocation ;
+    @Enumerated(EnumType.STRING)
     private InterviewType interviewType;
+    @Enumerated(EnumType.STRING)
     private InterviewMode interviewMode;
     private List<AssQuestionInterview> assQuestionInterviewList;
-
+    private List<UpdatedQuestion> updatedQuestions ;
+    private Long evaluationNum ;
 
 }
 

@@ -20,9 +20,12 @@ public class Evaluation{
     @Column(name = "globalAppreciation")
     private int globalAppreciation;
 
-    @OneToOne (cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "employeeId")
     private Employee employee;
+
+    @OneToMany(mappedBy = "evaluation" , cascade = CascadeType.ALL)
+    private List<Interview> interviews;
 
 }
 

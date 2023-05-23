@@ -1,7 +1,10 @@
 package com.csidigital.rh.management.service.impl;
 
 
+import com.csidigital.rh.dao.entity.Interview;
+import com.csidigital.rh.dao.entity.TechnicalFile;
 import com.csidigital.rh.dao.entity.UpdatedQuestion;
+import com.csidigital.rh.dao.repository.InterviewRepository;
 import com.csidigital.rh.dao.repository.UpdatedQuestionRepository;
 import com.csidigital.rh.management.service.UpdatedQuestionService;
 import com.csidigital.rh.shared.dto.request.UpdatedQuestionRequest;
@@ -25,11 +28,15 @@ public class UpdatedQuestionImpl implements UpdatedQuestionService {
     @Autowired
     private UpdatedQuestionRepository updatedQuestionRepository ;
     @Autowired
+    private InterviewRepository interviewRepository;
+    @Autowired
     private ModelMapper modelMapper;
 
     @Override
     public UpdatedQuestionResponse createUpdatedQuestion(UpdatedQuestionRequest request) {
+        Interview interview= interviewRepository.findById(request.getInterviewNum()).orElseThrow() ;
         UpdatedQuestion updatedQuestion = modelMapper.map(request,  UpdatedQuestion.class);
+        updatedQuestion.setInterview(interview);
         UpdatedQuestion  UpdatedQuestionSaved =  updatedQuestionRepository.save(updatedQuestion);
         return modelMapper.map( UpdatedQuestionSaved,  UpdatedQuestionResponse.class);
     }
