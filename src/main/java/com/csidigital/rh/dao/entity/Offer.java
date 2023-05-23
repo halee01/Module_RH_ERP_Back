@@ -37,4 +37,6 @@ public class Offer {
     private List<OfferCandidate> offerCandidateList;
 
 
+
+
 }

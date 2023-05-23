@@ -1,9 +1,7 @@
 package com.csidigital.rh.management.service.impl;
 
 
-import com.csidigital.rh.dao.entity.Evaluation;
 import com.csidigital.rh.dao.entity.Interview;
-import com.csidigital.rh.dao.repository.EvaluationRepository;
 import com.csidigital.rh.dao.repository.InterviewRepository;
 import com.csidigital.rh.management.service.InterviewService;
 import com.csidigital.rh.shared.dto.request.InterviewRequest;
@@ -26,15 +24,11 @@ public class InterviewImpl implements InterviewService {
     @Autowired
     private InterviewRepository interviewRepository ;
     @Autowired
-    private EvaluationRepository evaluationRepository;
-    @Autowired
     private ModelMapper modelMapper;
 
     @Override
     public InterviewResponse createInterview(InterviewRequest request) {
-        Evaluation evaluation=evaluationRepository.findById(request.getEvaluationNum()).orElseThrow();
         Interview interview = modelMapper.map(request, Interview.class);
-        interview.setEvaluation(evaluation);
         Interview InterviewSaved = interviewRepository.save(interview);
         return modelMapper.map(InterviewSaved, InterviewResponse.class);
     }

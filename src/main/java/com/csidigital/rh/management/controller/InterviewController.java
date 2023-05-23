@@ -41,4 +41,19 @@ public class InterviewController {
         interviewImpl.deleteInterview(id);
     }
 
+    @PutMapping("/updateStatusToPlannedById/{id}")
+    void updateStatusToPlannedById(@PathVariable Long id) {
+        interviewImpl.updateStatusToPlannedById(id);
+    }
+
+    @PutMapping("/updateStatusToEndedById/{id}")
+    void updateStatusToEndedById(@PathVariable Long id) {
+        interviewImpl.updateStatusToEndedById(id);
+    }
+
+    @PutMapping("/updateStatusToCancelledById/{id}")
+    void updateStatusToCancelledById(@PathVariable Long id) {
+        interviewImpl.updateStatusToCancelledById(id);
+    }
+
 }

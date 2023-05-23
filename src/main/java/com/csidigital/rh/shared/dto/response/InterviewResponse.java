@@ -1,7 +1,6 @@
 package com.csidigital.rh.shared.dto.response;
 
 import com.csidigital.rh.dao.entity.AssQuestionInterview;
-import com.csidigital.rh.dao.entity.UpdatedQuestion;
 import com.csidigital.rh.shared.enumeration.InterviewLocation;
 import com.csidigital.rh.shared.enumeration.InterviewMode;
 import com.csidigital.rh.shared.enumeration.InterviewType;
@@ -32,7 +31,5 @@ public class InterviewResponse {
     private InterviewType interviewType;
     private InterviewMode interviewMode;
     private List<AssQuestionInterview> assQuestionInterviewList;
-    private List<UpdatedQuestion> updatedQuestions;
-    private Long evaluationNum ;
 }
 

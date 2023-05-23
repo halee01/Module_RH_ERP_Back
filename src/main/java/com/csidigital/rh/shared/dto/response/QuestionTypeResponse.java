@@ -1,5 +1,6 @@
 package com.csidigital.rh.shared.dto.response;
 
+import com.csidigital.rh.dao.entity.Interview;
 import com.csidigital.rh.dao.entity.QuestionCategory;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,5 +18,5 @@ public class QuestionTypeResponse {
     private Long Id;
     private List<QuestionCategory> questionCategories;
     private String questionTypeName;
-   // private Long questionCategoryNum;
+    private List<Interview> interviewList;
 }
