@@ -46,6 +46,6 @@ public class EmployeeRequest {
     private Departement departement;
     private TechnicalFile technicalFile ;
     private AdministrativeData administrativeData;
-    private Evaluation evaluation;
+    private List<Evaluation> evaluation;
 
 }

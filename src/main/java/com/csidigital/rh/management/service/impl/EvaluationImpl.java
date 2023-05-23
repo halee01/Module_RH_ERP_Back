@@ -1,16 +1,15 @@
 package com.csidigital.rh.management.service.impl;
 
-import com.csidigital.rh.dao.entity.AdministrativeData;
-import com.csidigital.rh.dao.entity.Employee;
-import com.csidigital.rh.dao.entity.Evaluation;
-import com.csidigital.rh.dao.entity.OfferCandidate;
+import com.csidigital.rh.dao.entity.*;
 import com.csidigital.rh.dao.repository.AdministrativeDataRepository;
 import com.csidigital.rh.dao.repository.AssOfferCandidateRepository;
 import com.csidigital.rh.dao.repository.EmployeeRepository;
 import com.csidigital.rh.dao.repository.EvaluationRepository;
 import com.csidigital.rh.management.service.EvaluationService;
 import com.csidigital.rh.shared.dto.request.EvaluationRequest;
+import com.csidigital.rh.shared.dto.response.CertificationResponse;
 import com.csidigital.rh.shared.dto.response.EvaluationResponse;
+import com.csidigital.rh.shared.dto.response.InterviewResponse;
 import com.csidigital.rh.shared.exception.ResourceNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -66,6 +65,21 @@ public class EvaluationImpl implements EvaluationService {
         EvaluationResponse evaluationResponse = modelMapper.map(evaluation, EvaluationResponse.class);
         return evaluationResponse;
     }
+
+  /*  @Override
+    public List<InterviewResponse> getEvaluationInterviews(Long id) {
+        Evaluation evaluation = evaluationRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Evaluation with id " +id+ " not found"));
+        List<Interview> interviews = evaluation.ge;
+        List<CertificationResponse> certificationResponseList = new ArrayList<>();
+
+        for (Certification certification : certifications) {
+            CertificationResponse response = modelMapper.map(certification, CertificationResponse.class);
+            certificationResponseList.add(response);
+        }
+        return certificationResponseList ;
+    }
+    }*/
 
     @Override
     public EvaluationResponse updateEvaluation(EvaluationRequest request, Long id) {

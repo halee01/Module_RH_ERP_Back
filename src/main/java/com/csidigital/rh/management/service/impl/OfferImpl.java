@@ -69,4 +69,9 @@ public class OfferImpl implements OfferService {
         offerRepository.deleteById(id);
     }
 
+    @Override
+    public void updateStatusToOpenById(Long id) {offerRepository.updateStatusToOpenById(id);}
+    @Override
+    public void updateStatusToEndedById(Long id) {offerRepository.updateStatusToEndedById(id);  }
+
 }

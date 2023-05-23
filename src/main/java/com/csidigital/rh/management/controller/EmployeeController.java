@@ -1,7 +1,6 @@
 package com.csidigital.rh.management.controller;
 
-import com.csidigital.rh.dao.entity.Certification;
-import com.csidigital.rh.dao.entity.Education;
+
 import com.csidigital.rh.dao.entity.Employee;
 import com.csidigital.rh.management.service.impl.EmployeeImpl;
 import com.csidigital.rh.shared.dto.request.EmployeeRequest;

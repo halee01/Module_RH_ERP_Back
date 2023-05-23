@@ -1,5 +1,6 @@
 package com.csidigital.rh.shared.dto.response;
 
+import com.csidigital.rh.shared.enumeration.OfferStatus;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import lombok.Data;
@@ -16,9 +17,12 @@ public class OfferResponse {
     private String title;
     private String reference;
     private String description ;
+    private String requiredSkills ;
+    private Long requiredExperienceAmount ;
     private LocalDate startDate;
     private LocalDate endDate ;
     private String jobSite;
+    private OfferStatus offerStatus;
     private Set<Long> employee;
 
 }

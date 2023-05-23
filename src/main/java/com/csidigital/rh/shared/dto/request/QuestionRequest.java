@@ -6,7 +6,6 @@ import lombok.Data;
 @Data
 public class QuestionRequest {
     private String question;
-    private InterviewType interviewType;
     private Long AssQuestionInterviewId;
     private Long categoryNum ;
 
