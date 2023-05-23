@@ -14,7 +14,6 @@ public class QuestionResponse {
 
     private Long Id;
     private String question;
-    private InterviewType interviewType;
     private Set<Long> interview;
 
     private Long categoryNum ;

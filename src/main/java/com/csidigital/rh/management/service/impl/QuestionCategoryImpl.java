@@ -1,17 +1,12 @@
 package com.csidigital.rh.management.service.impl;
 
-import com.csidigital.rh.dao.entity.Level;
-import com.csidigital.rh.dao.entity.QuestionCategory;
-import com.csidigital.rh.dao.entity.Resource;
-import com.csidigital.rh.dao.entity.TechnicalFile;
+import com.csidigital.rh.dao.entity.*;
 import com.csidigital.rh.dao.repository.LevelRespository;
 import com.csidigital.rh.dao.repository.QuestionCategoryRepository;
 import com.csidigital.rh.management.service.QuestionCategoryService;
 import com.csidigital.rh.shared.dto.request.QuestionCategoryRequest;
 import com.csidigital.rh.shared.dto.request.ResourceRequest;
-import com.csidigital.rh.shared.dto.response.QuestionCategoryResponse;
-import com.csidigital.rh.shared.dto.response.ResourceResponse;
-import com.csidigital.rh.shared.dto.response.TechnicalFileResponse;
+import com.csidigital.rh.shared.dto.response.*;
 import com.csidigital.rh.shared.exception.ResourceNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -64,6 +59,21 @@ public class QuestionCategoryImpl implements QuestionCategoryService {
         QuestionCategoryResponse  questionCategoryResponse = modelMapper.map(questionCategory, QuestionCategoryResponse.class);
         return questionCategoryResponse;
     }
+
+    @Override
+    public List<QuestionResponse> getCategoryQuestions(Long id) {
+        QuestionCategory questionCategory = questionCategoryRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Category with id " +id+ " not found"));
+        //TechnicalFile technicalFile = employee.getTechnicalFile();
+        List<Question> questions = questionCategory.getQuestions();
+        List<QuestionResponse> questionResponseList = new ArrayList<>();
+        for (Question question : questions) {
+            QuestionResponse response = modelMapper.map(question, QuestionResponse.class);
+            questionResponseList.add(response);
+        }
+        return questionResponseList ;
+    }
+
 
     @Override
     public QuestionCategoryResponse updateQuestionCategory(QuestionCategoryRequest request, Long id) {

@@ -27,6 +27,12 @@ public class QuestionCategoryController {
     public QuestionCategoryResponse getQuestionCategoryById(@PathVariable Long id){
         return questionCategory.getQuestionCategoryById(id);
     }
+    @GetMapping("get/{id}/questions")
+    public List<QuestionResponse> getCategoryQuestions(@PathVariable Long id){
+        return questionCategory.getCategoryQuestions(id);
+    }
+
+
     @PostMapping("/add")
     public QuestionCategoryResponse createQuestionCategory(@Valid @RequestBody QuestionCategoryRequest questionCategoryRequest){
         return questionCategory.createQuestionCategory(questionCategoryRequest);

@@ -4,6 +4,7 @@ import lombok.Data;
 @Data
 public class LanguageResponse {
 
+    private Long Id;
     private com.csidigital.rh.shared.enumeration.Language language;
     private LanguageLevel languageLevel;
     private String additionalInformation;
