@@ -70,10 +70,8 @@ public class Employee {
     @OneToOne(mappedBy = "employee")
     private AdministrativeData administrativeData;
     @JsonIgnore
-
-    @OneToOne(cascade = CascadeType.ALL,
-            mappedBy = "employee")
-    private Evaluation evaluation;
+    @OneToMany(mappedBy = "employee" , cascade = CascadeType.ALL)
+    private List<Evaluation> evaluation;
 
 
 }

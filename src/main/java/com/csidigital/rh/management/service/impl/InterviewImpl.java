@@ -1,9 +1,10 @@
 package com.csidigital.rh.management.service.impl;
 
 
+import com.csidigital.rh.dao.entity.Evaluation;
 import com.csidigital.rh.dao.entity.Interview;
 import com.csidigital.rh.dao.entity.QuestionType;
-import com.csidigital.rh.dao.entity.TechnicalFile;
+import com.csidigital.rh.dao.repository.EvaluationRepository;
 import com.csidigital.rh.dao.repository.InterviewRepository;
 import com.csidigital.rh.dao.repository.QuestionTypeRepository;
 import com.csidigital.rh.management.service.InterviewService;
@@ -26,16 +27,19 @@ import java.util.List;
 public class InterviewImpl implements InterviewService {
     @Autowired
     private InterviewRepository interviewRepository ;
-
     @Autowired
-    private QuestionTypeRepository questionTypeRepository ;
+    private QuestionTypeRepository questionTypeRepository;
+    @Autowired
+    private EvaluationRepository evaluationRepository;
     @Autowired
     private ModelMapper modelMapper;
 
     @Override
     public InterviewResponse createInterview(InterviewRequest request) {
+        Evaluation evaluation=evaluationRepository.findById(request.getEvaluationNum()).orElseThrow();
         List<QuestionType> questionType = questionTypeRepository.findAllById(request.getQuestionTypeIds());
         Interview interview = modelMapper.map(request, Interview.class);
+        interview.setEvaluation(evaluation);
         interview.setQuestionTypeList(questionType);
         Interview InterviewSaved = interviewRepository.save(interview);
         return modelMapper.map(InterviewSaved, InterviewResponse.class);
@@ -78,11 +82,18 @@ public class InterviewImpl implements InterviewService {
     }
 
     @Override
-    public void updateStatusToPlannedById(Long id) {interviewRepository.updateStatusToPlannedById(id);}
-    @Override
-    public void updateStatusToEndedById(Long id) {interviewRepository.updateStatusToEndedById(id); }
+    public void updateStatusToPlannedById(Long id) {
+
+    }
 
     @Override
-    public void updateStatusToCancelledById(Long id) {interviewRepository.updateStatusToCancelledById(id); }
+    public void updateStatusToEndedById(Long id) {
+
+    }
+
+    @Override
+    public void updateStatusToCancelledById(Long id) {
+
+    }
 
 }
