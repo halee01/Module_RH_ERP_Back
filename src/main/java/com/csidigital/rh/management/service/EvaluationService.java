@@ -1,6 +1,7 @@
 package com.csidigital.rh.management.service;
 
 import com.csidigital.rh.shared.dto.request.EvaluationRequest;
+import com.csidigital.rh.shared.dto.response.CertificationResponse;
 import com.csidigital.rh.shared.dto.response.EducationResponse;
 import com.csidigital.rh.shared.dto.response.EvaluationResponse;
 import com.csidigital.rh.shared.dto.response.InterviewResponse;
@@ -12,6 +13,7 @@ public interface EvaluationService {
     List<EvaluationResponse> getAllEvaluations();
     EvaluationResponse getEvaluationById(Long id);
    // List<InterviewResponse> getEvaluationInterviews(Long id);
+
 
     EvaluationResponse updateEvaluation(EvaluationRequest request, Long id);
 

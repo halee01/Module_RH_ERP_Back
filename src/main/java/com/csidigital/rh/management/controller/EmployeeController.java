@@ -69,6 +69,11 @@ public class EmployeeController {
         return employeeService.getOfferCandidates(id);
     }
 
+    @GetMapping("get/{id}/evaluation")
+    public List<EvaluationResponse> getEmployeeEvaluation(@PathVariable Long id) {
+        return employeeService.getEmployeeEvaluations(id);
+    }
+
     @PostMapping("/add")
     public EmployeeResponse createEmployee(@Valid @RequestBody EmployeeRequest employeeRequest) {
         return employeeService.createEmployee(employeeRequest);
