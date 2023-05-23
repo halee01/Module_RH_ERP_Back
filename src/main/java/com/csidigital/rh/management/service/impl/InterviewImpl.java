@@ -2,7 +2,10 @@ package com.csidigital.rh.management.service.impl;
 
 
 import com.csidigital.rh.dao.entity.Interview;
+import com.csidigital.rh.dao.entity.QuestionType;
+import com.csidigital.rh.dao.entity.TechnicalFile;
 import com.csidigital.rh.dao.repository.InterviewRepository;
+import com.csidigital.rh.dao.repository.QuestionTypeRepository;
 import com.csidigital.rh.management.service.InterviewService;
 import com.csidigital.rh.shared.dto.request.InterviewRequest;
 import com.csidigital.rh.shared.dto.response.InterviewResponse;
@@ -23,12 +26,17 @@ import java.util.List;
 public class InterviewImpl implements InterviewService {
     @Autowired
     private InterviewRepository interviewRepository ;
+
+    @Autowired
+    private QuestionTypeRepository questionTypeRepository ;
     @Autowired
     private ModelMapper modelMapper;
 
     @Override
     public InterviewResponse createInterview(InterviewRequest request) {
+        List<QuestionType> questionType = questionTypeRepository.findAllById(request.getQuestionTypeIds());
         Interview interview = modelMapper.map(request, Interview.class);
+        interview.setQuestionTypeList(questionType);
         Interview InterviewSaved = interviewRepository.save(interview);
         return modelMapper.map(InterviewSaved, InterviewResponse.class);
     }
@@ -68,5 +76,13 @@ public class InterviewImpl implements InterviewService {
     public void deleteInterview(Long id) {
         interviewRepository.deleteById(id);
     }
+
+    @Override
+    public void updateStatusToPlannedById(Long id) {interviewRepository.updateStatusToPlannedById(id);}
+    @Override
+    public void updateStatusToEndedById(Long id) {interviewRepository.updateStatusToEndedById(id); }
+
+    @Override
+    public void updateStatusToCancelledById(Long id) {interviewRepository.updateStatusToCancelledById(id); }
 
 }

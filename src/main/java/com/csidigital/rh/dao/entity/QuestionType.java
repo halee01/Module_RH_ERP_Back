@@ -22,9 +22,9 @@ public class QuestionType {
     @OneToMany(mappedBy = "questionType" , cascade = CascadeType.ALL)
     private List<QuestionCategory> questionCategories;
 
-  /* @JsonIgnore
-   @OneToOne(cascade = CascadeType.ALL,
-           mappedBy = "questionType")
-   private QuestionCategory questionCategory;*/
+    @JsonIgnore
+    @ManyToMany(mappedBy = "questionTypeList")
+    private List<Interview> interviewList;
+
 
 }

@@ -13,4 +13,9 @@ public interface InterviewService {
 
     void deleteInterview(Long id);
 
+    void  updateStatusToPlannedById (Long id);
+    void updateStatusToEndedById (Long id);
+
+    void updateStatusToCancelledById (Long id);
+
 }
