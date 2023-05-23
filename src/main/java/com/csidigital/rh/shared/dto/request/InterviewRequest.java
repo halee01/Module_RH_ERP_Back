@@ -28,7 +28,8 @@ public class InterviewRequest {
     private InterviewType interviewType;
     private InterviewMode interviewMode;
     private List<AssQuestionInterview> assQuestionInterviewList;
-
+    private List<Long> questionTypeIds;
+    private Long evaluationNum;
 
 }
 

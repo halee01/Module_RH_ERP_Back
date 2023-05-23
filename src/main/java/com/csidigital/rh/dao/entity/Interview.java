@@ -3,6 +3,7 @@ package com.csidigital.rh.dao.entity;
 import com.csidigital.rh.shared.enumeration.InterviewLocation;
 import com.csidigital.rh.shared.enumeration.InterviewMode;
 import com.csidigital.rh.shared.enumeration.InterviewType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -38,9 +39,23 @@ public class Interview {
     @Enumerated(EnumType.STRING)
     private InterviewMode interviewMode;
 
-
+    @JsonIgnore
     @OneToMany(mappedBy = "interview")
     private List<AssQuestionInterview> assQuestionInterviewList;
+    @JsonIgnore
+    @ManyToOne()
+    @JoinColumn(name = "evaluationId")
+    private Evaluation evaluation;
+
+    @JsonIgnore
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "interview_question_type",
+            joinColumns = @JoinColumn(name = "interview_id"),
+            inverseJoinColumns = @JoinColumn(name = "question_type_id"))
+    private List<QuestionType> questionTypeList;
+
 }
+
+
 
 
