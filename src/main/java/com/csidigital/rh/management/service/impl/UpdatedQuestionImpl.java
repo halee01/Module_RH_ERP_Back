@@ -7,12 +7,19 @@ import com.csidigital.rh.management.service.UpdatedQuestionService;
 import com.csidigital.rh.shared.dto.request.UpdatedQuestionRequest;
 import com.csidigital.rh.shared.dto.response.UpdatedQuestionResponse;
 import com.csidigital.rh.shared.exception.ResourceNotFoundException;
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
+@AllArgsConstructor
+@Service
+@Transactional
 public class UpdatedQuestionImpl implements UpdatedQuestionService {
 
     @Autowired

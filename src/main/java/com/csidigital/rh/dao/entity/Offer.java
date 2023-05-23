@@ -1,10 +1,8 @@
 package com.csidigital.rh.dao.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.OneToMany;
+import com.csidigital.rh.shared.enumeration.OfferStatus;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,10 +16,11 @@ import java.util.List;
 @NoArgsConstructor
 
 public class Offer {
+
     @jakarta.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long Id;
+
     private String title;
     private String reference;
     private String description ;
@@ -30,6 +29,10 @@ public class Offer {
     private LocalDate startDate;
     private LocalDate endDate ;
     private String jobSite;
+
+    @Enumerated(EnumType.STRING)
+    private OfferStatus offerStatus;
+
     @OneToMany(mappedBy = "offer")
     private List<OfferCandidate> offerCandidateList;
 
