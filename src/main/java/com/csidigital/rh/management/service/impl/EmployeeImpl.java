@@ -134,6 +134,22 @@ public class EmployeeImpl implements EmployeeService {
         }
         return skillsResponseList ;
     }
+
+
+    @Override
+    public List<EvaluationResponse> getEmployeeEvaluations(Long id) {
+        Employee employee = employeeRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Employee with id " +id+ " not found"));
+        List<Evaluation> evaluations = employee.getEvaluation();
+        List<EvaluationResponse> evaluationResponseList = new ArrayList<>();
+        for (Evaluation evaluation : evaluations) {
+            EvaluationResponse response = modelMapper.map(evaluation, EvaluationResponse.class);
+            evaluationResponseList.add(response);
+        }
+        return evaluationResponseList ;
+    }
+
+
     @Override
     public List<AssOfferCandidateResponse> getOfferCandidates(Long id) {
         Employee employee = employeeRepository.findById(id)

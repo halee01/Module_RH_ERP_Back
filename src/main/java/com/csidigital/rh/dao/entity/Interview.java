@@ -54,6 +54,9 @@ public class Interview {
             inverseJoinColumns = @JoinColumn(name = "question_type_id"))
     private List<QuestionType> questionTypeList;
 
+
+
+
 }
 
 
