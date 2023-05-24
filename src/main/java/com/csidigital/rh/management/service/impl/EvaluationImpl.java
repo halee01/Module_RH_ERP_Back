@@ -66,20 +66,21 @@ public class EvaluationImpl implements EvaluationService {
         return evaluationResponse;
     }
 
-  /*  @Override
+
+    @Override
     public List<InterviewResponse> getEvaluationInterviews(Long id) {
         Evaluation evaluation = evaluationRepository.findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException("Evaluation with id " +id+ " not found"));
-        List<Interview> interviews = evaluation.ge;
-        List<CertificationResponse> certificationResponseList = new ArrayList<>();
+        List<Interview> interviews = evaluation.getInterviews();
+        List<InterviewResponse> interviewResponseList = new ArrayList<>();
 
-        for (Certification certification : certifications) {
-            CertificationResponse response = modelMapper.map(certification, CertificationResponse.class);
-            certificationResponseList.add(response);
+        for (Interview interview : interviews) {
+            InterviewResponse response = modelMapper.map(interview, InterviewResponse.class);
+            interviewResponseList.add(response);
         }
-        return certificationResponseList ;
+        return interviewResponseList ;
     }
-    }*/
+
 
     @Override
     public EvaluationResponse updateEvaluation(EvaluationRequest request, Long id) {
