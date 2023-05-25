@@ -8,6 +8,7 @@ import com.csidigital.rh.dao.repository.EvaluationRepository;
 import com.csidigital.rh.management.service.EvaluationService;
 import com.csidigital.rh.shared.dto.request.EvaluationRequest;
 import com.csidigital.rh.shared.dto.response.CertificationResponse;
+import com.csidigital.rh.shared.dto.response.EmployeeResponse;
 import com.csidigital.rh.shared.dto.response.EvaluationResponse;
 import com.csidigital.rh.shared.dto.response.InterviewResponse;
 import com.csidigital.rh.shared.exception.ResourceNotFoundException;
@@ -66,6 +67,15 @@ public class EvaluationImpl implements EvaluationService {
         return evaluationResponse;
     }
 
+    @Override
+    public EmployeeResponse getEmployeeByEvaluationId(Long id) {
+        Evaluation evaluation = evaluationRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Evaluation with id " + id + " not found"));
+        Employee employee = evaluation.getEmployee();
+        EmployeeResponse employeeResponse=modelMapper.map(employee, EmployeeResponse.class);
+        return employeeResponse;
+    }
+
 
     @Override
     public List<InterviewResponse> getEvaluationInterviews(Long id) {
@@ -95,4 +105,5 @@ public class EvaluationImpl implements EvaluationService {
     public void deleteEvaluation(Long id) {
         evaluationRepository.deleteById(id);
     }
+
 }

@@ -1,6 +1,7 @@
 package com.csidigital.rh.shared.dto.request;
 
 import com.csidigital.rh.dao.entity.AssQuestionInterview;
+import com.csidigital.rh.dao.entity.UpdatedQuestion;
 import com.csidigital.rh.shared.enumeration.InterviewLocation;
 import com.csidigital.rh.shared.enumeration.InterviewMode;
 import com.csidigital.rh.shared.enumeration.InterviewType;
@@ -30,6 +31,7 @@ public class InterviewRequest {
     private List<AssQuestionInterview> assQuestionInterviewList;
     private List<Long> questionTypeIds;
     private Long evaluationNum;
+    private List<UpdatedQuestion> updatedQuestions;
 
 }
 
