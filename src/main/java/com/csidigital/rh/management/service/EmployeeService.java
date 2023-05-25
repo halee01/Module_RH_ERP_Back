@@ -20,6 +20,8 @@ public interface EmployeeService {
      List<EducationResponse> getEmployeeEducation(Long id);
     List<ExperienceResponse> getEmployeeExperience(Long id);
     List<CertificationResponse> getEmployeeCertification(Long id);
+
+    List<EvaluationResponse> getEmployeeEvaluations(Long id);
     List<LanguageResponse> getEmployeeLanguage(Long id);
     List<SkillsResponse> getEmployeeSkills(Long id);
 

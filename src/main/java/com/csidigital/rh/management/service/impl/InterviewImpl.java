@@ -1,9 +1,7 @@
 package com.csidigital.rh.management.service.impl;
 
 
-import com.csidigital.rh.dao.entity.Evaluation;
-import com.csidigital.rh.dao.entity.Interview;
-import com.csidigital.rh.dao.entity.QuestionType;
+import com.csidigital.rh.dao.entity.*;
 import com.csidigital.rh.dao.repository.EvaluationRepository;
 import com.csidigital.rh.dao.repository.InterviewRepository;
 import com.csidigital.rh.dao.repository.QuestionTypeRepository;
@@ -12,6 +10,7 @@ import com.csidigital.rh.shared.dto.request.InterviewRequest;
 import com.csidigital.rh.shared.dto.response.InterviewResponse;
 import com.csidigital.rh.shared.exception.ResourceNotFoundException;
 import jakarta.transaction.Transactional;
+import jdk.jfr.Category;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,13 +35,42 @@ public class InterviewImpl implements InterviewService {
 
     @Override
     public InterviewResponse createInterview(InterviewRequest request) {
-        Evaluation evaluation=evaluationRepository.findById(request.getEvaluationNum()).orElseThrow();
-        List<QuestionType> questionType = questionTypeRepository.findAllById(request.getQuestionTypeIds());
+        List<QuestionType> questionTypes = null;
+        Evaluation evaluation = evaluationRepository.findById(request.getEvaluationNum()).orElseThrow();
+
+        if (request.getQuestionTypeIds() != null) {
+            questionTypes = questionTypeRepository.findAllById(request.getQuestionTypeIds());
+        }
+
         Interview interview = modelMapper.map(request, Interview.class);
         interview.setEvaluation(evaluation);
-        interview.setQuestionTypeList(questionType);
-        Interview InterviewSaved = interviewRepository.save(interview);
-        return modelMapper.map(InterviewSaved, InterviewResponse.class);
+        interview.setQuestionTypeList(questionTypes);
+        Interview interviewSaved = interviewRepository.save(interview);
+
+        // Add questions to the interview based on the question types and categories
+
+        for (QuestionType questionType : questionTypes) {
+            List<QuestionCategory> questionCategory = questionType.getQuestionCategories();
+            List<Question> questions = new ArrayList<>();
+
+            for(QuestionCategory q : questionCategory)
+             questions=q.getQuestions();
+            for (Question question : questions) {
+                UpdatedQuestion updatedQuestion = new UpdatedQuestion();
+
+                updatedQuestion.setInterview(interviewSaved);
+                updatedQuestion.setQuestionText(question.getQuestion());
+
+
+
+                interviewSaved.getUpdatedQuestions().add(updatedQuestion);
+            }
+
+        }
+
+        interviewRepository.save(interviewSaved);
+
+        return modelMapper.map(interviewSaved, InterviewResponse.class);
     }
 
     @Override

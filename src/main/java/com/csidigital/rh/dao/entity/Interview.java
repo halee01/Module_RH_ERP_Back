@@ -38,7 +38,6 @@ public class Interview {
     private InterviewType interviewType;
     @Enumerated(EnumType.STRING)
     private InterviewMode interviewMode;
-
     @JsonIgnore
     @OneToMany(mappedBy = "interview")
     private List<AssQuestionInterview> assQuestionInterviewList;
@@ -53,7 +52,9 @@ public class Interview {
             joinColumns = @JoinColumn(name = "interview_id"),
             inverseJoinColumns = @JoinColumn(name = "question_type_id"))
     private List<QuestionType> questionTypeList;
-
+    @JsonIgnore
+    @OneToMany
+    private List<UpdatedQuestion> updatedQuestions;
 }
 
 
