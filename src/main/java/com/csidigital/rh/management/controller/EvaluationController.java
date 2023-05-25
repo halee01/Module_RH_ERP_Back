@@ -3,6 +3,7 @@ package com.csidigital.rh.management.controller;
 import com.csidigital.rh.management.service.impl.EvaluationImpl;
 import com.csidigital.rh.shared.dto.request.EvaluationRequest;
 import com.csidigital.rh.shared.dto.response.EducationResponse;
+import com.csidigital.rh.shared.dto.response.EmployeeResponse;
 import com.csidigital.rh.shared.dto.response.EvaluationResponse;
 import com.csidigital.rh.shared.dto.response.InterviewResponse;
 import jakarta.validation.Valid;
@@ -27,6 +28,11 @@ public class EvaluationController {
     public EvaluationResponse getEvaluationById(@PathVariable Long id){
         return EvaluationService.getEvaluationById(id);
     }
+    @GetMapping("get/{id}/employee")
+    public EmployeeResponse getEmployeeByEvaluationId(@PathVariable Long id){
+        return EvaluationService.getEmployeeByEvaluationId(id);
+    }
+
     @GetMapping("get/{id}/interview")
     public List<InterviewResponse> getEvaluationInterviews(@PathVariable Long id) {
         return EvaluationService.getEvaluationInterviews(id);
