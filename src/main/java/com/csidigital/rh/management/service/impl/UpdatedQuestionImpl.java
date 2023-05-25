@@ -2,7 +2,6 @@ package com.csidigital.rh.management.service.impl;
 
 
 import com.csidigital.rh.dao.entity.Interview;
-import com.csidigital.rh.dao.entity.TechnicalFile;
 import com.csidigital.rh.dao.entity.UpdatedQuestion;
 import com.csidigital.rh.dao.repository.InterviewRepository;
 import com.csidigital.rh.dao.repository.UpdatedQuestionRepository;
@@ -62,6 +61,14 @@ public class UpdatedQuestionImpl implements UpdatedQuestionService {
         UpdatedQuestionResponse updatedQuestionResponse = modelMapper.map( updatedQuestion,  UpdatedQuestionResponse.class);
         return  updatedQuestionResponse;
     }
+
+    /*@Override
+    public List<UpdatedQuestion> getQuestionsByUpdatedQuestions(Long id) {
+        UpdatedQuestion updatedQuestion =updatedQuestionRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("UpdatedQuestion with id "+id+"not found"));
+
+        return updatedQuestion;
+    }*/
 
     @Override
     public  UpdatedQuestionResponse updateUpdatedQuestion( UpdatedQuestionRequest request, Long id) {
