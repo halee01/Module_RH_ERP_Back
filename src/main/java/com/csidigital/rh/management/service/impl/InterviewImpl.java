@@ -48,7 +48,7 @@ public class InterviewImpl implements InterviewService {
         Interview interviewSaved = interviewRepository.save(interview);
 
         // Add questions to the interview based on the question types and categories
-
+        if (request.getQuestionTypeIds() != null){
         for (QuestionType questionType : questionTypes) {
             List<QuestionCategory> questionCategory = questionType.getQuestionCategories();
             List<Question> questions = new ArrayList<>();
@@ -66,7 +66,7 @@ public class InterviewImpl implements InterviewService {
                 interviewSaved.getUpdatedQuestions().add(updatedQuestion);
             }
 
-        }
+        }}
 
         interviewRepository.save(interviewSaved);
 
