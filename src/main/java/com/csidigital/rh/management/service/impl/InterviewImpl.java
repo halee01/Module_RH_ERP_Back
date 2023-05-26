@@ -35,6 +35,7 @@ public class InterviewImpl implements InterviewService {
 
     @Override
     public InterviewResponse createInterview(InterviewRequest request) {
+
         List<QuestionType> questionTypes = null;
         Evaluation evaluation = evaluationRepository.findById(request.getEvaluationNum()).orElseThrow();
 
@@ -60,14 +61,9 @@ public class InterviewImpl implements InterviewService {
 
                 updatedQuestion.setInterview(interviewSaved);
                 updatedQuestion.setQuestionText(question.getQuestion());
-
-
-
                 interviewSaved.getUpdatedQuestions().add(updatedQuestion);
             }
-
         }
-
         interviewRepository.save(interviewSaved);
 
         return modelMapper.map(interviewSaved, InterviewResponse.class);
