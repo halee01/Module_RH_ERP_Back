@@ -12,6 +12,7 @@ public interface EvaluationService {
     EvaluationResponse getEvaluationById(Long id);
     EmployeeResponse getEmployeeByEvaluationId(Long id);
 
+
     List<InterviewResponse> getEvaluationInterviews(Long id);
 
 
