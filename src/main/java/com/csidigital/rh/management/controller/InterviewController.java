@@ -4,6 +4,7 @@ import com.csidigital.rh.management.service.impl.InterviewImpl;
 
 import com.csidigital.rh.shared.dto.request.InterviewRequest;
 import com.csidigital.rh.shared.dto.response.InterviewResponse;
+import com.csidigital.rh.shared.dto.response.QuestionTypeResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,10 @@ public class InterviewController {
     @GetMapping("/getBy/{id}")
     public InterviewResponse getInterviewById(@PathVariable Long id){
         return interviewImpl.getInterviewById(id);
+    }
+    @GetMapping("/get/{id}/questionType")
+    public List<QuestionTypeResponse> getQuestionTypesbyInterview(@PathVariable Long id){
+        return  interviewImpl.getQuestionTypesbyInterview(id);
     }
 
     @PostMapping("/add")
