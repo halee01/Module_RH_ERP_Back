@@ -1,17 +1,12 @@
 package com.csidigital.rh.management.service.impl;
 
 
-import com.csidigital.rh.dao.entity.Employee;
-import com.csidigital.rh.dao.entity.QuestionCategory;
-import com.csidigital.rh.dao.entity.QuestionType;
-import com.csidigital.rh.dao.entity.TechnicalFile;
+import com.csidigital.rh.dao.entity.*;
 import com.csidigital.rh.dao.repository.QuestionCategoryRepository;
 import com.csidigital.rh.dao.repository.QuestionTypeRepository;
 import com.csidigital.rh.management.service.QuestionTypeService;
 import com.csidigital.rh.shared.dto.request.QuestionTypeRequest;
-import com.csidigital.rh.shared.dto.response.QuestionCategoryResponse;
-import com.csidigital.rh.shared.dto.response.QuestionTypeResponse;
-import com.csidigital.rh.shared.dto.response.TechnicalFileResponse;
+import com.csidigital.rh.shared.dto.response.*;
 import com.csidigital.rh.shared.exception.ResourceNotFoundException;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
@@ -60,6 +55,40 @@ public class QuestionTypeImpl implements QuestionTypeService {
         QuestionTypeResponse questionTypeResponse = modelMapper.map(questionType, QuestionTypeResponse.class);
         return questionTypeResponse;
     }
+
+    @Override
+    public List<QuestionCategoryResponse> getQuestionCategoryByType(Long id) {
+        QuestionType questionType = questionTypeRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("QuestionType with id "+id+" not found"));
+        List<QuestionCategory> questionCategories=  questionType.getQuestionCategories();
+        List<QuestionCategoryResponse>questionCategoryResponseList=new ArrayList<>();
+        for (QuestionCategory questionCategory : questionCategories){
+            QuestionCategoryResponse response=modelMapper.map(questionCategory,QuestionCategoryResponse.class);
+            questionCategoryResponseList.add(response);
+        }
+        return questionCategoryResponseList ;
+    }
+
+    public List<QuestionResponse> getQuestionsByCategoryAndType(Long questionTypeId, Long questionCategoryId) {
+        QuestionType questionType = questionTypeRepository.findById(questionTypeId)
+                .orElseThrow(() -> new ResourceNotFoundException("QuestionType with id " + questionTypeId + " not found"));
+
+        QuestionCategory questionCategory = questionType.getQuestionCategories().stream()
+                .filter(category -> category.getId().equals(questionCategoryId))
+                .findFirst()
+                .orElseThrow(() -> new ResourceNotFoundException("QuestionCategory with id " + questionCategoryId + " not found"));
+
+        List<Question> questions = questionCategory.getQuestions();
+
+        List<QuestionResponse> questionResponseList = new ArrayList<>();
+        for (Question question : questions) {
+            QuestionResponse response = modelMapper.map(question, QuestionResponse.class);
+            questionResponseList.add(response);
+        }
+
+        return questionResponseList;
+    }
+
 
 
     @Override

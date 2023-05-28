@@ -2,6 +2,7 @@ package com.csidigital.rh.management.service;
 
 import com.csidigital.rh.shared.dto.request.QuestionTypeRequest;
 import com.csidigital.rh.shared.dto.response.QuestionCategoryResponse;
+import com.csidigital.rh.shared.dto.response.QuestionResponse;
 import com.csidigital.rh.shared.dto.response.QuestionTypeResponse;
 import com.csidigital.rh.shared.dto.response.TechnicalFileResponse;
 
@@ -11,6 +12,8 @@ public interface QuestionTypeService {
     QuestionTypeResponse createQuestionType(QuestionTypeRequest request);
     List<QuestionTypeResponse> getAllQuestionTypes();
     QuestionTypeResponse getQuestionTypeById(Long id);
+    List<QuestionCategoryResponse> getQuestionCategoryByType(Long id);
+    List<QuestionResponse> getQuestionsByCategoryAndType(Long id ,Long Id);
 
 
     QuestionTypeResponse updateQuestionType(QuestionTypeRequest request, Long id);

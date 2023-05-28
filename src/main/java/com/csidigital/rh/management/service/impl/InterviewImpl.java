@@ -8,6 +8,7 @@ import com.csidigital.rh.dao.repository.QuestionTypeRepository;
 import com.csidigital.rh.management.service.InterviewService;
 import com.csidigital.rh.shared.dto.request.InterviewRequest;
 import com.csidigital.rh.shared.dto.response.InterviewResponse;
+import com.csidigital.rh.shared.dto.response.QuestionTypeResponse;
 import com.csidigital.rh.shared.exception.ResourceNotFoundException;
 import jakarta.transaction.Transactional;
 import jdk.jfr.Category;
@@ -93,6 +94,19 @@ public class InterviewImpl implements InterviewService {
                 .orElseThrow(()-> new ResourceNotFoundException("Interview with id " +id+ " not found"));
         InterviewResponse interviewResponse = modelMapper.map(interview, InterviewResponse.class);
         return interviewResponse;
+    }
+
+    @Override
+    public List<QuestionTypeResponse> getQuestionTypesbyInterview(Long id) {
+        Interview interview =interviewRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("interview with id"+id+"not found"));
+        List<QuestionType> questionTypes=  interview.getQuestionTypeList();
+        List<QuestionTypeResponse>questionTypeList=new ArrayList<>();
+        for (QuestionType questionType : questionTypes){
+            QuestionTypeResponse response=modelMapper.map(questionType,QuestionTypeResponse.class);
+            questionTypeList.add(response);
+        }
+        return questionTypeList ;
     }
 
     @Override
