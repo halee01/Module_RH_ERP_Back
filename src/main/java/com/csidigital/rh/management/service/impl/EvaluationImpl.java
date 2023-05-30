@@ -7,7 +7,6 @@ import com.csidigital.rh.dao.repository.EmployeeRepository;
 import com.csidigital.rh.dao.repository.EvaluationRepository;
 import com.csidigital.rh.management.service.EvaluationService;
 import com.csidigital.rh.shared.dto.request.EvaluationRequest;
-import com.csidigital.rh.shared.dto.response.CertificationResponse;
 import com.csidigital.rh.shared.dto.response.EmployeeResponse;
 import com.csidigital.rh.shared.dto.response.EvaluationResponse;
 import com.csidigital.rh.shared.dto.response.InterviewResponse;
@@ -105,5 +104,35 @@ public class EvaluationImpl implements EvaluationService {
     public void deleteEvaluation(Long id) {
         evaluationRepository.deleteById(id);
     }
+
+
+   /* @Override
+    public EvaluationResponse calculateGlobalAppreciation(EvaluationRequest evaluation) {
+        List<Interview> interviews = evaluation.getInterviews();
+        if (interviews != null && !interviews.isEmpty()) {
+            int sum = 0;
+            int count = 0;
+            for (Interview interview : interviews) {
+                if (interview.getGlobalMark() != null) {
+                    sum += interview.getGlobalMark();
+                    count++;
+                }
+            }
+            if (count > 0) {
+                int average = sum / count;
+                evaluation.setGlobalAppreciation(average);
+            } else {
+                evaluation.setGlobalAppreciation(0);
+            }
+        } else {
+            evaluation.setGlobalAppreciation(0);
+        }
+
+        Evaluation savedEvaluation = evaluationRepository.save(evaluation);
+        return modelMapper.map(savedEvaluation, EvaluationResponse.class);
+    }
+
+    // Rest of the service methods...
+}*/
 
 }
