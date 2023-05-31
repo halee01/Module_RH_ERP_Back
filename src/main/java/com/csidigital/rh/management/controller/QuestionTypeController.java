@@ -5,6 +5,7 @@ import com.csidigital.rh.shared.dto.response.QuestionCategoryResponse;
 import com.csidigital.rh.shared.dto.response.QuestionResponse;
 import com.csidigital.rh.shared.dto.response.QuestionTypeResponse;
 import com.csidigital.rh.shared.dto.response.TechnicalFileResponse;
+import com.csidigital.rh.shared.enumeration.ExperienceLevel;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +36,10 @@ public class QuestionTypeController {
     public List<QuestionResponse> getQuestionsByCategoryAndType(@PathVariable Long id ,@PathVariable Long Id){
         return questionTypeImpl.getQuestionsByCategoryAndType(id,Id);
     }
-
+@GetMapping("get/{id}/{Id}/{level}/questions")
+public List<QuestionResponse> getQuestionByTypeCategoryAndLevel(@PathVariable Long id , @PathVariable Long Id, @PathVariable ExperienceLevel level){
+        return questionTypeImpl.getQuestionByTypeCategoryAndLevel(id, Id, level);
+}
     @PostMapping("/add")
     public QuestionTypeResponse createQuestionType(@Valid @RequestBody QuestionTypeRequest questionTypeRequest){
         return questionTypeImpl.createQuestionType(questionTypeRequest);

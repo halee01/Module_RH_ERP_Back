@@ -2,12 +2,11 @@ package com.csidigital.rh.management.service.impl;
 
 
 import com.csidigital.rh.dao.entity.*;
-import com.csidigital.rh.dao.repository.EvaluationRepository;
-import com.csidigital.rh.dao.repository.InterviewRepository;
-import com.csidigital.rh.dao.repository.QuestionTypeRepository;
+import com.csidigital.rh.dao.repository.*;
 import com.csidigital.rh.management.service.InterviewService;
 import com.csidigital.rh.shared.dto.request.InterviewRequest;
 import com.csidigital.rh.shared.dto.response.InterviewResponse;
+import com.csidigital.rh.shared.dto.response.QuestionResponse;
 import com.csidigital.rh.shared.dto.response.QuestionTypeResponse;
 import com.csidigital.rh.shared.exception.ResourceNotFoundException;
 import jakarta.transaction.Transactional;
@@ -16,6 +15,7 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +31,10 @@ public class InterviewImpl implements InterviewService {
     private QuestionTypeRepository questionTypeRepository;
     @Autowired
     private EvaluationRepository evaluationRepository;
+
+
+    @Autowired
+    private UpdatedQuestionRepository updatedQuestionRepository;
     @Autowired
     private ModelMapper modelMapper;
 
@@ -117,6 +121,28 @@ public class InterviewImpl implements InterviewService {
         Interview savedInterview = interviewRepository.save(existingInterview);
         return modelMapper.map(savedInterview, InterviewResponse.class);
     }
+
+
+
+    @Override
+    public void addQuestionTypeToInterview(Long id, List<Long> questionTypeIds) {
+        Interview interview = interviewRepository.findById(id).orElseThrow(() -> new RuntimeException("Interview not found"));
+        List<QuestionType> questionTypes = questionTypeRepository.findAllById(questionTypeIds);
+        for(QuestionType res : questionTypes){
+            res.getInterviewList().add(interview);
+            interview.getQuestionTypeList().add(res);
+        }
+        // Add the resource to the project's resource list
+
+
+        // Save the updated project
+        interviewRepository.save(interview);
+    }
+
+
+
+
+
 
     @Override
     public void deleteInterview(Long id) {

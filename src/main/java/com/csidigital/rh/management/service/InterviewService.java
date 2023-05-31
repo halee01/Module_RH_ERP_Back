@@ -12,7 +12,7 @@ public interface InterviewService {
     List<QuestionTypeResponse> getQuestionTypesbyInterview(Long id) ;
 
     InterviewResponse updateInterview(InterviewRequest request, Long id);
-
+    void addQuestionTypeToInterview(Long id ,List<Long> questionTypeIds);
     void deleteInterview(Long id);
 
     void  updateStatusToPlannedById (Long id);

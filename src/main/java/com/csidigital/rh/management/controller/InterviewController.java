@@ -30,6 +30,10 @@ public class InterviewController {
     public List<QuestionTypeResponse> getQuestionTypesbyInterview(@PathVariable Long id){
         return  interviewImpl.getQuestionTypesbyInterview(id);
     }
+    @PutMapping("addQuestionType/{id}")
+    public void addQuestionTypeToInterview(@PathVariable Long id, @RequestBody List<Long> questionTypeIds) {
+            interviewImpl.addQuestionTypeToInterview(id,questionTypeIds);
+    }
 
     @PostMapping("/add")
     public InterviewResponse createInterview(@Valid @RequestBody InterviewRequest interviewRequest){
