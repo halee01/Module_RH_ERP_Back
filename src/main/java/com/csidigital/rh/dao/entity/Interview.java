@@ -53,7 +53,7 @@ public class Interview {
             inverseJoinColumns = @JoinColumn(name = "question_type_id"))
     private List<QuestionType> questionTypeList;
     @JsonIgnore
-    @OneToMany
+    @OneToMany(mappedBy = "interview")
     private List<UpdatedQuestion> updatedQuestions;
 }
 

@@ -28,7 +28,6 @@ public class UpdatedQuestion {
 
 
     @ManyToOne()
-    @JsonIgnore
     @JoinColumn(name = "interviewId")
     private Interview interview ;
 }

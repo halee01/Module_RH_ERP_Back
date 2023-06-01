@@ -8,6 +8,7 @@ import com.csidigital.rh.shared.dto.request.InterviewRequest;
 import com.csidigital.rh.shared.dto.response.InterviewResponse;
 import com.csidigital.rh.shared.dto.response.QuestionResponse;
 import com.csidigital.rh.shared.dto.response.QuestionTypeResponse;
+import com.csidigital.rh.shared.dto.response.UpdatedQuestionResponse;
 import com.csidigital.rh.shared.exception.ResourceNotFoundException;
 import jakarta.transaction.Transactional;
 import jdk.jfr.Category;
@@ -111,6 +112,19 @@ public class InterviewImpl implements InterviewService {
             questionTypeList.add(response);
         }
         return questionTypeList ;
+    }
+
+    @Override
+    public List<UpdatedQuestionResponse> getUpdatedQuestionsInterview(Long id) {
+        Interview interview = interviewRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("interview with id "+id+" not found"));
+        List<UpdatedQuestion> updatedQuestions=interview.getUpdatedQuestions();
+        List<UpdatedQuestionResponse> updatedQuestionResponseList = new ArrayList<>();
+        for (UpdatedQuestion updatedQuestion : updatedQuestions){
+            UpdatedQuestionResponse response =modelMapper.map(updatedQuestion,UpdatedQuestionResponse.class);
+            updatedQuestionResponseList.add(response);
+        }
+        return updatedQuestionResponseList ;
     }
 
     @Override
