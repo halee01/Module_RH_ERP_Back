@@ -27,7 +27,7 @@ public class Interview {
     private LocalTime interviewTime;
     private String duration;
     private String comment;
-    private String globalMark;
+    private Integer globalMark;
     private String interviewerName;
     private String interviewerEmail;
     private String interviewerPhoneNumber;
@@ -53,7 +53,7 @@ public class Interview {
             inverseJoinColumns = @JoinColumn(name = "question_type_id"))
     private List<QuestionType> questionTypeList;
     @JsonIgnore
-    @OneToMany
+    @OneToMany(mappedBy = "interview")
     private List<UpdatedQuestion> updatedQuestions;
 }
 

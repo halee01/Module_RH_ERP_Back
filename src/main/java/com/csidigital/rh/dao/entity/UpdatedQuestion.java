@@ -23,12 +23,12 @@ public class UpdatedQuestion {
     private Integer mark;
     private String comment;
     private String questionText;
+
+
     @Enumerated(EnumType.STRING)
     private InterviewType interviewType;
 
-
     @ManyToOne()
-    @JsonIgnore
     @JoinColumn(name = "interviewId")
     private Interview interview ;
 }

@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -18,7 +19,9 @@ public class Evaluation{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "globalAppreciation")
-    private int globalAppreciation;
+    private Integer globalAppreciation;
+    private String evaluationRef;
+    private LocalDate evaluationDate;
 
     @ManyToOne()
     @JoinColumn(name = "employeeId")

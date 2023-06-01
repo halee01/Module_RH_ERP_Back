@@ -7,6 +7,7 @@ import com.csidigital.rh.dao.repository.QuestionTypeRepository;
 import com.csidigital.rh.management.service.QuestionTypeService;
 import com.csidigital.rh.shared.dto.request.QuestionTypeRequest;
 import com.csidigital.rh.shared.dto.response.*;
+import com.csidigital.rh.shared.enumeration.ExperienceLevel;
 import com.csidigital.rh.shared.exception.ResourceNotFoundException;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
@@ -15,6 +16,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 @Transactional
 @Service
 public class QuestionTypeImpl implements QuestionTypeService {
@@ -89,7 +92,31 @@ public class QuestionTypeImpl implements QuestionTypeService {
         return questionResponseList;
     }
 
+    @Override
+    public List<QuestionResponse> getQuestionByTypeCategoryAndLevel(Long id, Long Id, ExperienceLevel level) {
+        QuestionType questionType = questionTypeRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("QuestionType with id " + id + " not found"));
 
+        QuestionCategory questionCategory = questionType.getQuestionCategories().stream()
+                .filter(category -> category.getId().equals(Id))
+                .findFirst()
+                .orElseThrow(() -> new ResourceNotFoundException("QuestionCategory with id " + Id + " not found"));
+
+        List<Question> questions = questionCategory.getQuestions();
+
+        // Filter questions by level
+        List<Question> filteredQuestions = questions.stream()
+                .filter(question -> question.getQuestionCategory().getLevel() == level)
+                .collect(Collectors.toList());
+
+        List<QuestionResponse> questionResponseList = new ArrayList<>();
+        for (Question question : filteredQuestions) {
+            QuestionResponse response = modelMapper.map(question, QuestionResponse.class);
+            questionResponseList.add(response);
+        }
+
+        return questionResponseList;
+        }
 
 
     @Override

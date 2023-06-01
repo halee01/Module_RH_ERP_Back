@@ -10,5 +10,5 @@ public class UpdatedQuestionResponse {
     private Integer mark;
     private String comment;
     private String questionText;
-    private Interview interview ;
+    private Long interviewNum;
 }

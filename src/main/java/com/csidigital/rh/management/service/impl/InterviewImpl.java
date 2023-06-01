@@ -9,9 +9,9 @@ import com.csidigital.rh.management.service.InterviewService;
 import com.csidigital.rh.shared.dto.request.InterviewRequest;
 import com.csidigital.rh.shared.dto.response.InterviewResponse;
 import com.csidigital.rh.shared.dto.response.QuestionTypeResponse;
+import com.csidigital.rh.shared.dto.response.UpdatedQuestionResponse;
 import com.csidigital.rh.shared.exception.ResourceNotFoundException;
 import jakarta.transaction.Transactional;
-import jdk.jfr.Category;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,24 +50,24 @@ public class InterviewImpl implements InterviewService {
 
         // Add questions to the interview based on the question types and categories
         if (request.getQuestionTypeIds() != null){
-        for (QuestionType questionType : questionTypes) {
-            List<QuestionCategory> questionCategory = questionType.getQuestionCategories();
-            List<Question> questions = new ArrayList<>();
+            for (QuestionType questionType : questionTypes) {
+                List<QuestionCategory> questionCategory = questionType.getQuestionCategories();
+                List<Question> questions = new ArrayList<>();
 
-            for(QuestionCategory q : questionCategory)
-             questions=q.getQuestions();
-            for (Question question : questions) {
-                UpdatedQuestion updatedQuestion = new UpdatedQuestion();
+                for(QuestionCategory q : questionCategory)
+                    questions=q.getQuestions();
+                for (Question question : questions) {
+                    UpdatedQuestion updatedQuestion = new UpdatedQuestion();
 
-                updatedQuestion.setInterview(interviewSaved);
-                updatedQuestion.setQuestionText(question.getQuestion());
+                    updatedQuestion.setInterview(interviewSaved);
+                    updatedQuestion.setQuestionText(question.getQuestion());
 
 
 
-                interviewSaved.getUpdatedQuestions().add(updatedQuestion);
-            }
+                    interviewSaved.getUpdatedQuestions().add(updatedQuestion);
+                }
 
-        }}
+            }}
 
         interviewRepository.save(interviewSaved);
 
@@ -96,6 +96,22 @@ public class InterviewImpl implements InterviewService {
         return interviewResponse;
     }
 
+
+    @Override
+    public List<UpdatedQuestionResponse> getUpdatedQuestionsbyInterviewId(Long id) {
+        Interview interview =interviewRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("interview with id"+id+"not found"));
+        List<UpdatedQuestion> updatedQuestions=  interview.getUpdatedQuestions();
+        List<UpdatedQuestionResponse>UpdatedQuestionList=new ArrayList<>();
+        for (UpdatedQuestion updatedQuestion : updatedQuestions){
+            UpdatedQuestionResponse response=modelMapper.map(updatedQuestion,UpdatedQuestionResponse.class);
+            UpdatedQuestionList.add(response);
+        }
+        return UpdatedQuestionList ;
+    }
+
+
+
     @Override
     public List<QuestionTypeResponse> getQuestionTypesbyInterview(Long id) {
         Interview interview =interviewRepository.findById(id)
@@ -117,6 +133,19 @@ public class InterviewImpl implements InterviewService {
         Interview savedInterview = interviewRepository.save(existingInterview);
         return modelMapper.map(savedInterview, InterviewResponse.class);
     }
+
+
+    @Override
+    public void addQuestionTypeToInterview(Long interviewId, List<Long> questionTypeIds) {
+        Interview interview = interviewRepository.findById(interviewId)
+                .orElseThrow(() -> new ResourceNotFoundException("Interview with id " + interviewId + " not found"));
+
+        List<QuestionType> questionTypes = questionTypeRepository.findAllById(questionTypeIds);
+        interview.getQuestionTypeList().addAll(questionTypes);
+
+        interviewRepository.save(interview);
+    }
+
 
     @Override
     public void deleteInterview(Long id) {
