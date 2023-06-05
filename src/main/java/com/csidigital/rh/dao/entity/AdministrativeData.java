@@ -1,6 +1,7 @@
 package com.csidigital.rh.dao.entity;
 
 import com.csidigital.rh.shared.enumeration.AvailabilityEnum;
+import com.csidigital.rh.shared.enumeration.ContractTitle;
 import com.csidigital.rh.shared.enumeration.ContractType;
 import com.csidigital.rh.shared.enumeration.Experience;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -20,8 +21,8 @@ public class AdministrativeData {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Enumerated(EnumType.STRING)
-    @Column(name = "contractType")
-    private ContractType contractType;
+    @Column(name = "contractTitle")
+    private ContractTitle contractTitle;
 
     @Column(name = "currentSalary")
     private double currentSalary;

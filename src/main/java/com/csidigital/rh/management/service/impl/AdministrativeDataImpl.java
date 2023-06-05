@@ -32,7 +32,7 @@ public class AdministrativeDataImpl implements AdministrativeDataService {
 
         @Override
         public AdministrativeDataResponse createAdministrativeData(AdministrativeDataRequest request) {
-            Employee employee =  employeeRepository.findById(request.getEmployeeId()).orElseThrow();
+            Employee employee =  employeeRepository.findById(request.getEmployeeNum()).orElseThrow();
             AdministrativeData administrativeData = modelMapper.map(request, AdministrativeData.class);
             administrativeData.setEmployee(employee);
             AdministrativeData administrativeDataSaved = administrativeDataRepository.save(administrativeData);
