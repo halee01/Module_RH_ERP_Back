@@ -48,8 +48,8 @@ public class InterviewController {
     @PutMapping("/update/{id}")
     public InterviewResponse updateInterview(@Valid @RequestBody InterviewRequest interviewRequest,
                                                    @PathVariable Long id){
-        return interviewImpl.updateInterview(interviewRequest, id);
-    }
+        return interviewImpl.updateInterview(interviewRequest, id); }
+
     @DeleteMapping("/delete/{id}")
     public void deleteInterview(@PathVariable Long id){
         interviewImpl.deleteInterview(id);

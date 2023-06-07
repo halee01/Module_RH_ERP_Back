@@ -55,24 +55,24 @@ public class InterviewImpl implements InterviewService {
 
         // Add questions to the interview based on the question types and categories
         if (request.getQuestionTypeIds() != null){
-        for (QuestionType questionType : questionTypes) {
-            List<QuestionCategory> questionCategory = questionType.getQuestionCategories();
-            List<Question> questions = new ArrayList<>();
+            for (QuestionType questionType : questionTypes) {
+                List<QuestionCategory> questionCategory = questionType.getQuestionCategories();
+                List<Question> questions = new ArrayList<>();
 
-            for(QuestionCategory q : questionCategory)
-             questions=q.getQuestions();
-            for (Question question : questions) {
-                UpdatedQuestion updatedQuestion = new UpdatedQuestion();
+                for(QuestionCategory q : questionCategory)
+                    questions=q.getQuestions();
+                for (Question question : questions) {
+                    UpdatedQuestion updatedQuestion = new UpdatedQuestion();
 
-                updatedQuestion.setInterview(interviewSaved);
-                updatedQuestion.setQuestionText(question.getQuestion());
+                    updatedQuestion.setInterview(interviewSaved);
+                    updatedQuestion.setQuestionText(question.getQuestion());
 
 
 
-                interviewSaved.getUpdatedQuestions().add(updatedQuestion);
-            }
+                    interviewSaved.getUpdatedQuestions().add(updatedQuestion);
+                }
 
-        }}
+            }}
 
         interviewRepository.save(interviewSaved);
 
