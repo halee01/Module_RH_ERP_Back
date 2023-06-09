@@ -11,6 +11,7 @@ import com.csidigital.rh.shared.dto.response.EmployeeResponse;
 import com.csidigital.rh.shared.dto.response.EvaluationResponse;
 import com.csidigital.rh.shared.dto.response.InterviewResponse;
 import com.csidigital.rh.shared.exception.ResourceNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -35,6 +36,32 @@ public class EvaluationImpl implements EvaluationService {
 
     @Autowired
     private EmployeeRepository employeeRepository;
+
+    @Override
+    public void calculateGlobalAppreciation(Long evaluationId) {
+        Evaluation evaluation = evaluationRepository.findById(evaluationId)
+                .orElseThrow(() -> new EntityNotFoundException("Evaluation not found"));
+
+        List<Interview> interviews = evaluation.getInterviews();
+
+        int totalMarks = 0;
+        int questionCount = 0;
+
+        for (Interview interview : interviews) {
+            List<UpdatedQuestion> updatedQuestions = interview.getUpdatedQuestions();
+            for (UpdatedQuestion question : updatedQuestions) {
+                totalMarks += question.getMark();
+                questionCount++;
+            }
+        }
+
+        if (questionCount > 0) {
+            int meanMark = totalMarks / questionCount;
+            evaluation.setGlobalAppreciation(meanMark);
+            evaluationRepository.save(evaluation);
+        }
+
+    }
 
     @Override
     public EvaluationResponse createEvaluation(EvaluationRequest request) {

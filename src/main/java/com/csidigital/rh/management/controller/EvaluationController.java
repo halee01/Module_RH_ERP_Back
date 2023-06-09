@@ -8,6 +8,7 @@ import com.csidigital.rh.shared.dto.response.EvaluationResponse;
 import com.csidigital.rh.shared.dto.response.InterviewResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +19,11 @@ import java.util.List;
 public class EvaluationController {
     @Autowired
     private EvaluationImpl EvaluationService ;
-
+    @PostMapping("/{evaluationId}/calculate-global-appreciation")
+    public ResponseEntity<String> calculateGlobalAppreciation(@PathVariable Long evaluationId) {
+        EvaluationService.calculateGlobalAppreciation(evaluationId);
+        return ResponseEntity.ok("Global appreciation calculated and updated.");
+    }
     @GetMapping("/getEvaluations")
     public List<EvaluationResponse> getAllEvaluations() {
         return EvaluationService.getAllEvaluations();
