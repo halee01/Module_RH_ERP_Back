@@ -1,5 +1,6 @@
 package com.csidigital.rh.management.controller;
 
+import com.csidigital.rh.dao.entity.Offer;
 import com.csidigital.rh.management.service.impl.AssOfferCandidateImpl;
 import com.csidigital.rh.shared.dto.request.AssOfferCandidateRequest;
 import com.csidigital.rh.shared.dto.response.AssOfferCandidateResponse;
@@ -23,7 +24,10 @@ public class AssOfferCandidateController {
     public AssOfferCandidateResponse getAssOfferCandidateById(@PathVariable Long id){
         return assOfferCandidateImpl.getAssOfferCandidateById(id);
     }
-
+    @GetMapping("getByEmployee/{id}")
+    public List<Offer> getOffersByEmployeeId(@PathVariable Long id){
+        return assOfferCandidateImpl.getOffersByEmployeeId(id);
+    }
     @PostMapping("/add")
     public AssOfferCandidateResponse createAssOfferCandidate(@Valid @RequestBody AssOfferCandidateRequest assOfferCandidateRequest){
         return assOfferCandidateImpl.createAssOfferCandidate(assOfferCandidateRequest);

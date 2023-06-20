@@ -1,5 +1,4 @@
 package com.csidigital.rh.management.service.impl;
-
 import com.csidigital.rh.dao.entity.*;
 import com.csidigital.rh.dao.repository.AdministrativeDataRepository;
 import com.csidigital.rh.dao.repository.AssOfferCandidateRepository;
@@ -17,7 +16,9 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 import java.util.ArrayList;
 import java.util.List;
 @Service
@@ -37,6 +38,7 @@ public class EvaluationImpl implements EvaluationService {
     @Autowired
     private EmployeeRepository employeeRepository;
 
+
     @Override
     public void calculateGlobalAppreciation(Long evaluationId) {
         Evaluation evaluation = evaluationRepository.findById(evaluationId)
@@ -44,7 +46,7 @@ public class EvaluationImpl implements EvaluationService {
 
         List<Interview> interviews = evaluation.getInterviews();
 
-        int totalMarks = 0;
+        double totalMarks = 0;
         int questionCount = 0;
 
         for (Interview interview : interviews) {
@@ -56,12 +58,25 @@ public class EvaluationImpl implements EvaluationService {
         }
 
         if (questionCount > 0) {
-            int meanMark = totalMarks / questionCount;
-            evaluation.setGlobalAppreciation(meanMark);
+            double meanMark = totalMarks / questionCount;
+            double maxPossibleMark = 5.0;
+            double percentage = (meanMark / maxPossibleMark) * 100.0;
+
+            // Format the percentage value to two decimal places
+            DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.US);
+            DecimalFormat decimalFormat = new DecimalFormat("#.##", symbols);
+            String formattedPercentage = decimalFormat.format(percentage);
+
+            // Replace the comma with a period in the formatted percentage
+            formattedPercentage = formattedPercentage.replace(",", ".");
+
+            evaluation.setGlobalAppreciation(Double.parseDouble(formattedPercentage));
             evaluationRepository.save(evaluation);
         }
-
     }
+
+
+
 
     @Override
     public EvaluationResponse createEvaluation(EvaluationRequest request) {

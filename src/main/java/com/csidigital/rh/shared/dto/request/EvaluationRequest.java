@@ -10,7 +10,7 @@ import java.util.List;
 
 @Data
 public class EvaluationRequest {
-    private Integer globalAppreciation;
+    private Double globalAppreciation;
     private List<OfferCandidate>offerCandidates;
     private List<Interview> interviews;
     private Long employeeNum ;

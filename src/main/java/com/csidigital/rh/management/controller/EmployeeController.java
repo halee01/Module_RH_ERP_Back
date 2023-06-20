@@ -7,6 +7,7 @@ import com.csidigital.rh.shared.dto.request.EmployeeRequest;
 import com.csidigital.rh.shared.dto.response.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,6 +30,11 @@ public class EmployeeController {
         return employeeService.getAllEmployees();
     }
 
+    @GetMapping("/{employeeId}/hasAdministrativeData")
+    public ResponseEntity<Boolean> hasAdministrativeData(@PathVariable Long employeeId) {
+        boolean hasAdminData = employeeService.hasAdministrativeData(employeeId);
+        return ResponseEntity.ok(hasAdminData);
+    }
     @GetMapping("/get/{id}")
     public EmployeeResponse getEmployeeById(@PathVariable Long id) {
         return employeeService.getEmployeeById(id);
@@ -38,7 +44,10 @@ public class EmployeeController {
     public TechnicalFileResponse getEmployeeTechnicalFile(@PathVariable Long id) {
         return employeeService.getEmployeeTechnicalFile(id);
     }
-
+    @GetMapping("/get/{id}/administrativeData")
+    public AdministrativeDataResponse getEmployeeAdministrativeData(@PathVariable Long id) {
+        return employeeService.getEmployeeAdministartiveData(id);
+    }
     @GetMapping("get/{id}/education")
     public List<EducationResponse> getEmployeeEducation(@PathVariable Long id) {
         return employeeService.getEmployeeEducation(id);

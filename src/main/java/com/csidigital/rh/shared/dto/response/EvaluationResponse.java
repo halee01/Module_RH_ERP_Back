@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 public class EvaluationResponse {
     private Long Id ;
-    private Integer globalAppreciation;
+    private Double globalAppreciation;
     private List<OfferCandidate> offerCandidates;
     private AdministrativeData administrativeData;
     private Long employeeNum ;
