@@ -6,12 +6,15 @@ import com.csidigital.rh.dao.entity.Interview;
 import com.csidigital.rh.dao.entity.OfferCandidate;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
 public class EvaluationResponse {
     private Long Id ;
     private Integer globalAppreciation;
+    private String evaluationRef;
+    private LocalDate evaluationDate;
     private List<OfferCandidate> offerCandidates;
     private AdministrativeData administrativeData;
     private Long employeeNum ;

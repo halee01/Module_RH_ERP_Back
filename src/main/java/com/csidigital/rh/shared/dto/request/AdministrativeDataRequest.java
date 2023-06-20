@@ -20,6 +20,6 @@ public class AdministrativeDataRequest {
     private AvailabilityEnum availability;
     private LocalDate availabilityDate;
     private Experience experience;
-    private Long employeeId;
+    private Long employeeNum;
 
 }

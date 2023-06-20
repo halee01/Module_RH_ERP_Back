@@ -26,7 +26,6 @@ public class Question {
     @OneToMany(mappedBy = "question")
     private List<AssQuestionInterview> assQuestionInterviewList ;
 
-
     @ManyToOne()
     @JsonIgnore
     @JoinColumn(name = "categoryId")

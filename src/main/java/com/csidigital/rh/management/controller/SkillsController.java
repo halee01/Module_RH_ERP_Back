@@ -3,8 +3,10 @@ package com.csidigital.rh.management.controller;
 import com.csidigital.rh.dao.entity.Skills;
 import com.csidigital.rh.management.service.impl.SkillsCategoryImpl;
 import com.csidigital.rh.management.service.impl.SkillsImpl;
+import com.csidigital.rh.shared.dto.request.ExperienceRequest;
 import com.csidigital.rh.shared.dto.request.SkillsCategoryRequest;
 import com.csidigital.rh.shared.dto.request.SkillsRequest;
+import com.csidigital.rh.shared.dto.response.ExperienceResponse;
 import com.csidigital.rh.shared.dto.response.SkillsCategoryResponse;
 import com.csidigital.rh.shared.dto.response.SkillsResponse;
 import jakarta.validation.Valid;
@@ -12,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 @RestController
 @Transactional
@@ -33,6 +36,18 @@ public class SkillsController {
     @PostMapping("/add")
     public SkillsResponse createSkills(@Valid @RequestBody SkillsRequest skillsRequest){
         return skills.createSkills(skillsRequest);
+    }
+
+    @PostMapping("/addSkills")
+    public List<SkillsResponse> createSkills(@Valid @RequestBody List<SkillsRequest> skillsRequests) {
+        List<SkillsResponse> skillsResponses = new ArrayList<>();
+
+        for (SkillsRequest skillsRequest : skillsRequests) {
+            SkillsResponse skillsResponse = skills.createSkills(skillsRequest);
+            skillsResponses.add(skillsResponse);
+        }
+
+        return skillsResponses;
     }
 
     @PutMapping("/update/{id}")

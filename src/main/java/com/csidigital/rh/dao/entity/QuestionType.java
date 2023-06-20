@@ -19,7 +19,7 @@ public class QuestionType {
     private String questionTypeName ;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "questionType" , cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "questionType" , cascade = CascadeType.ALL, orphanRemoval = true)
     private List<QuestionCategory> questionCategories;
 
     @JsonIgnore

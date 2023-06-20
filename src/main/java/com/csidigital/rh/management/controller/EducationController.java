@@ -7,6 +7,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -28,6 +29,18 @@ public class EducationController {
     @PostMapping("/add")
     public EducationResponse createEducation(@Valid @RequestBody EducationRequest educationRequest){
         return EducationService.createEducation(educationRequest);
+    }
+
+    @PostMapping("/addEducations")
+    public List<EducationResponse> createEducations(@Valid @RequestBody List<EducationRequest> educationRequests) {
+        List<EducationResponse> educationResponses = new ArrayList<>();
+
+        for (EducationRequest educationRequest : educationRequests) {
+            EducationResponse educationResponse = EducationService.createEducation(educationRequest);
+            educationResponses.add(educationResponse);
+        }
+
+        return educationResponses;
     }
 
     @PutMapping("/update/{id}")

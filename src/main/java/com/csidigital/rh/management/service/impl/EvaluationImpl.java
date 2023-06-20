@@ -17,6 +17,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 @Service
@@ -38,12 +39,18 @@ public class EvaluationImpl implements EvaluationService {
 
     @Override
     public EvaluationResponse createEvaluation(EvaluationRequest request) {
-        Employee employee =  employeeRepository.findById(request.getEmployeeNum()).orElseThrow();
+        Employee employee = employeeRepository.findById(request.getEmployeeNum()).orElseThrow();
         Evaluation evaluation = modelMapper.map(request, Evaluation.class);
+
+        LocalDate currentDate = LocalDate.now(); // Get the current date
+
         evaluation.setEmployee(employee);
+        evaluation.setEvaluationDate(currentDate); // Set the evaluation date to the current date
+
         Evaluation evaluationSaved = evaluationRepository.save(evaluation);
         return modelMapper.map(evaluationSaved, EvaluationResponse.class);
     }
+
 
     @Override
     public List<EvaluationResponse> getAllEvaluations() {
@@ -74,7 +81,16 @@ public class EvaluationImpl implements EvaluationService {
         EmployeeResponse employeeResponse=modelMapper.map(employee, EmployeeResponse.class);
         return employeeResponse;
     }
-
+    public List<List<UpdatedQuestion>> getQuestions(Long id) {
+        Evaluation evaluation = evaluationRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Evaluation with id " + id + " not found"));
+        List<Interview> interviewList = evaluation.getInterviews();
+        List<List<UpdatedQuestion>> updatedQuestionList = new ArrayList<>();
+        for(Interview interview : interviewList){
+            updatedQuestionList.add(interview.getUpdatedQuestions());        }
+        InterviewResponse interviewResponse=modelMapper.map(interviewList, InterviewResponse.class);
+        return updatedQuestionList;
+    }
 
     @Override
     public List<InterviewResponse> getEvaluationInterviews(Long id) {

@@ -1,5 +1,6 @@
 package com.csidigital.rh.management.controller;
 
+import com.csidigital.rh.dao.entity.UpdatedQuestion;
 import com.csidigital.rh.management.service.impl.EvaluationImpl;
 import com.csidigital.rh.shared.dto.request.EvaluationRequest;
 import com.csidigital.rh.shared.dto.response.EducationResponse;
@@ -37,7 +38,10 @@ public class EvaluationController {
     public List<InterviewResponse> getEvaluationInterviews(@PathVariable Long id) {
         return EvaluationService.getEvaluationInterviews(id);
     }
-
+    @GetMapping("get/{id}/questions")
+    public List<List<UpdatedQuestion>> getQuestion(@PathVariable Long id) {
+        return EvaluationService.getQuestions(id);
+    }
     @PostMapping("/add")
     public EvaluationResponse createEvaluation(@Valid @RequestBody EvaluationRequest evaluationRequest){
         return EvaluationService.createEvaluation(evaluationRequest);

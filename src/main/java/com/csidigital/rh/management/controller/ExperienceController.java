@@ -1,12 +1,15 @@
 package com.csidigital.rh.management.controller;
 
 import com.csidigital.rh.management.service.ExperienceService;
+import com.csidigital.rh.shared.dto.request.EducationRequest;
 import com.csidigital.rh.shared.dto.request.ExperienceRequest;
+import com.csidigital.rh.shared.dto.response.EducationResponse;
 import com.csidigital.rh.shared.dto.response.ExperienceResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -29,6 +32,17 @@ public class ExperienceController {
         return experienceService.createExperience(experienceRequest);
     }
 
+    @PostMapping("/addExperiences")
+    public List<ExperienceResponse> createExperience(@Valid @RequestBody List<ExperienceRequest> experienceRequests) {
+        List<ExperienceResponse> experienceResponses = new ArrayList<>();
+
+        for (ExperienceRequest experienceRequest : experienceRequests) {
+            ExperienceResponse experienceResponse = experienceService.createExperience(experienceRequest);
+            experienceResponses.add(experienceResponse);
+        }
+
+        return experienceResponses;
+    }
     @PutMapping("/update/{id}")
     public ExperienceResponse updateExperience(@Valid @RequestBody ExperienceRequest experienceRequest,
                                          @PathVariable Long id){

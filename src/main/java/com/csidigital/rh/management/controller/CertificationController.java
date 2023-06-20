@@ -2,12 +2,15 @@ package com.csidigital.rh.management.controller;
 
 import com.csidigital.rh.management.service.impl.CertificationImpl;
 import com.csidigital.rh.shared.dto.request.CertificationRequest;
+import com.csidigital.rh.shared.dto.request.ExperienceRequest;
 import com.csidigital.rh.shared.dto.response.CertificationResponse;
+import com.csidigital.rh.shared.dto.response.ExperienceResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 @RestController
 @Transactional
@@ -31,6 +34,17 @@ public class CertificationController {
         return certification.createCertification(certificationRequest);
     }
 
+    @PostMapping("/addCertifications")
+    public List<CertificationResponse> createECertification(@Valid @RequestBody List<CertificationRequest> certificationRequests) {
+        List<CertificationResponse> certificationResponses = new ArrayList<>();
+
+        for (CertificationRequest certificationRequest : certificationRequests) {
+            CertificationResponse certificationResponse = certification.createCertification(certificationRequest);
+            certificationResponses.add(certificationResponse);
+        }
+
+        return certificationResponses;
+    }
     @PutMapping("/updateCertification/{id}")
     public CertificationResponse updateCertification(@Valid @RequestBody CertificationRequest certificationRequest,
                                                      @PathVariable Long id){

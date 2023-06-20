@@ -110,7 +110,18 @@ public class InterviewImpl implements InterviewService {
         return UpdatedQuestionList ;
     }
 
-
+    @Override
+    public List<UpdatedQuestionResponse> getUpdatedQuestionsInterview(Long id) {
+        Interview interview = interviewRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("interview with id "+id+" not found"));
+        List<UpdatedQuestion> updatedQuestions=interview.getUpdatedQuestions();
+        List<UpdatedQuestionResponse> updatedQuestionResponseList = new ArrayList<>();
+        for (UpdatedQuestion updatedQuestion : updatedQuestions){
+            UpdatedQuestionResponse response =modelMapper.map(updatedQuestion,UpdatedQuestionResponse.class);
+            updatedQuestionResponseList.add(response);
+        }
+        return updatedQuestionResponseList ;
+    }
 
     @Override
     public List<QuestionTypeResponse> getQuestionTypesbyInterview(Long id) {
