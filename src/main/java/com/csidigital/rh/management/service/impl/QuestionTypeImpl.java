@@ -118,7 +118,6 @@ public class QuestionTypeImpl implements QuestionTypeService {
         return questionResponseList;
         }
 
-
     @Override
     public QuestionTypeResponse updateQuestionType(QuestionTypeRequest request, Long id) {
         QuestionType existingQuestionType = questionTypeRepository.findById(id)
