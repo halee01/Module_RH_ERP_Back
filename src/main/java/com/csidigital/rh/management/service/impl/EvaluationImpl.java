@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.time.LocalDate;
 import java.util.Locale;
 import java.util.ArrayList;
 import java.util.List;
@@ -80,9 +81,14 @@ public class EvaluationImpl implements EvaluationService {
 
     @Override
     public EvaluationResponse createEvaluation(EvaluationRequest request) {
-        Employee employee =  employeeRepository.findById(request.getEmployeeNum()).orElseThrow();
+        Employee employee = employeeRepository.findById(request.getEmployeeNum()).orElseThrow();
         Evaluation evaluation = modelMapper.map(request, Evaluation.class);
+
+        LocalDate currentDate = LocalDate.now(); // Get the current date
+
         evaluation.setEmployee(employee);
+        evaluation.setEvaluationDate(currentDate); // Set the evaluation date to the current date
+
         Evaluation evaluationSaved = evaluationRepository.save(evaluation);
         return modelMapper.map(evaluationSaved, EvaluationResponse.class);
     }
