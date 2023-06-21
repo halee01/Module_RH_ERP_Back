@@ -10,9 +10,6 @@ public interface InterviewService {
     InterviewResponse createInterview(InterviewRequest request);
     List<InterviewResponse> getAllInterview();
     InterviewResponse getInterviewById(Long id);
-
-    List<UpdatedQuestionResponse> getUpdatedQuestionsbyInterviewId(Long id);
-
     List<QuestionTypeResponse> getQuestionTypesbyInterview(Long id) ;
     List<UpdatedQuestionResponse> getUpdatedQuestionsInterview(Long id);
 
