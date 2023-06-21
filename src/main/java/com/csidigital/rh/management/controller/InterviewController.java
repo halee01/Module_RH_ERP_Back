@@ -27,11 +27,6 @@ public class InterviewController {
     public InterviewResponse getInterviewById(@PathVariable Long id){
         return interviewImpl.getInterviewById(id);
     }
-
-    @GetMapping("/get/updatedQuestionBy/{id}")
-    public List<UpdatedQuestionResponse> getUpdatedQuestionsbyInterviewId(@PathVariable Long id){
-        return  interviewImpl.getUpdatedQuestionsbyInterviewId(id);
-    }
     @GetMapping("/get/{id}/questionType")
     public List<QuestionTypeResponse> getQuestionTypesbyInterview(@PathVariable Long id){
         return  interviewImpl.getQuestionTypesbyInterview(id);
@@ -40,10 +35,10 @@ public class InterviewController {
     public List<UpdatedQuestionResponse> getUpdatedQuestionsInterview(@PathVariable Long id){
         return interviewImpl.getUpdatedQuestionsInterview(id);
     }
-    /*@PutMapping("addQuestionType/{id}")
+    @PutMapping("addQuestionType/{id}")
     public void addQuestionTypeToInterview(@PathVariable Long id, @RequestBody List<Long> questionTypeIds) {
             interviewImpl.addQuestionTypeToInterview(id,questionTypeIds);
-    }*/
+    }
 
     @PostMapping("/add")
     public InterviewResponse createInterview(@Valid @RequestBody InterviewRequest interviewRequest){
@@ -59,15 +54,6 @@ public class InterviewController {
     public void deleteInterview(@PathVariable Long id){
         interviewImpl.deleteInterview(id);
     }
-
-    @PutMapping("/{id}/questionTypes")
-    public InterviewResponse addQuestionTypeToInterview(@PathVariable("id") Long id,
-                                                        @RequestBody List<Long> questionTypeIds) {
-        interviewImpl.addQuestionTypeToInterview(id, questionTypeIds);
-        InterviewResponse interviewResponse = interviewImpl.getInterviewById(id);
-        return interviewResponse;
-    }
-
 
     @PutMapping("/updateStatusToPlannedById/{id}")
     void updateStatusToPlannedById(@PathVariable Long id) {

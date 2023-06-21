@@ -118,6 +118,7 @@ public class QuestionTypeImpl implements QuestionTypeService {
         return questionResponseList;
         }
 
+
     @Override
     public QuestionTypeResponse updateQuestionType(QuestionTypeRequest request, Long id) {
         QuestionType existingQuestionType = questionTypeRepository.findById(id)
@@ -129,12 +130,6 @@ public class QuestionTypeImpl implements QuestionTypeService {
 
     @Override
     public void deleteQuestionType(Long id) {
-        QuestionType questionType = questionTypeRepository.findById(id).orElseThrow();
-        List<Interview> interviews = questionType.getInterviewList();
-        for (Interview interview : interviews) {
-            interview.getQuestionTypeList().remove(questionType);
-        }
-
         questionTypeRepository.deleteById(id);
     }
 }

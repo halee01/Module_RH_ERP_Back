@@ -8,14 +8,16 @@ import com.csidigital.rh.shared.dto.response.*;
 import java.util.List;
 
 public interface EmployeeService {
+
     EmployeeResponse createEmployee(EmployeeRequest request);
     List<EmployeeResponse> getAllEmployees();
     EmployeeResponse getEmployeeById(Long id);
-
+    boolean hasAdministrativeData(Long employeeId);
     EmployeeResponse updateEmployee(EmployeeRequest request, Long id);
 
     void deleteEmployee(Long id);
      TechnicalFileResponse getEmployeeTechnicalFile(Long id);
+    AdministrativeDataResponse getEmployeeAdministartiveData(Long id);
 
      List<EducationResponse> getEmployeeEducation(Long id);
     List<ExperienceResponse> getEmployeeExperience(Long id);

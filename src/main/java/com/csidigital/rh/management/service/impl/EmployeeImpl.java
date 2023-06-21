@@ -7,6 +7,7 @@ import com.csidigital.rh.shared.dto.request.EmployeeRequest;
 import com.csidigital.rh.shared.dto.response.*;
 import com.csidigital.rh.shared.enumeration.EmployeeStatus;
 import com.csidigital.rh.shared.exception.ResourceNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -51,6 +52,15 @@ public class EmployeeImpl implements EmployeeService {
         EmployeeResponse employeeResponse = modelMapper.map(employee, EmployeeResponse.class);
         return employeeResponse;
     }
+
+    @Override
+    public boolean hasAdministrativeData(Long employeeId) {
+        Employee employee = employeeRepository.findById(employeeId)
+                .orElseThrow(() -> new EntityNotFoundException("Employee not found with ID: " + employeeId));
+
+        return employee.getAdministrativeData() != null;
+    }
+
     @Override
     public TechnicalFileResponse getEmployeeTechnicalFile(Long id) {
         Employee employee = employeeRepository.findById(id)
@@ -58,6 +68,15 @@ public class EmployeeImpl implements EmployeeService {
         TechnicalFile technicalFile = employee.getTechnicalFile();
         TechnicalFileResponse technicalFileResponse = modelMapper.map(technicalFile, TechnicalFileResponse.class);
         return technicalFileResponse ;
+    }
+
+    @Override
+    public AdministrativeDataResponse getEmployeeAdministartiveData(Long id) {
+        Employee employee = employeeRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Employee with id " +id+ " not found"));
+        AdministrativeData administrativeData = employee.getAdministrativeData();
+        AdministrativeDataResponse administrativeDataResponse = modelMapper.map(administrativeData, AdministrativeDataResponse.class);
+        return administrativeDataResponse ;
     }
 
     @Override

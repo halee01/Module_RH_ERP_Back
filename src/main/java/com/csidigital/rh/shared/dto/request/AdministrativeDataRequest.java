@@ -3,18 +3,18 @@ package com.csidigital.rh.shared.dto.request;
 import com.csidigital.rh.dao.entity.Employee;
 import com.csidigital.rh.dao.entity.Evaluation;
 import com.csidigital.rh.shared.enumeration.AvailabilityEnum;
+import com.csidigital.rh.shared.enumeration.ContractTitle;
 import com.csidigital.rh.shared.enumeration.ContractType;
 import com.csidigital.rh.shared.enumeration.Experience;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
 @Data
 public class AdministrativeDataRequest {
 
-    private ContractType contractType;
+    @Enumerated(EnumType.STRING)
+    private ContractTitle contractTitle;
     private double currentSalary;
     private double expectedSalary;
     private AvailabilityEnum availability;

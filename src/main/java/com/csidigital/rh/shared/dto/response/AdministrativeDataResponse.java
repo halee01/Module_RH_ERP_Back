@@ -2,6 +2,7 @@ package com.csidigital.rh.shared.dto.response;
 
 import com.csidigital.rh.dao.entity.Evaluation;
 import com.csidigital.rh.shared.enumeration.AvailabilityEnum;
+import com.csidigital.rh.shared.enumeration.ContractTitle;
 import com.csidigital.rh.shared.enumeration.ContractType;
 import com.csidigital.rh.shared.enumeration.Experience;
 import jakarta.persistence.*;
@@ -15,7 +16,7 @@ public class AdministrativeDataResponse {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Enumerated(EnumType.STRING)
-    private ContractType contractType;
+    private ContractTitle contractTitle;
     private double currentSalary;
     private double expectedSalary;
     @Enumerated(EnumType.STRING)

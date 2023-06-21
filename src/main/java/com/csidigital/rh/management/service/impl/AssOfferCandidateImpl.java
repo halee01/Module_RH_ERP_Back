@@ -69,6 +69,20 @@ public class AssOfferCandidateImpl implements AssOfferCandidateService {
     }
 
     @Override
+    public List<Offer> getOffersByEmployeeId(Long employeeId) {
+        Employee employee = employeeRepository.findById(employeeId)
+                .orElseThrow(() -> new ResourceNotFoundException("Employee with id " + employeeId + " not found"));
+
+        List<Offer> offers = new ArrayList<>();
+        List<OfferCandidate> offerCandidates = employee.getOfferCandidateList();
+        for (OfferCandidate offerCandidate : offerCandidates) {
+            offers.add(offerCandidate.getOffer());
+        }
+
+        return offers;
+    }
+
+    @Override
     public AssOfferCandidateResponse updateAssOfferCandidate(AssOfferCandidateRequest request, Long id) {
         OfferCandidate existingOfferCandidate = assOfferCandidateRepository.findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException("AssOfferCandidate with id: " + id + " not found"));

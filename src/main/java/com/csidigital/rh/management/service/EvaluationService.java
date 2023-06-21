@@ -8,6 +8,7 @@ import com.csidigital.rh.shared.dto.response.*;
 import java.util.List;
 
 public interface EvaluationService {
+    void calculateGlobalAppreciation(Long evaluationId);
     EvaluationResponse createEvaluation(EvaluationRequest request);
     List<EvaluationResponse> getAllEvaluations();
     EvaluationResponse getEvaluationById(Long id);

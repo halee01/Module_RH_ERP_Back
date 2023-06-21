@@ -1,5 +1,4 @@
 package com.csidigital.rh.management.service.impl;
-
 import com.csidigital.rh.dao.entity.*;
 import com.csidigital.rh.dao.repository.AdministrativeDataRepository;
 import com.csidigital.rh.dao.repository.AssOfferCandidateRepository;
@@ -11,13 +10,15 @@ import com.csidigital.rh.shared.dto.response.EmployeeResponse;
 import com.csidigital.rh.shared.dto.response.EvaluationResponse;
 import com.csidigital.rh.shared.dto.response.InterviewResponse;
 import com.csidigital.rh.shared.exception.ResourceNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 import java.util.ArrayList;
 import java.util.List;
 @Service
@@ -37,20 +38,54 @@ public class EvaluationImpl implements EvaluationService {
     @Autowired
     private EmployeeRepository employeeRepository;
 
+
+    @Override
+    public void calculateGlobalAppreciation(Long evaluationId) {
+        Evaluation evaluation = evaluationRepository.findById(evaluationId)
+                .orElseThrow(() -> new EntityNotFoundException("Evaluation not found"));
+
+        List<Interview> interviews = evaluation.getInterviews();
+
+        double totalMarks = 0;
+        int questionCount = 0;
+
+        for (Interview interview : interviews) {
+            List<UpdatedQuestion> updatedQuestions = interview.getUpdatedQuestions();
+            for (UpdatedQuestion question : updatedQuestions) {
+                totalMarks += question.getMark();
+                questionCount++;
+            }
+        }
+
+        if (questionCount > 0) {
+            double meanMark = totalMarks / questionCount;
+            double maxPossibleMark = 5.0;
+            double percentage = (meanMark / maxPossibleMark) * 100.0;
+
+            // Format the percentage value to two decimal places
+            DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.US);
+            DecimalFormat decimalFormat = new DecimalFormat("#.##", symbols);
+            String formattedPercentage = decimalFormat.format(percentage);
+
+            // Replace the comma with a period in the formatted percentage
+            formattedPercentage = formattedPercentage.replace(",", ".");
+
+            evaluation.setGlobalAppreciation(Double.parseDouble(formattedPercentage));
+            evaluationRepository.save(evaluation);
+        }
+    }
+
+
+
+
     @Override
     public EvaluationResponse createEvaluation(EvaluationRequest request) {
-        Employee employee = employeeRepository.findById(request.getEmployeeNum()).orElseThrow();
+        Employee employee =  employeeRepository.findById(request.getEmployeeNum()).orElseThrow();
         Evaluation evaluation = modelMapper.map(request, Evaluation.class);
-
-        LocalDate currentDate = LocalDate.now(); // Get the current date
-
         evaluation.setEmployee(employee);
-        evaluation.setEvaluationDate(currentDate); // Set the evaluation date to the current date
-
         Evaluation evaluationSaved = evaluationRepository.save(evaluation);
         return modelMapper.map(evaluationSaved, EvaluationResponse.class);
     }
-
 
     @Override
     public List<EvaluationResponse> getAllEvaluations() {
@@ -81,16 +116,7 @@ public class EvaluationImpl implements EvaluationService {
         EmployeeResponse employeeResponse=modelMapper.map(employee, EmployeeResponse.class);
         return employeeResponse;
     }
-    public List<List<UpdatedQuestion>> getQuestions(Long id) {
-        Evaluation evaluation = evaluationRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Evaluation with id " + id + " not found"));
-        List<Interview> interviewList = evaluation.getInterviews();
-        List<List<UpdatedQuestion>> updatedQuestionList = new ArrayList<>();
-        for(Interview interview : interviewList){
-            updatedQuestionList.add(interview.getUpdatedQuestions());        }
-        InterviewResponse interviewResponse=modelMapper.map(interviewList, InterviewResponse.class);
-        return updatedQuestionList;
-    }
+
 
     @Override
     public List<InterviewResponse> getEvaluationInterviews(Long id) {

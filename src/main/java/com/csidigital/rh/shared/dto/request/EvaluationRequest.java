@@ -6,14 +6,11 @@ import com.csidigital.rh.dao.entity.OfferCandidate;
 import com.csidigital.rh.dao.entity.TechnicalFile;
 import lombok.Data;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Data
 public class EvaluationRequest {
-    private Integer globalAppreciation;
-    private String evaluationRef;
-    private LocalDate evaluationDate;
+    private Double globalAppreciation;
     private List<OfferCandidate>offerCandidates;
     private List<Interview> interviews;
     private Long employeeNum ;

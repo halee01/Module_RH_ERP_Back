@@ -2,20 +2,21 @@ package com.csidigital.rh.management.service.impl;
 
 
 import com.csidigital.rh.dao.entity.*;
-import com.csidigital.rh.dao.repository.EvaluationRepository;
-import com.csidigital.rh.dao.repository.InterviewRepository;
-import com.csidigital.rh.dao.repository.QuestionTypeRepository;
+import com.csidigital.rh.dao.repository.*;
 import com.csidigital.rh.management.service.InterviewService;
 import com.csidigital.rh.shared.dto.request.InterviewRequest;
 import com.csidigital.rh.shared.dto.response.InterviewResponse;
+import com.csidigital.rh.shared.dto.response.QuestionResponse;
 import com.csidigital.rh.shared.dto.response.QuestionTypeResponse;
 import com.csidigital.rh.shared.dto.response.UpdatedQuestionResponse;
 import com.csidigital.rh.shared.exception.ResourceNotFoundException;
 import jakarta.transaction.Transactional;
+import jdk.jfr.Category;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +32,10 @@ public class InterviewImpl implements InterviewService {
     private QuestionTypeRepository questionTypeRepository;
     @Autowired
     private EvaluationRepository evaluationRepository;
+
+
+    @Autowired
+    private UpdatedQuestionRepository updatedQuestionRepository;
     @Autowired
     private ModelMapper modelMapper;
 
@@ -96,18 +101,17 @@ public class InterviewImpl implements InterviewService {
         return interviewResponse;
     }
 
-
     @Override
-    public List<UpdatedQuestionResponse> getUpdatedQuestionsbyInterviewId(Long id) {
+    public List<QuestionTypeResponse> getQuestionTypesbyInterview(Long id) {
         Interview interview =interviewRepository.findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException("interview with id"+id+"not found"));
-        List<UpdatedQuestion> updatedQuestions=  interview.getUpdatedQuestions();
-        List<UpdatedQuestionResponse>UpdatedQuestionList=new ArrayList<>();
-        for (UpdatedQuestion updatedQuestion : updatedQuestions){
-            UpdatedQuestionResponse response=modelMapper.map(updatedQuestion,UpdatedQuestionResponse.class);
-            UpdatedQuestionList.add(response);
+        List<QuestionType> questionTypes=  interview.getQuestionTypeList();
+        List<QuestionTypeResponse>questionTypeList=new ArrayList<>();
+        for (QuestionType questionType : questionTypes){
+            QuestionTypeResponse response=modelMapper.map(questionType,QuestionTypeResponse.class);
+            questionTypeList.add(response);
         }
-        return UpdatedQuestionList ;
+        return questionTypeList ;
     }
 
     @Override
@@ -124,19 +128,6 @@ public class InterviewImpl implements InterviewService {
     }
 
     @Override
-    public List<QuestionTypeResponse> getQuestionTypesbyInterview(Long id) {
-        Interview interview =interviewRepository.findById(id)
-                .orElseThrow(()-> new ResourceNotFoundException("interview with id"+id+"not found"));
-        List<QuestionType> questionTypes=  interview.getQuestionTypeList();
-        List<QuestionTypeResponse>questionTypeList=new ArrayList<>();
-        for (QuestionType questionType : questionTypes){
-            QuestionTypeResponse response=modelMapper.map(questionType,QuestionTypeResponse.class);
-            questionTypeList.add(response);
-        }
-        return questionTypeList ;
-    }
-
-    @Override
     public InterviewResponse updateInterview(InterviewRequest request, Long id) {
         Interview existingInterview = interviewRepository.findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException("Interview with id: " + id + " not found"));
@@ -146,16 +137,25 @@ public class InterviewImpl implements InterviewService {
     }
 
 
+
     @Override
-    public void addQuestionTypeToInterview(Long interviewId, List<Long> questionTypeIds) {
-        Interview interview = interviewRepository.findById(interviewId)
-                .orElseThrow(() -> new ResourceNotFoundException("Interview with id " + interviewId + " not found"));
-
+    public void addQuestionTypeToInterview(Long id, List<Long> questionTypeIds) {
+        Interview interview = interviewRepository.findById(id).orElseThrow(() -> new RuntimeException("Interview not found"));
         List<QuestionType> questionTypes = questionTypeRepository.findAllById(questionTypeIds);
-        interview.getQuestionTypeList().addAll(questionTypes);
+        for(QuestionType res : questionTypes){
+            res.getInterviewList().add(interview);
+            interview.getQuestionTypeList().add(res);
+        }
+        // Add the resource to the project's resource list
 
+
+        // Save the updated project
         interviewRepository.save(interview);
     }
+
+
+
+
 
 
     @Override
