@@ -269,6 +269,40 @@ employeeRepository.updateStatusToArchiveById(id);
     public List<Employee> getAllResourcesExterne() {
         return employeeRepository.getAllResourcesExterne();
     }
+    @Override
+    public int countConvertedToRessource() {
+        return employeeRepository.countConvertedToRessource();
+    }
+
+    @Override
+    public int countArchived() {
+        return employeeRepository.countArchived();
+    }
+
+    @Override
+    public int countDONOTCONTACT() {
+        return employeeRepository.countDONOTCONTACT();
+    }
+
+    @Override
+    public int countINPROCESS() {
+        return employeeRepository.countINPROCESS();
+    }
+
+    @Override
+    public int countPREQUALIFIED() {
+        return employeeRepository.countPREQUALIFIED();
+    }
+
+    @Override
+    public int countTOPPROFILES() {
+        return employeeRepository.countTOPPROFILES();
+    }
+
+    @Override
+    public int countINPROGRESS() {
+        return employeeRepository.countINPROGRESS();
+    }
 
 
 

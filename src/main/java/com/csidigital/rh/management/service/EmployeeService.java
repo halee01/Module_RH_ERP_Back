@@ -45,4 +45,21 @@ public interface EmployeeService {
     void updateStatusToConvertedToResourceById (Long id);
     void  updateStatusToDoNotContactById(Long id);
     void updateStatusToArchiveById (Long id);
+
+
+    //Statistiques
+
+    int countConvertedToRessource();
+
+    int countArchived();
+
+
+    int countDONOTCONTACT();
+
+    int countINPROCESS();
+
+    int countPREQUALIFIED();
+
+    int countTOPPROFILES();
+    int countINPROGRESS();
 }

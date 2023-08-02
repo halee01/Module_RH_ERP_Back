@@ -159,4 +159,36 @@ public class EmployeeController {
     void updateStatusToArchiveById(@PathVariable Long id) {
         employeeService.updateStatusToArchiveById(id);
     }
+    @GetMapping("/countAllConvertedToResource")
+    public int countConvertedToRessource(){
+        return employeeService.countConvertedToRessource();
+    }
+    @GetMapping("/countAllArchived")
+    public int countArchived(){
+        return employeeService.countArchived();
+    }
+    @GetMapping("/countAllDoNotContact")
+    public int countDoNotContact(){
+        return employeeService.countDONOTCONTACT();
+    }
+    @GetMapping("/countAllInProcess")
+    public int countINPROCESS(){
+        return employeeService.countINPROCESS();
+    }
+    @GetMapping("/countAllPreQualified")
+    public int countPREQUALIFIED(){
+        return employeeService.countPREQUALIFIED();
+    }
+    @GetMapping("/countAllTopProfiles")
+    public int countTOPPROFILES(){
+        return employeeService.countTOPPROFILES();
+    }
+    @GetMapping("/countAllInProgress")
+    public int countINPROGRESS(){
+        return employeeService.countINPROGRESS();
+    }
+
+
+
+
 }
